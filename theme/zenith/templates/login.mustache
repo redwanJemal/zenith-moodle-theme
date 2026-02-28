@@ -100,7 +100,8 @@
 </html>
 {{#js}}
 M.util.js_pending('theme_boost/loader');
-require(['theme_boost/loader'], function() {
+require(['theme_boost/loader', 'theme_zenith/darkmode'], function(Loader, DarkMode) {
+  DarkMode.init();
   M.util.js_complete('theme_boost/loader');
 });
 {{/js}}

@@ -2,6 +2,20 @@
 // Activated via [data-theme="dark"] on the <html> element.
 // Only semantic tokens are overridden — palette tokens stay the same.
 
+// ============================================================================
+// SMOOTH TRANSITIONS — Applied after initial load to prevent flash
+// ============================================================================
+
+.z-theme-transitions,
+.z-theme-transitions *,
+.z-theme-transitions *::before,
+.z-theme-transitions *::after {
+    transition: background-color 200ms ease,
+                color 200ms ease,
+                border-color 200ms ease,
+                box-shadow 200ms ease;
+}
+
 [data-theme="dark"] {
     // ========================================================================
     // COLORS — Semantic overrides
@@ -89,4 +103,459 @@
     --z-footer-link: #94a3b8;
     --z-footer-link-hover: #f1f5f9;
     --z-footer-border: #1e293b;
+}
+
+// ============================================================================
+// MOODLE CORE COMPONENT OVERRIDES — Dark mode specific
+// ============================================================================
+
+[data-theme="dark"] {
+    // Body
+    body {
+        background-color: var(--z-bg-page);
+        color: var(--z-text-primary);
+    }
+
+    // Links
+    a:not(.btn) {
+        color: var(--z-primary);
+    }
+
+    // Cards
+    .card {
+        background-color: var(--z-card-bg);
+        border-color: var(--z-card-border);
+    }
+
+    // Alerts
+    .alert-info {
+        background-color: var(--z-info-light);
+        color: var(--z-info);
+        border-color: transparent;
+    }
+
+    .alert-success {
+        background-color: var(--z-success-light);
+        color: var(--z-success);
+        border-color: transparent;
+    }
+
+    .alert-warning {
+        background-color: var(--z-warning-light);
+        color: var(--z-warning);
+        border-color: transparent;
+    }
+
+    .alert-danger {
+        background-color: var(--z-danger-light);
+        color: var(--z-danger);
+        border-color: transparent;
+    }
+
+    // Dropdown menus
+    .dropdown-menu {
+        background-color: var(--z-bg-surface);
+        border-color: var(--z-border-color);
+
+        .dropdown-item {
+            color: var(--z-text-secondary);
+
+            &:hover,
+            &:focus {
+                background-color: var(--z-bg-surface-hover);
+                color: var(--z-text-primary);
+            }
+        }
+
+        .dropdown-divider {
+            border-color: var(--z-border-color);
+        }
+    }
+
+    // Modals
+    .modal-content {
+        background-color: var(--z-bg-surface);
+        border-color: var(--z-border-color);
+        color: var(--z-text-primary);
+    }
+
+    .modal-header {
+        border-bottom-color: var(--z-border-color);
+    }
+
+    .modal-footer {
+        border-top-color: var(--z-border-color);
+    }
+
+    // Tables
+    .table {
+        color: var(--z-text-primary);
+
+        th,
+        td {
+            border-color: var(--z-border-color);
+        }
+
+        thead th {
+            border-bottom-color: var(--z-border-color-strong);
+        }
+    }
+
+    .table-striped tbody tr:nth-of-type(odd) {
+        background-color: rgba(255, 255, 255, 0.03);
+    }
+
+    .table-hover tbody tr:hover {
+        background-color: var(--z-bg-surface-hover);
+    }
+
+    // Forms
+    .form-control,
+    .custom-select {
+        background-color: var(--z-input-bg);
+        border-color: var(--z-input-border);
+        color: var(--z-text-primary);
+
+        &:focus {
+            border-color: var(--z-primary);
+            box-shadow: 0 0 0 3px var(--z-primary-light);
+        }
+    }
+
+    // Breadcrumbs
+    .breadcrumb {
+        background-color: transparent;
+
+        .breadcrumb-item {
+            color: var(--z-text-tertiary);
+
+            a {
+                color: var(--z-text-secondary);
+
+                &:hover {
+                    color: var(--z-primary);
+                }
+            }
+
+            &.active {
+                color: var(--z-text-muted);
+            }
+        }
+
+        .breadcrumb-item + .breadcrumb-item::before {
+            color: var(--z-text-muted);
+        }
+    }
+
+    // Navigation tabs
+    .nav-tabs {
+        border-bottom-color: var(--z-border-color);
+
+        .nav-link {
+            color: var(--z-text-secondary);
+
+            &:hover {
+                border-color: var(--z-border-color);
+            }
+
+            &.active {
+                background-color: var(--z-bg-surface);
+                border-color: var(--z-border-color) var(--z-border-color) var(--z-bg-surface);
+                color: var(--z-text-primary);
+            }
+        }
+    }
+
+    .nav-pills .nav-link {
+        color: var(--z-text-secondary);
+
+        &.active {
+            background-color: var(--z-primary);
+            color: #fff;
+        }
+    }
+
+    // List groups
+    .list-group-item {
+        background-color: var(--z-bg-surface);
+        border-color: var(--z-border-color);
+        color: var(--z-text-primary);
+
+        &:hover {
+            background-color: var(--z-bg-surface-hover);
+        }
+    }
+
+    // Pagination
+    .page-item .page-link {
+        background-color: var(--z-bg-surface);
+        border-color: var(--z-border-color);
+        color: var(--z-text-secondary);
+
+        &:hover {
+            background-color: var(--z-bg-surface-hover);
+            color: var(--z-text-primary);
+        }
+    }
+
+    .page-item.active .page-link {
+        background-color: var(--z-primary);
+        border-color: var(--z-primary);
+    }
+
+    .page-item.disabled .page-link {
+        background-color: var(--z-bg-muted);
+        color: var(--z-text-muted);
+    }
+
+    // Popover
+    .popover {
+        background-color: var(--z-bg-surface);
+        border-color: var(--z-border-color);
+
+        .popover-header {
+            background-color: var(--z-bg-surface-hover);
+            border-bottom-color: var(--z-border-color);
+            color: var(--z-text-primary);
+        }
+
+        .popover-body {
+            color: var(--z-text-secondary);
+        }
+    }
+
+    // Badge
+    .badge-secondary {
+        background-color: var(--z-bg-surface-hover);
+        color: var(--z-text-primary);
+    }
+
+    // Moodle — Activity / Course content
+    .activity-item,
+    .section {
+        border-color: var(--z-border-color);
+    }
+
+    .activity-header {
+        background-color: var(--z-bg-surface);
+    }
+
+    // Course sections and content
+    .course-content .section-summary,
+    .course-content ul.section,
+    .course-section,
+    #page-content .course-content {
+        background-color: transparent;
+    }
+
+    .course-section-header {
+        background-color: var(--z-bg-surface);
+        border-color: var(--z-border-color);
+    }
+
+    // Activity items in course
+    .activity-wrapper,
+    .activity-item {
+        background-color: var(--z-bg-surface);
+    }
+
+    // Secondary navigation (Course tabs)
+    .secondary-navigation {
+        background-color: var(--z-bg-surface);
+        border-color: var(--z-border-color);
+
+        .nav-link {
+            color: var(--z-text-secondary);
+
+            &:hover {
+                color: var(--z-text-primary);
+            }
+
+            &.active {
+                color: var(--z-primary);
+                border-color: var(--z-primary);
+            }
+        }
+
+        .moremenu .nav-link {
+            color: var(--z-text-secondary);
+        }
+    }
+
+    // Page content area — need high specificity to override Moodle core
+    #page #page-content #region-main-box #region-main,
+    #region-main {
+        background-color: var(--z-bg-surface);
+        border-color: var(--z-border-color);
+    }
+
+    // Course listing on frontpage
+    .coursebox {
+        background-color: var(--z-bg-surface);
+        border-color: var(--z-border-color);
+    }
+
+    .course-search-result,
+    .coursebox .info .coursename a {
+        color: var(--z-primary);
+    }
+
+    .coursebox .content .teachers,
+    .coursebox .content .summary {
+        color: var(--z-text-secondary);
+    }
+
+    // Activity headings
+    .page-header-headings,
+    .activity-header,
+    h2.sectionname,
+    .course-section .section-title {
+        color: var(--z-text-primary);
+    }
+
+    // Moodle — Dashboard blocks
+    .block {
+        background-color: var(--z-card-bg);
+        border-color: var(--z-card-border);
+
+        .card-body {
+            background-color: transparent;
+        }
+
+        .card-title {
+            color: var(--z-text-primary);
+        }
+    }
+
+    // Moodle — Page header / region-main
+    #page-header {
+        border-bottom-color: var(--z-border-color);
+    }
+
+    #region-main {
+        background-color: transparent;
+    }
+
+    .page-header-headings h1,
+    .page-header-headings h2 {
+        color: var(--z-text-primary);
+    }
+
+    // Moodle — Course overview block
+    .block_myoverview {
+        .dropdown-menu {
+            background-color: var(--z-bg-surface);
+        }
+
+        .course-info-container {
+            color: var(--z-text-secondary);
+        }
+    }
+
+    // Moodle — Calendar
+    .calendarwrapper {
+        .calendartable {
+            th,
+            td {
+                border-color: var(--z-border-color);
+            }
+        }
+
+        .day {
+            background-color: transparent;
+
+            &:hover {
+                background-color: var(--z-bg-surface-hover);
+            }
+        }
+    }
+
+    // Moodle — Messages
+    .message-app {
+        background-color: var(--z-bg-surface);
+
+        .list-group-item {
+            background-color: var(--z-bg-surface);
+            border-color: var(--z-border-color);
+        }
+    }
+
+    // Moodle — User menu / profile
+    .usermenu .dropdown-menu {
+        background-color: var(--z-bg-surface);
+    }
+
+    // Buttons — outline variants
+    .btn-outline-secondary {
+        color: var(--z-text-secondary);
+        border-color: var(--z-border-color-strong);
+
+        &:hover {
+            background-color: var(--z-bg-surface-hover);
+            color: var(--z-text-primary);
+        }
+    }
+
+    // Buttons — secondary
+    .btn-secondary {
+        background-color: var(--z-bg-surface-hover);
+        border-color: var(--z-border-color-strong);
+        color: var(--z-text-primary);
+
+        &:hover {
+            background-color: var(--z-bg-surface-active);
+        }
+    }
+
+    // Close button
+    .close {
+        color: var(--z-text-secondary);
+
+        &:hover {
+            color: var(--z-text-primary);
+        }
+    }
+
+    // Horizontal rules
+    hr {
+        border-color: var(--z-border-color);
+    }
+
+    // Code blocks
+    pre,
+    code {
+        background-color: var(--z-bg-muted);
+        color: var(--z-text-secondary);
+    }
+
+    // Progress bars
+    .progress {
+        background-color: var(--z-bg-muted);
+    }
+
+    // Custom checkboxes/radios
+    .custom-control-label::before {
+        background-color: var(--z-input-bg);
+        border-color: var(--z-input-border);
+    }
+
+    // Toasts
+    .toast {
+        background-color: var(--z-bg-surface);
+        border-color: var(--z-border-color);
+    }
+
+    // Moodle — Admin pages
+    .admintree .treebranch {
+        border-color: var(--z-border-color);
+    }
+
+    .admin_colourpicker .colourdialogue {
+        border-color: var(--z-border-color);
+    }
+
+    // Images — prevent overly bright images
+    img:not(.userpicture):not([src*="logo"]) {
+        opacity: 0.9;
+    }
 }

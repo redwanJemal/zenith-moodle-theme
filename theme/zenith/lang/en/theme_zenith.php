@@ -64,6 +64,9 @@ $string['socialyoutube_desc'] = 'Your YouTube channel URL.';
 $string['socialinstagram'] = 'Instagram URL';
 $string['socialinstagram_desc'] = 'Your Instagram profile URL.';
 
+// Dark mode.
+$string['switchtomode'] = 'Switch theme mode';
+
 // Login page.
 $string['loginsettings'] = 'Login page';
 $string['loginlayout'] = 'Login page layout';

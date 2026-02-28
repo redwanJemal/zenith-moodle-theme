@@ -288,6 +288,29 @@
     }
 }
 
+// Dark mode toggle
+.z-darkmode__toggle {
+    color: var(--z-navbar-text);
+    border: none;
+    background: none;
+    cursor: pointer;
+    border-radius: var(--z-radius-md);
+    transition: color var(--z-transition-fast),
+                background-color var(--z-transition-fast);
+
+    &:hover,
+    &:focus {
+        color: var(--z-navbar-text-active);
+        background-color: var(--z-bg-surface-hover);
+        outline: none;
+    }
+
+    .z-darkmode__icon {
+        width: 20px;
+        height: 20px;
+    }
+}
+
 // Edit switch
 .z-navbar__edit-switch {
     height: 100%;

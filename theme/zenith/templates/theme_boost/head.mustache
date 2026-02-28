@@ -1,0 +1,40 @@
+{{!
+    This file is part of Moodle - http://moodle.org/
+
+    Moodle is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Moodle is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+}}
+{{!
+    @template theme_boost/head
+
+    Zenith head template — extends Boost's head with dark mode anti-flash script.
+}}
+{{{ output.doctype }}}
+<html {{{ output.htmlattributes }}}>
+<head>
+    <title>{{{ output.page_title }}}</title>
+    <link rel="shortcut icon" href="{{{ output.favicon }}}" />
+    {{! Anti-flash script: apply dark mode before CSS loads to prevent white flash. }}
+    <script>
+    (function() {
+        var k = 'theme_zenith_darkmode';
+        var saved = null;
+        try { saved = localStorage.getItem(k); } catch(e) {}
+        if (saved === 'dark' || (!saved && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.setAttribute('data-theme', 'dark');
+        }
+    })();
+    </script>
+    {{{ output.standard_head_html }}}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
