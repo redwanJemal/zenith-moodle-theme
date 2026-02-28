@@ -1,0 +1,81 @@
+version: "3.8"
+
+services:
+  moodle:
+    image: bitnami/moodle:4.5
+    container_name: zenith-moodle
+    restart: always
+    ports:
+      - "8081:8080"
+    environment:
+      - MOODLE_DATABASE_HOST=zenith-mariadb
+      - MOODLE_DATABASE_PORT_NUMBER=3306
+      - MOODLE_DATABASE_USER=${MOODLE_DB_USER:-moodle}
+      - MOODLE_DATABASE_PASSWORD=${MOODLE_DB_PASSWORD:-moodle_password}
+      - MOODLE_DATABASE_NAME=${MOODLE_DB_NAME:-moodle}
+      - MOODLE_USERNAME=${MOODLE_ADMIN_USER:-admin}
+      - MOODLE_PASSWORD=${MOODLE_ADMIN_PASSWORD:-Admin123!}
+      - MOODLE_EMAIL=${MOODLE_ADMIN_EMAIL:-admin@endlessmaker.com}
+      - MOODLE_SITE_NAME=Zenith LMS
+      - MOODLE_HOST=lms.endlessmaker.com
+      - MOODLE_REVERSEPROXY=yes
+      - MOODLE_SSLPROXY=yes
+      - MOODLE_SKIP_BOOTSTRAP=no
+      - PHP_MEMORY_LIMIT=512M
+      - PHP_MAX_UPLOAD_SIZE=256M
+      - PHP_POST_MAX_SIZE=256M
+    volumes:
+      - zenith_moodle_data:/bitnami/moodle
+      - zenith_moodledata:/bitnami/moodledata
+    depends_on:
+      mariadb:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/"]
+      interval: 30s
+      timeout: 10s
+      start_period: 120s
+      retries: 5
+    networks:
+      - zenith-internal
+      - coolify
+    labels:
+      - traefik.enable=false
+
+  mariadb:
+    image: mariadb:11
+    container_name: zenith-mariadb
+    restart: always
+    environment:
+      - MARIADB_ROOT_PASSWORD=${MARIADB_ROOT_PASSWORD:-root_password}
+      - MARIADB_USER=${MOODLE_DB_USER:-moodle}
+      - MARIADB_PASSWORD=${MOODLE_DB_PASSWORD:-moodle_password}
+      - MARIADB_DATABASE=${MOODLE_DB_NAME:-moodle}
+      - MARIADB_CHARACTER_SET=utf8mb4
+      - MARIADB_COLLATE=utf8mb4_unicode_ci
+    volumes:
+      - zenith_mariadb_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 10s
+      timeout: 5s
+      start_period: 30s
+      retries: 5
+    networks:
+      - zenith-internal
+    labels:
+      - traefik.enable=false
+
+volumes:
+  zenith_moodle_data:
+    driver: local
+  zenith_moodledata:
+    driver: local
+  zenith_mariadb_data:
+    driver: local
+
+networks:
+  zenith-internal:
+    driver: bridge
+  coolify:
+    external: true

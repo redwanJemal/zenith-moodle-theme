@@ -1,0 +1,67 @@
+version: "3.8"
+
+# Development docker-compose — exposes ports for local access
+services:
+  moodle:
+    image: bitnami/moodle:4.5
+    container_name: zenith-moodle-dev
+    restart: unless-stopped
+    ports:
+      - "8081:8080"
+    environment:
+      - MOODLE_DATABASE_HOST=zenith-mariadb-dev
+      - MOODLE_DATABASE_PORT_NUMBER=3306
+      - MOODLE_DATABASE_USER=moodle
+      - MOODLE_DATABASE_PASSWORD=moodle_dev
+      - MOODLE_DATABASE_NAME=moodle
+      - MOODLE_USERNAME=admin
+      - MOODLE_PASSWORD=Admin123!
+      - MOODLE_EMAIL=admin@localhost
+      - MOODLE_SITE_NAME=Zenith Dev
+      - MOODLE_HOST=localhost
+      - MOODLE_SKIP_BOOTSTRAP=no
+      - PHP_MEMORY_LIMIT=512M
+      - PHP_MAX_UPLOAD_SIZE=256M
+    volumes:
+      - zenith_moodle_data_dev:/bitnami/moodle
+      - zenith_moodledata_dev:/bitnami/moodledata
+      # Bind mount theme source for live development
+      - ../theme/zenith:/bitnami/moodle/theme/zenith
+    depends_on:
+      mariadb:
+        condition: service_healthy
+    networks:
+      - zenith-dev
+
+  mariadb:
+    image: mariadb:11
+    container_name: zenith-mariadb-dev
+    restart: unless-stopped
+    ports:
+      - "3306:3306"
+    environment:
+      - MARIADB_ROOT_PASSWORD=root_dev
+      - MARIADB_USER=moodle
+      - MARIADB_PASSWORD=moodle_dev
+      - MARIADB_DATABASE=moodle
+      - MARIADB_CHARACTER_SET=utf8mb4
+      - MARIADB_COLLATE=utf8mb4_unicode_ci
+    volumes:
+      - zenith_mariadb_data_dev:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 10s
+      timeout: 5s
+      start_period: 30s
+      retries: 5
+    networks:
+      - zenith-dev
+
+volumes:
+  zenith_moodle_data_dev:
+  zenith_moodledata_dev:
+  zenith_mariadb_data_dev:
+
+networks:
+  zenith-dev:
+    driver: bridge

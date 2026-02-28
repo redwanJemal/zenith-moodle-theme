@@ -1,0 +1,33 @@
+# Dependencies
+node_modules/
+vendor/
+
+# Build output
+amd/build/
+
+# Environment
+.env
+.env.production
+docker/.env
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Moodle
+localcache/
+
+# Test output
+test-screenshots/
+e2e/.auth/
+playwright-report/
+test-results/
+
+# Compiled CSS (regenerated on build)
+# style/*.css is committed for precompiled distribution
