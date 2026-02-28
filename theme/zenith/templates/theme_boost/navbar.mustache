@@ -1,0 +1,113 @@
+{{!
+    This file is part of Moodle - http://moodle.org/
+
+    Moodle is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Moodle is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+}}
+{{!
+    @template theme_boost/navbar
+
+    Zenith theme navbar — overrides Boost's default navbar.
+    Uses --z-navbar-* design tokens for styling.
+
+    Context variables required for this template:
+    * sitename - The name of the site
+    * output - The core renderer for the page
+    * primarymoremenu - Primary navigation menu data
+    * usermenu - User menu data
+    * langmenu - Language menu data (if multiple languages)
+    * mobileprimarynav - Mobile primary navigation data
+}}
+<nav class="navbar fixed-top navbar-light navbar-expand z-navbar" aria-label="{{#str}}sitemenubar, admin{{/str}}">
+    <div class="container-fluid z-navbar__inner">
+
+        {{! ===== Mobile Menu Toggle ===== }}
+        <button class="navbar-toggler z-navbar__toggler d-block d-md-none"
+                data-toggler="drawers"
+                data-action="toggle"
+                data-target="theme_boost-drawers-primary"
+                aria-label="{{#str}}sidepanel, core{{/str}}">
+            <svg class="z-navbar__toggler-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M3 5h14M3 10h14M3 15h14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+        </button>
+
+        {{! ===== Brand / Logo ===== }}
+        <a href="{{{ config.homeurl }}}" class="navbar-brand z-navbar__brand d-none d-md-flex align-items-center">
+            {{# output.should_display_navbar_logo }}
+                <img src="{{output.get_compact_logo_url}}"
+                     class="z-navbar__logo"
+                     alt="{{sitename}}">
+            {{/ output.should_display_navbar_logo }}
+            {{^ output.should_display_navbar_logo }}
+                <span class="z-navbar__sitename">{{{ sitename }}}</span>
+            {{/ output.should_display_navbar_logo }}
+        </a>
+
+        {{! ===== Primary Navigation (Desktop) ===== }}
+        {{#primarymoremenu}}
+            <div class="primary-navigation z-navbar__primary-nav d-none d-md-flex">
+                {{> core/moremenu}}
+            </div>
+        {{/primarymoremenu}}
+
+        {{! ===== Page Heading Menu (optional, e.g. course format menu) ===== }}
+        {{# output.page_heading_menu}}
+            <ul class="navbar-nav z-navbar__heading-menu d-none d-md-flex my-1 px-1">
+                {{{ output.page_heading_menu }}}
+            </ul>
+        {{/output.page_heading_menu}}
+
+        {{! ===== Right-aligned User Navigation ===== }}
+        <div id="usernavigation" class="navbar-nav z-navbar__user-nav ms-auto">
+
+            {{! Search ===== }}
+            {{# output.search_box }}
+                <div class="z-navbar__search d-none d-md-flex align-items-center">
+                    {{{ output.search_box }}}
+                </div>
+                <div class="z-navbar__divider d-none d-md-block" aria-hidden="true"></div>
+            {{/output.search_box}}
+
+            {{! Language Menu ===== }}
+            {{#langmenu}}
+                <div class="z-navbar__lang d-none d-md-flex align-items-center">
+                    {{> theme_boost/language_menu }}
+                </div>
+                <div class="z-navbar__divider d-none d-md-block" aria-hidden="true"></div>
+            {{/langmenu}}
+
+            {{! Notifications + Messages (plugin output) ===== }}
+            <div class="z-navbar__plugins d-flex align-items-center">
+                {{{ output.navbar_plugin_output }}}
+            </div>
+
+            {{! User Menu ===== }}
+            <div class="z-navbar__user-menu d-flex align-items-stretch usermenu-container"
+                 data-region="usermenu">
+                {{#usermenu}}
+                    {{> core/user_menu }}
+                {{/usermenu}}
+            </div>
+
+            {{! Edit Mode Switch ===== }}
+            <div class="z-navbar__edit-switch d-flex align-items-center">
+                {{{ output.edit_switch }}}
+            </div>
+        </div>
+
+    </div>
+</nav>
+
+{{! ===== Mobile Primary Navigation Drawer ===== }}
+{{> theme_boost/primary-drawer-mobile }}

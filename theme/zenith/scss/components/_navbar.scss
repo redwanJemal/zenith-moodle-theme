@@ -1,0 +1,350 @@
+// Zenith Theme — Navbar Component
+// Uses --z-navbar-* design tokens from _variables.scss.
+
+// ============================================================================
+// NAVBAR — Main container
+// ============================================================================
+
+.z-navbar {
+    height: var(--z-navbar-height);
+    background-color: var(--z-navbar-bg);
+    border-bottom: 1px solid var(--z-navbar-border);
+    box-shadow: var(--z-shadow-sm);
+    padding: 0;
+    transition: background-color var(--z-transition-base),
+                border-color var(--z-transition-base),
+                box-shadow var(--z-transition-base);
+    z-index: var(--z-index-sticky);
+}
+
+.z-navbar__inner {
+    display: flex;
+    align-items: stretch;
+    height: 100%;
+}
+
+// ============================================================================
+// NAVBAR — Brand / Logo
+// ============================================================================
+
+.z-navbar__brand {
+    display: flex;
+    align-items: center;
+    padding: 0 var(--z-space-4);
+    text-decoration: none;
+    color: var(--z-text-primary);
+    flex-shrink: 0;
+
+    &:hover,
+    &:focus {
+        color: var(--z-primary);
+        text-decoration: none;
+    }
+}
+
+.z-navbar__logo {
+    max-height: calc(var(--z-navbar-height) - var(--z-space-4));
+    width: auto;
+}
+
+.z-navbar__sitename {
+    font-size: var(--z-text-lg);
+    font-weight: var(--z-font-bold);
+    letter-spacing: var(--z-tracking-tight);
+    color: var(--z-text-primary);
+    white-space: nowrap;
+}
+
+// ============================================================================
+// NAVBAR — Mobile Toggle
+// ============================================================================
+
+.z-navbar__toggler {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    margin: 0 var(--z-space-1);
+    border: none;
+    border-radius: var(--z-radius-lg);
+    background: transparent;
+    color: var(--z-navbar-text);
+    cursor: pointer;
+    transition: background-color var(--z-transition-fast),
+                color var(--z-transition-fast);
+    align-self: center;
+
+    &:hover,
+    &:focus-visible {
+        background-color: var(--z-bg-surface-hover);
+        color: var(--z-text-primary);
+    }
+
+    &:focus-visible {
+        outline: 2px solid var(--z-primary);
+        outline-offset: -2px;
+    }
+}
+
+.z-navbar__toggler-icon {
+    width: var(--z-navbar-icon-size);
+    height: var(--z-navbar-icon-size);
+}
+
+// ============================================================================
+// NAVBAR — Primary Navigation
+// ============================================================================
+
+.z-navbar__primary-nav {
+    align-items: stretch;
+    height: 100%;
+    margin-left: var(--z-space-2);
+
+    .navigation {
+        height: 100%;
+    }
+
+    .nav-link {
+        display: flex;
+        align-items: center;
+        height: 100%;
+        padding: 0 var(--z-space-3);
+        color: var(--z-navbar-text);
+        font-size: var(--z-text-sm);
+        font-weight: var(--z-font-medium);
+        white-space: nowrap;
+        border-bottom: 2px solid transparent;
+        transition: color var(--z-transition-fast),
+                    border-color var(--z-transition-fast),
+                    background-color var(--z-transition-fast);
+
+        &:hover {
+            color: var(--z-text-primary);
+            background-color: var(--z-bg-surface-hover);
+            border-bottom-color: var(--z-border-color-hover);
+        }
+
+        &.active,
+        &[aria-current="true"] {
+            color: var(--z-navbar-text-active);
+            border-bottom-color: var(--z-navbar-text-active);
+            font-weight: var(--z-font-semibold);
+        }
+    }
+}
+
+// ============================================================================
+// NAVBAR — User Navigation (right side)
+// ============================================================================
+
+.z-navbar__user-nav {
+    display: flex;
+    align-items: stretch;
+    height: 100%;
+    gap: 0;
+}
+
+// Divider between sections
+.z-navbar__divider {
+    width: 1px;
+    height: 50%;
+    align-self: center;
+    background-color: var(--z-navbar-border);
+    margin: 0 var(--z-space-1);
+}
+
+// Search box
+.z-navbar__search {
+    height: 100%;
+
+    .simplesearchform {
+        .btn {
+            padding: var(--z-space-2);
+        }
+    }
+}
+
+// Language menu
+.z-navbar__lang {
+    height: 100%;
+}
+
+// Plugin output (notifications, messages)
+.z-navbar__plugins {
+    height: 100%;
+
+    .nav-link {
+        display: flex;
+        align-items: center;
+        height: 100%;
+        padding: 0 var(--z-space-2);
+        color: var(--z-navbar-text);
+        transition: color var(--z-transition-fast);
+        position: relative;
+
+        &:hover {
+            color: var(--z-text-primary);
+        }
+    }
+
+    // Notification badge
+    .count-container {
+        position: absolute;
+        top: 12px;
+        right: 2px;
+        min-width: 18px;
+        height: 18px;
+        padding: 0 4px;
+        border-radius: var(--z-radius-full);
+        background-color: var(--z-danger);
+        color: var(--z-white, #fff);
+        font-size: 11px;
+        font-weight: var(--z-font-bold);
+        line-height: 18px;
+        text-align: center;
+    }
+}
+
+// User menu
+.z-navbar__user-menu {
+    height: 100%;
+
+    .usermenu {
+        display: flex;
+        height: 100%;
+
+        .dropdown {
+            display: flex;
+            align-items: center;
+            height: 100%;
+        }
+
+        .dropdown-toggle {
+            display: flex;
+            align-items: center;
+            height: 100%;
+            padding: 0 var(--z-space-3);
+            border-radius: 0;
+            color: var(--z-navbar-text);
+            transition: background-color var(--z-transition-fast);
+
+            &:hover {
+                background-color: var(--z-bg-surface-hover);
+            }
+
+            .userpicture {
+                width: 32px;
+                height: 32px;
+                border-radius: var(--z-radius-full);
+                object-fit: cover;
+            }
+
+            .usertext {
+                margin-left: var(--z-space-2);
+                font-size: var(--z-text-sm);
+                font-weight: var(--z-font-medium);
+                color: var(--z-text-primary);
+
+                @media (max-width: 767.98px) {
+                    display: none;
+                }
+            }
+        }
+
+        .dropdown-menu {
+            min-width: 260px;
+            padding: var(--z-space-2) 0;
+            border-radius: var(--z-radius-xl);
+            border: 1px solid var(--z-border-color);
+            box-shadow: var(--z-shadow-lg);
+            background-color: var(--z-bg-surface);
+
+            .dropdown-item {
+                padding: var(--z-space-2) var(--z-space-4);
+                font-size: var(--z-text-sm);
+                color: var(--z-text-secondary);
+                transition: background-color var(--z-transition-fast),
+                            color var(--z-transition-fast);
+
+                &:hover,
+                &:focus {
+                    background-color: var(--z-bg-surface-hover);
+                    color: var(--z-text-primary);
+                }
+
+                .icon {
+                    margin-right: var(--z-space-2);
+                    color: var(--z-text-muted);
+                }
+            }
+
+            .dropdown-divider {
+                border-top-color: var(--z-border-color);
+                margin: var(--z-space-1) 0;
+            }
+        }
+    }
+}
+
+// Edit switch
+.z-navbar__edit-switch {
+    height: 100%;
+    padding: 0 var(--z-space-2);
+
+    .editing-mode {
+        display: flex;
+        align-items: center;
+    }
+}
+
+// ============================================================================
+// NAVBAR — Page offset (fixed navbar pushes content down)
+// ============================================================================
+
+#page {
+    margin-top: var(--z-navbar-height);
+}
+
+:root {
+    --navbar-height: var(--z-navbar-height);
+}
+
+// ============================================================================
+// NAVBAR — Responsive
+// ============================================================================
+
+@media (max-width: 767.98px) {
+    .z-navbar {
+        height: 56px;
+    }
+
+    .z-navbar__brand {
+        padding: 0 var(--z-space-2);
+    }
+
+    .z-navbar__logo {
+        max-height: 36px;
+    }
+
+    .z-navbar__plugins {
+        .popover-region {
+            position: static;
+        }
+    }
+
+    #page {
+        margin-top: 56px;
+    }
+}
+
+// ============================================================================
+// NAVBAR — Heading menu
+// ============================================================================
+
+.z-navbar__heading-menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}

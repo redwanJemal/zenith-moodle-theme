@@ -1,10 +1,198 @@
 // Zenith Theme — Default Preset
 // This is the main SCSS entry point loaded via theme_zenith_get_main_scss_content().
-// As a Boost child theme, we inherit all of Boost's SCSS and add our customizations on top.
+// As a Boost child theme, we REPLACE Boost's preset entirely (Moodle loads only
+// the child theme's SCSS callback, not the parent's). So we must import
+// FontAwesome, Bootstrap, and Moodle core SCSS ourselves.
 
-// Zenith brand color.
+// ============================================================================
+// 1. BOOTSTRAP VARIABLE OVERRIDES (must come before Bootstrap imports)
+// ============================================================================
+
+// Zenith brand colors.
 $primary: #6366f1 !default;
+$success: #10b981 !default;
+$warning: #f59e0b !default;
+$danger:  #ef4444 !default;
+$info:    #3b82f6 !default;
+$secondary: #64748b !default;
 
-// This file intentionally left minimal.
-// Boost parent theme handles Bootstrap imports.
-// Future phases will add design tokens and component styles here.
+// Typography.
+$font-family-sans-serif: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif !default;
+$font-size-base: 0.9375rem !default;
+$headings-font-weight: 700 !default;
+
+// Border radius — softer corners.
+$border-radius:    0.5rem !default;
+$border-radius-sm: 0.25rem !default;
+$border-radius-lg: 0.75rem !default;
+
+// Cards.
+$card-border-radius: 0.75rem !default;
+
+// Options.
+$enable-responsive-font-sizes: true !default;
+
+// Navbar.
+$navbar-dark-hover-color: rgba(#fff, 1) !default;
+
+// Breadcrumbs (Boost defaults).
+$breadcrumb-padding-y:     .5rem !default;
+$breadcrumb-padding-x:     0 !default;
+$breadcrumb-item-padding:  .5rem !default;
+$breadcrumb-margin-bottom: 0 !default;
+$breadcrumb-bg:            transparent !default;
+$breadcrumb-divider:       "/" !default;
+$breadcrumb-divider-rtl:   "/" !default;
+
+// Alerts.
+$alert-border-width: 0 !default;
+
+// Card group.
+$card-group-margin: .25rem;
+
+// Toasts.
+$toast-color:                  #fff !default;
+$toast-background-color:       rgba(#1d2125, .95) !default;
+$toast-header-color:           #f8f9fa !default;
+$toast-header-background-color: rgba(#fff, .1) !default;
+
+// Custom controls.
+$custom-control-indicator-size: 1.25rem;
+
+// Inputs.
+$input-btn-focus-color: rgba($primary, .75) !default;
+$input-border-color: #8f959e !default;
+
+// Dropdowns.
+$dropdown-link-hover-color: #fff;
+$dropdown-link-hover-bg: $primary;
+
+// Popovers.
+$popover-max-width: 300px !default;
+
+// Spacers.
+$spacer: 1rem !default;
+$spacers: (
+    0: 0,
+    1: ($spacer * .25),
+    2: ($spacer * .5),
+    3: $spacer,
+    4: ($spacer * 1.5),
+    5: ($spacer * 2),
+    6: ($spacer * 3)
+) !default;
+
+// Theme colors map.
+$theme-colors: () !default;
+$theme-colors: map-merge((
+    primary: $primary,
+    secondary: $secondary,
+    success: $success,
+    info: $info,
+    warning: $warning,
+    danger: $danger,
+), $theme-colors);
+
+$info-outline:    #1f7e9a;
+$warning-outline: #a6670e;
+
+// ============================================================================
+// 2. FONTAWESOME
+// ============================================================================
+
+@import "fontawesome";
+
+// ============================================================================
+// 3. BOOTSTRAP — Selective Import
+// ============================================================================
+// Bootstrap 4.6.2 — We import most modules. Only skip jumbotron and media
+// (not used by Moodle core). Aggressive pruning is deferred to P4-1 where
+// PurgeCSS will strip unused selectors from the compiled output.
+
+@import "bootstrap/functions";
+@import "bootstrap/variables";
+@import "bootstrap/mixins";
+@import "bootstrap/root";
+@import "bootstrap/reboot";
+@import "bootstrap/type";
+@import "bootstrap/images";
+@import "bootstrap/code";
+@import "bootstrap/grid";
+@import "bootstrap/tables";
+@import "bootstrap/forms";
+@import "bootstrap/buttons";
+@import "bootstrap/transitions";
+@import "bootstrap/dropdown";
+@import "bootstrap/button-group";
+@import "bootstrap/input-group";
+@import "bootstrap/custom-forms";
+@import "bootstrap/nav";
+@import "bootstrap/navbar";
+@import "bootstrap/card";
+@import "bootstrap/breadcrumb";
+@import "bootstrap/pagination";
+@import "bootstrap/badge";
+// @import "bootstrap/jumbotron";  // Skipped — not used by Moodle core
+@import "bootstrap/alert";
+@import "bootstrap/progress";
+// @import "bootstrap/media";      // Skipped — not used by Moodle core
+@import "bootstrap/list-group";
+@import "bootstrap/close";
+@import "bootstrap/toasts";
+@import "bootstrap/modal";
+@import "bootstrap/tooltip";
+@import "bootstrap/popover";
+@import "bootstrap/carousel";
+@import "bootstrap/spinners";
+@import "bootstrap/utilities";
+@import "bootstrap/print";
+
+// ============================================================================
+// 4. MOODLE CORE SCSS
+// ============================================================================
+
+@import "moodle";
+
+// ============================================================================
+// 5. ZENITH DESIGN TOKENS (CSS Custom Properties)
+// ============================================================================
+
+@import "../variables";
+@import "../dark-mode";
+
+// ============================================================================
+// 6. ZENITH COMPONENTS
+// ============================================================================
+
+@import "../components/navbar";
+@import "../components/footer";
+
+// ============================================================================
+// 7. ZENITH BASE STYLES
+// ============================================================================
+
+body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-family: var(--z-font-sans);
+    color: var(--z-text-primary);
+    background-color: var(--z-bg-page);
+}
+
+.userpicture {
+    border-radius: 50%;
+}
+
+// Restore Bootstrap outline variants (Boost default overrides).
+.btn-outline-secondary {
+    @include button-outline-variant($gray-600);
+    border-color: $gray-600;
+}
+
+.btn-outline-info {
+    @include button-outline-variant($info-outline);
+}
+
+.btn-outline-warning {
+    @include button-outline-variant($warning-outline);
+}

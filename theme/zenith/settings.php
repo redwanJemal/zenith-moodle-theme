@@ -50,6 +50,71 @@ if ($ADMIN->fulltree) {
     $setting->set_updatedcallback('theme_reset_all_caches');
     $settings->add($setting);
 
+    // ========================================================================
+    // Footer settings.
+    // ========================================================================
+
+    $settings->add(new admin_setting_heading(
+        'theme_zenith/footerheading',
+        get_string('footersettings', 'theme_zenith'),
+        ''
+    ));
+
+    // Footer content (HTML).
+    $name = 'theme_zenith/footercontent';
+    $title = get_string('footercontent', 'theme_zenith');
+    $description = get_string('footercontent_desc', 'theme_zenith');
+    $setting = new admin_setting_confightmleditor($name, $title, $description, '');
+    $setting->set_updatedcallback('theme_reset_all_caches');
+    $settings->add($setting);
+
+    // Copyright text.
+    $name = 'theme_zenith/footercopyright';
+    $title = get_string('footercopyright', 'theme_zenith');
+    $description = get_string('footercopyright_desc', 'theme_zenith');
+    $default = '© {year} ' . format_string($SITE->fullname);
+    $setting = new admin_setting_configtext($name, $title, $description, $default);
+    $setting->set_updatedcallback('theme_reset_all_caches');
+    $settings->add($setting);
+
+    // Show Zenith branding.
+    $name = 'theme_zenith/footershowbranding';
+    $title = get_string('footershowbranding', 'theme_zenith');
+    $description = get_string('footershowbranding_desc', 'theme_zenith');
+    $setting = new admin_setting_configcheckbox($name, $title, $description, 1);
+    $setting->set_updatedcallback('theme_reset_all_caches');
+    $settings->add($setting);
+
+    // ========================================================================
+    // Social media settings.
+    // ========================================================================
+
+    $settings->add(new admin_setting_heading(
+        'theme_zenith/socialheading',
+        get_string('socialmedia', 'theme_zenith'),
+        ''
+    ));
+
+    $socialnetworks = ['facebook', 'twitter', 'linkedin', 'youtube', 'instagram'];
+    foreach ($socialnetworks as $network) {
+        $name = 'theme_zenith/social' . $network;
+        $title = get_string('social' . $network, 'theme_zenith');
+        $description = get_string('social' . $network . '_desc', 'theme_zenith');
+        $setting = new admin_setting_configtext($name, $title, $description, '');
+        $setting->set_updatedcallback('theme_reset_all_caches');
+        $settings->add($setting);
+    }
+
+    // ========================================================================
+    // Advanced settings.
+    // ========================================================================
+
+    $settings->add(new admin_setting_heading(
+        'theme_zenith/advancedheading',
+        get_string('advancedsettings', 'theme_zenith'),
+        ''
+    ));
+
     // Raw SCSS before compilation.
     $name = 'theme_zenith/scsspre';
     $title = get_string('rawscsspre', 'theme_zenith');

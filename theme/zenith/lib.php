@@ -34,11 +34,35 @@ function theme_zenith_get_main_scss_content($theme) {
     global $CFG;
 
     $scss = '';
+    $themedir = $CFG->dirroot . '/theme/zenith/scss';
 
-    // Load the Zenith preset (Bootstrap variable overrides + design tokens).
-    $presetfile = $CFG->dirroot . '/theme/zenith/scss/preset/default.scss';
+    // Load the Zenith preset (Bootstrap variable overrides).
+    $presetfile = $themedir . '/preset/default.scss';
     if (is_readable($presetfile)) {
-        $scss .= file_get_contents($presetfile);
+        $presetcontent = file_get_contents($presetfile);
+        // Resolve @import directives — Moodle's SCSS compiler doesn't resolve
+        // relative paths from the theme directory, so we inline them.
+        $presetcontent = preg_replace_callback(
+            '/@import\s+"([^"]+)"\s*;/',
+            function ($matches) use ($themedir) {
+                $importpath = $matches[1];
+                // Resolve relative to preset/ directory.
+                $resolved = realpath($themedir . '/preset/' . $importpath . '.scss');
+                if (!$resolved) {
+                    // Try with underscore prefix (SCSS partial convention).
+                    $dir = dirname($themedir . '/preset/' . $importpath);
+                    $base = basename($importpath);
+                    $resolved = realpath($dir . '/_' . $base . '.scss');
+                }
+                if ($resolved && is_readable($resolved)) {
+                    return file_get_contents($resolved);
+                }
+                // If we can't resolve it, leave the @import as-is.
+                return $matches[0];
+            },
+            $presetcontent
+        );
+        $scss .= $presetcontent;
     }
 
     return $scss;

@@ -42,6 +42,28 @@ $string['logo_desc'] = 'Upload your site logo. Displayed in the navbar. Recommen
 $string['logomini'] = 'Logo (compact)';
 $string['logomini_desc'] = 'A compact version of your logo for mobile and collapsed navigation. Recommended size: 50x50px.';
 
+// Footer.
+$string['footersettings'] = 'Footer';
+$string['footercontent'] = 'Footer content';
+$string['footercontent_desc'] = 'Add HTML content to the footer area. Supports rich text, links, and basic formatting.';
+$string['footercopyright'] = 'Copyright text';
+$string['footercopyright_desc'] = 'Copyright notice displayed at the bottom of the footer. Use {year} for the current year.';
+$string['footershowbranding'] = 'Show Zenith branding';
+$string['footershowbranding_desc'] = 'Display "Powered by Zenith" in the footer.';
+
+// Social media.
+$string['socialmedia'] = 'Social media';
+$string['socialfacebook'] = 'Facebook URL';
+$string['socialfacebook_desc'] = 'Your Facebook page URL.';
+$string['socialtwitter'] = 'X (Twitter) URL';
+$string['socialtwitter_desc'] = 'Your X (formerly Twitter) profile URL.';
+$string['sociallinkedin'] = 'LinkedIn URL';
+$string['sociallinkedin_desc'] = 'Your LinkedIn company or profile URL.';
+$string['socialyoutube'] = 'YouTube URL';
+$string['socialyoutube_desc'] = 'Your YouTube channel URL.';
+$string['socialinstagram'] = 'Instagram URL';
+$string['socialinstagram_desc'] = 'Your Instagram profile URL.';
+
 // Advanced - SCSS.
 $string['rawscss'] = 'Raw SCSS';
 $string['rawscss_desc'] = 'Custom SCSS code appended after the theme SCSS. Use this for minor style adjustments.';

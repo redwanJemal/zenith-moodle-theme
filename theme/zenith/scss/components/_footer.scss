@@ -1,0 +1,318 @@
+// Zenith Theme — Footer Component
+// Uses --z-footer-* design tokens from _variables.scss.
+
+// ============================================================================
+// FOOTER — Main container
+// ============================================================================
+
+.z-footer {
+    background-color: var(--z-footer-bg);
+    color: var(--z-footer-text);
+    border-top: 1px solid var(--z-footer-border);
+    margin-top: auto;
+    padding: 0;
+    flex-shrink: 0;
+}
+
+.z-footer__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--z-space-6);
+}
+
+// ============================================================================
+// FOOTER — Main content area
+// ============================================================================
+
+.z-footer__main {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: var(--z-space-8);
+    padding: var(--z-space-12) 0 var(--z-space-8);
+}
+
+// ============================================================================
+// FOOTER — Brand column
+// ============================================================================
+
+.z-footer__brand-col {
+    display: flex;
+    flex-direction: column;
+    gap: var(--z-space-4);
+}
+
+.z-footer__brand-link {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    color: var(--z-footer-link);
+
+    &:hover {
+        color: var(--z-footer-link-hover);
+        text-decoration: none;
+    }
+}
+
+.z-footer__logo {
+    max-height: 40px;
+    width: auto;
+}
+
+.z-footer__brand-name {
+    font-size: var(--z-text-xl);
+    font-weight: var(--z-font-bold);
+    letter-spacing: var(--z-tracking-tight);
+}
+
+// ============================================================================
+// FOOTER — Social media links
+// ============================================================================
+
+.z-footer__socials {
+    display: flex;
+    gap: var(--z-space-3);
+    flex-wrap: wrap;
+}
+
+.z-footer__social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: var(--z-radius-lg);
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--z-footer-link);
+    font-size: var(--z-text-sm);
+    transition: background-color var(--z-transition-fast),
+                color var(--z-transition-fast),
+                transform var(--z-transition-fast);
+
+    &:hover {
+        background-color: var(--z-primary);
+        color: #fff;
+        transform: translateY(-2px);
+        text-decoration: none;
+    }
+
+    &:focus-visible {
+        outline: 2px solid var(--z-primary);
+        outline-offset: 2px;
+    }
+}
+
+// ============================================================================
+// FOOTER — Custom content column
+// ============================================================================
+
+.z-footer__content {
+    font-size: var(--z-text-sm);
+    line-height: var(--z-leading-relaxed);
+    color: var(--z-footer-text);
+
+    a {
+        color: var(--z-footer-link);
+        text-decoration: none;
+
+        &:hover {
+            color: var(--z-footer-link-hover);
+            text-decoration: underline;
+        }
+    }
+
+    h3,
+    h4 {
+        color: var(--z-footer-link);
+        font-size: var(--z-text-sm);
+        font-weight: var(--z-font-semibold);
+        text-transform: uppercase;
+        letter-spacing: var(--z-tracking-wide);
+        margin-bottom: var(--z-space-3);
+    }
+
+    ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+
+        li {
+            margin-bottom: var(--z-space-2);
+        }
+    }
+}
+
+// ============================================================================
+// FOOTER — Moodle links column
+// ============================================================================
+
+.z-footer__links {
+    display: flex;
+    flex-direction: column;
+    gap: var(--z-space-2);
+}
+
+.z-footer__link-item {
+    font-size: var(--z-text-sm);
+
+    a {
+        color: var(--z-footer-link);
+        text-decoration: none;
+        transition: color var(--z-transition-fast);
+
+        &:hover {
+            color: var(--z-footer-link-hover);
+            text-decoration: underline;
+        }
+    }
+}
+
+// ============================================================================
+// FOOTER — Bottom bar
+// ============================================================================
+
+.z-footer__bottom {
+    border-top: 1px solid var(--z-footer-border);
+    padding: var(--z-space-4) 0;
+}
+
+.z-footer__bottom-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: var(--z-space-3);
+}
+
+.z-footer__copyright {
+    font-size: var(--z-text-xs);
+    color: var(--z-footer-text);
+}
+
+.z-footer__meta {
+    display: flex;
+    align-items: center;
+    gap: var(--z-space-3);
+    font-size: var(--z-text-xs);
+    color: var(--z-footer-text);
+
+    a {
+        color: var(--z-footer-link);
+        text-decoration: none;
+
+        &:hover {
+            color: var(--z-footer-link-hover);
+        }
+    }
+}
+
+.z-footer__login-info {
+    font-size: var(--z-text-xs);
+}
+
+.z-footer__branding {
+    font-size: var(--z-text-xs);
+    color: var(--z-footer-text);
+
+    strong {
+        color: var(--z-footer-link);
+    }
+}
+
+// ============================================================================
+// FOOTER — Back to top button
+// ============================================================================
+
+.z-footer__back-to-top {
+    position: fixed;
+    bottom: var(--z-space-6);
+    right: var(--z-space-6);
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: var(--z-radius-full);
+    background-color: var(--z-primary);
+    color: #fff;
+    box-shadow: var(--z-shadow-lg);
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(16px);
+    transition: opacity var(--z-transition-base),
+                visibility var(--z-transition-base),
+                transform var(--z-transition-base),
+                background-color var(--z-transition-fast);
+    z-index: var(--z-index-fixed);
+
+    &:hover {
+        background-color: var(--z-primary-hover);
+        transform: translateY(-2px);
+    }
+
+    &:focus-visible {
+        outline: 2px solid var(--z-primary);
+        outline-offset: 2px;
+    }
+
+    &.z-footer__back-to-top--visible {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+}
+
+// ============================================================================
+// FOOTER — Responsive
+// ============================================================================
+
+@media (max-width: 991.98px) {
+    .z-footer__main {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .z-footer__main {
+        grid-template-columns: 1fr;
+        gap: var(--z-space-6);
+        padding: var(--z-space-8) 0 var(--z-space-6);
+    }
+
+    .z-footer__bottom-inner {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .z-footer__back-to-top {
+        bottom: var(--z-space-4);
+        right: var(--z-space-4);
+    }
+}
+
+// ============================================================================
+// FOOTER — Sticky footer (fill viewport on short pages)
+// ============================================================================
+
+#page-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+#page {
+    flex: 1 0 auto;
+}
+
+// ============================================================================
+// FOOTER — Override Boost's popover footer styles
+// ============================================================================
+
+// Remove Boost's popover button and behavior since we use a full footer.
+.btn-footer-popover,
+.btn-footer-communication,
+[data-region="footer-container-popover"],
+[data-region="footer-content-popover"] {
+    display: none !important; // stylelint-disable-line declaration-no-important
+}

@@ -1,0 +1,86 @@
+// Zenith Theme — Dark Mode Token Overrides
+// Activated via [data-theme="dark"] on the <html> element.
+// Only semantic tokens are overridden — palette tokens stay the same.
+
+[data-theme="dark"] {
+    // ========================================================================
+    // COLORS — Semantic overrides
+    // ========================================================================
+
+    // Backgrounds
+    --z-bg-page: #0f172a;
+    --z-bg-surface: #1e293b;
+    --z-bg-surface-hover: #334155;
+    --z-bg-surface-active: #475569;
+    --z-bg-muted: #1e293b;
+    --z-bg-accent: rgba(99, 102, 241, 0.15);
+    --z-bg-overlay: rgba(0, 0, 0, 0.7);
+
+    // Text
+    --z-text-primary: #f1f5f9;
+    --z-text-secondary: #cbd5e1;
+    --z-text-tertiary: #94a3b8;
+    --z-text-muted: #64748b;
+    --z-text-inverted: #0f172a;
+
+    // Borders
+    --z-border-color: #334155;
+    --z-border-color-hover: #475569;
+    --z-border-color-strong: #64748b;
+
+    // Primary — slightly lighter for dark backgrounds
+    --z-primary: #818cf8;
+    --z-primary-hover: #6366f1;
+    --z-primary-active: #4f46e5;
+    --z-primary-light: rgba(99, 102, 241, 0.2);
+    --z-primary-subtle: rgba(99, 102, 241, 0.1);
+
+    // Status colors — slightly adjusted for dark
+    --z-success: #34d399;
+    --z-success-light: rgba(16, 185, 129, 0.15);
+    --z-warning: #fbbf24;
+    --z-warning-light: rgba(245, 158, 11, 0.15);
+    --z-danger: #f87171;
+    --z-danger-light: rgba(239, 68, 68, 0.15);
+    --z-info: #60a5fa;
+    --z-info-light: rgba(59, 130, 246, 0.15);
+
+    // ========================================================================
+    // SHADOWS — darker and more subtle
+    // ========================================================================
+
+    --z-shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+    --z-shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.3), 0 1px 2px -1px rgba(0, 0, 0, 0.3);
+    --z-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -2px rgba(0, 0, 0, 0.3);
+    --z-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -4px rgba(0, 0, 0, 0.3);
+    --z-shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 8px 10px -6px rgba(0, 0, 0, 0.3);
+
+    // ========================================================================
+    // COMPONENTS — Dark overrides
+    // ========================================================================
+
+    // Navbar
+    --z-navbar-bg: #1e293b;
+    --z-navbar-border: #334155;
+    --z-navbar-text: #94a3b8;
+    --z-navbar-text-active: #818cf8;
+
+    // Drawer
+    --z-drawer-bg: #1e293b;
+    --z-drawer-border: #334155;
+
+    // Cards
+    --z-card-bg: #1e293b;
+    --z-card-border: #334155;
+
+    // Inputs
+    --z-input-bg: #334155;
+    --z-input-border: #475569;
+
+    // Footer
+    --z-footer-bg: #020617;
+    --z-footer-text: #64748b;
+    --z-footer-link: #94a3b8;
+    --z-footer-link-hover: #f1f5f9;
+    --z-footer-border: #1e293b;
+}

@@ -1,0 +1,159 @@
+{{!
+    This file is part of Moodle - http://moodle.org/
+
+    Moodle is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Moodle is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+}}
+{{!
+    @template theme_boost/footer
+
+    Zenith theme footer — overrides Boost's popover footer with a proper
+    multi-section footer. Uses --z-footer-* design tokens.
+
+    Context variables required for this template:
+    * output - The core renderer (theme_zenith\output\core_renderer)
+}}
+<footer id="page-footer" class="z-footer" role="contentinfo">
+    <div class="z-footer__inner container-fluid">
+
+        {{! ===== Main footer content area ===== }}
+        <div class="z-footer__main">
+
+            {{! Brand column ===== }}
+            <div class="z-footer__brand-col">
+                <a href="{{{ config.homeurl }}}" class="z-footer__brand-link">
+                    {{# output.should_display_navbar_logo }}
+                        <img src="{{output.get_compact_logo_url}}"
+                             class="z-footer__logo"
+                             alt="{{sitename}}">
+                    {{/ output.should_display_navbar_logo }}
+                    {{^ output.should_display_navbar_logo }}
+                        <span class="z-footer__brand-name">{{{ sitename }}}</span>
+                    {{/ output.should_display_navbar_logo }}
+                </a>
+
+                {{! Social media links ===== }}
+                <div class="z-footer__socials">
+                    {{{ output.zenith_social_links }}}
+                </div>
+            </div>
+
+            {{! Custom content column ===== }}
+            {{# output.zenith_footer_content }}
+                <div class="z-footer__content">
+                    {{{ output.zenith_footer_content }}}
+                </div>
+            {{/ output.zenith_footer_content }}
+
+            {{! Moodle links column ===== }}
+            <div class="z-footer__links">
+                {{# output.page_doc_link }}
+                    <div class="z-footer__link-item">{{{ output.page_doc_link }}}</div>
+                {{/ output.page_doc_link }}
+                {{# output.supportemail }}
+                    <div class="z-footer__link-item">{{{ output.supportemail }}}</div>
+                {{/ output.supportemail }}
+                {{# output.services_support_link }}
+                    <div class="z-footer__link-item">{{{ output.services_support_link }}}</div>
+                {{/ output.services_support_link }}
+                {{# output.has_communication_links }}
+                    <div class="z-footer__link-item">{{{ output.communication_link }}}</div>
+                {{/ output.has_communication_links }}
+            </div>
+        </div>
+
+        {{! ===== Bottom bar (copyright + branding + Moodle required) ===== }}
+        <div class="z-footer__bottom">
+            <div class="z-footer__bottom-inner">
+                {{! Copyright ===== }}
+                <div class="z-footer__copyright">
+                    {{{ output.zenith_footer_copyright }}}
+                </div>
+
+                {{! Login info + standard footer ===== }}
+                <div class="z-footer__meta">
+                    <span class="z-footer__login-info">{{{ output.login_info }}}</span>
+                    {{{ output.standard_footer_html }}}
+                </div>
+
+                {{! Branding ===== }}
+                {{# output.zenith_show_branding }}
+                    <div class="z-footer__branding">
+                        <span>Powered by <strong>Zenith</strong></span>
+                    </div>
+                {{/ output.zenith_show_branding }}
+            </div>
+        </div>
+    </div>
+
+    {{! Moodle required end-of-body output ===== }}
+    {{{ output.standard_end_of_body_html }}}
+
+    {{! Debug footer ===== }}
+    <div class="footer-content-debugging footer-dark bg-dark text-light">
+        <div class="container-fluid footer-dark-inner">
+            {{{ output.debug_footer_html }}}
+        </div>
+    </div>
+
+    {{! Reset tour container ===== }}
+    <div class="tool_usertours-resettourcontainer"></div>
+</footer>
+
+{{! ===== Back to top button ===== }}
+<button class="z-footer__back-to-top" id="z-back-to-top"
+        aria-label="{{#str}}backto, core, {{#str}}top, core{{/str}}{{/str}}"
+        title="Back to top">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M10 16V4M10 4L4 10M10 4L16 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+</button>
+
+{{#js}}
+require(['theme_boost/footer-popover'], function(FooterPopover) {
+    FooterPopover.init();
+});
+
+// Back to top button.
+(function() {
+    var btn = document.getElementById('z-back-to-top');
+    if (!btn) return;
+
+    var scrollTarget = document.getElementById('page') || window;
+    var useWindow = !document.getElementById('page');
+
+    function getScrollTop() {
+        if (useWindow) return window.pageYOffset || document.documentElement.scrollTop;
+        return scrollTarget.scrollTop;
+    }
+
+    function checkScroll() {
+        if (getScrollTop() > 300) {
+            btn.classList.add('z-footer__back-to-top--visible');
+        } else {
+            btn.classList.remove('z-footer__back-to-top--visible');
+        }
+    }
+
+    (useWindow ? window : scrollTarget).addEventListener('scroll', checkScroll, {passive: true});
+    checkScroll();
+
+    btn.addEventListener('click', function() {
+        if (useWindow) {
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        } else {
+            scrollTarget.scrollTo({top: 0, behavior: 'smooth'});
+        }
+    });
+})();
+{{/js}}
