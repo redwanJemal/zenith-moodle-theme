@@ -1,0 +1,22 @@
+FROM moodlehq/moodle-php-apache:8.3
+
+# Set the document root for the moodlehq Apache config
+ENV APACHE_DOCUMENT_ROOT=/var/www/html
+
+# Download Moodle 4.5 LTS stable
+RUN rm -rf /var/www/html/* && \
+    curl -L https://download.moodle.org/download.php/direct/stable405/moodle-latest-405.tgz | \
+    tar xz -C /var/www/html --strip-components=1
+
+# Create moodledata directory
+RUN mkdir -p /var/www/moodledata && \
+    chown -R www-data:www-data /var/www/moodledata && \
+    chmod 777 /var/www/moodledata
+
+# Create entrypoint that generates config.php and starts Apache
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
+EXPOSE 80
+
+ENTRYPOINT ["/entrypoint.sh"]

@@ -5,7 +5,7 @@
 ---
 
 ## P0-1: Docker Development Environment
-- **Status:** `[ ]`
+- **Status:** `[x]` ✅ Completed 2026-02-28
 - **Dependencies:** None
 - **Effort:** 2 hours
 - **Blocks:** P0-2, P0-3, P0-5
@@ -13,14 +13,20 @@
 **Task:** Set up local Moodle 4.5 LTS with MariaDB via Docker.
 
 **Acceptance Criteria:**
-- [ ] `docker compose up -d` starts Moodle on port 8081
-- [ ] MariaDB running on port 3306
-- [ ] Admin login works at http://localhost:8081
-- [ ] Theme source bind-mounted at `/bitnami/moodle/theme/zenith`
-- [ ] Health checks passing for both containers
-- [ ] `docker compose down` cleanly stops everything
+- [x] `docker compose up -d` starts Moodle on port 8081
+- [x] MariaDB running on port 3306
+- [x] Admin login works at http://localhost:8081 (admin / Admin123!)
+- [x] Theme source bind-mounted at `/var/www/html/theme/zenith`
+- [x] Health checks passing for both containers
+- [x] `docker compose down` cleanly stops everything
 
-**Files:** `docker/docker-compose.yml`, `docker/.env.example`
+**Files:** `docker/docker-compose.yml`, `docker/Dockerfile.dev`, `docker/entrypoint.sh`
+
+**Issues Encountered:**
+1. `bitnami/moodle:4.5` image no longer exists — Bitnami discontinued free container images (Sept 2025). Moved to `bitnamilegacy/moodle:4.5` but it had a broken bootstrap loop (`config.php` not generated).
+2. Switched to `moodlehq/moodle-php-apache:8.3` (official MoodleHQ dev image) + custom Dockerfile that downloads Moodle 4.5 source, generates `config.php`, and runs `install_database.php` CLI.
+3. `admin@localhost` rejected by Moodle email validation — changed to `admin@example.com`.
+4. `APACHE_DOCUMENT_ROOT` env var required by moodlehq image — set to `/var/www/html`.
 
 ---
 
@@ -48,30 +54,34 @@
 ---
 
 ## P0-3: Theme Scaffold (Boost Child)
-- **Status:** `[ ]`
+- **Status:** `[x]` ✅ Completed 2026-02-28
 - **Dependencies:** `P0-1`
 - **Effort:** 4 hours
 - **Blocks:** P0-4, P1-1
 
 **Task:** Create minimal Boost child theme that installs and activates without errors.
 
-**Files to Create:**
-- [ ] `theme/zenith/version.php` — Version 2026022800, requires Moodle 4.5+
-- [ ] `theme/zenith/config.php` — Layouts, block regions, SCSS callbacks, renderer factory
-- [ ] `theme/zenith/lib.php` — pluginfile handler, SCSS functions (pre, main, post, precompiled)
-- [ ] `theme/zenith/settings.php` — Minimal settings tab (brand name, logo)
-- [ ] `theme/zenith/lang/en/theme_zenith.php` — Base language strings
-- [ ] `theme/zenith/scss/preset/default.scss` — Main SCSS entry (imports Boost + custom)
-- [ ] `theme/zenith/pix/screenshot.png` — Theme selector thumbnail (500×400)
+**Files Created:**
+- [x] `theme/zenith/version.php` — Version 2026022800, requires Moodle 4.5+, depends on theme_boost
+- [x] `theme/zenith/config.php` — 19 layouts, SCSS callbacks, Boost parent, FontAwesome icons
+- [x] `theme/zenith/lib.php` — 4 SCSS callbacks + pluginfile handler (logo, favicon, backgrounds)
+- [x] `theme/zenith/settings.php` — Brand color picker, logo uploads, raw SCSS fields
+- [x] `theme/zenith/lang/en/theme_zenith.php` — Base language strings (14 strings)
+- [x] `theme/zenith/scss/preset/default.scss` — Primary color override, inherits Boost SCSS
+- [x] `theme/zenith/style/moodle.css` — Precompiled CSS fallback (placeholder)
+- [x] `theme/zenith/pix/screenshot.png` — Theme selector thumbnail (500×400 purple)
 
 **Acceptance Criteria:**
-- [ ] Theme appears in Site Admin → Appearance → Theme selector
-- [ ] Activating theme doesn't break any page
-- [ ] All Moodle core pages render correctly (dashboard, course, login, admin)
-- [ ] No PHP errors, warnings, or notices
-- [ ] Theme info shows version 1.0.0
+- [x] Theme appears in Site Admin → Appearance → Theme selector
+- [x] Activating theme doesn't break any page
+- [x] All Moodle core pages render correctly (dashboard, course, login, admin)
+- [x] No PHP errors, warnings, or notices
+- [x] Theme info shows version 1.0.0
 
-**Reference:** RemUI scaffold at `/home/redman/Edwiser-RemUI/theme_remui/remui/config.php`
+**Issues Encountered:**
+1. Bind-mounted theme directory owned by www-data (from Docker entrypoint) — prevented host editing. Fixed by removing `chown theme/` from entrypoint and using `docker exec chown 1000:1000` to fix.
+2. Initial `settings.php` used tabbed pages (`$settings->add($page)`) but Moodle's theme settings injection expects flat settings on the `$settings` object. Fixed by adding settings directly to `$settings`.
+3. Boost child themes inherit parent layout files automatically — no need to create layout PHP files in the child theme until we want to override them.
 
 ---
 

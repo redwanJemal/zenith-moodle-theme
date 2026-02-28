@@ -1,32 +1,25 @@
-version: "3.8"
-
-# Development docker-compose — exposes ports for local access
+# Development docker-compose — Moodle 4.5 LTS + MariaDB 11
+# Uses moodlehq/moodle-php-apache (official dev image) with Moodle source
 services:
   moodle:
-    image: bitnami/moodle:4.5
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
     container_name: zenith-moodle-dev
     restart: unless-stopped
     ports:
-      - "8081:8080"
+      - "8081:80"
     environment:
-      - MOODLE_DATABASE_HOST=zenith-mariadb-dev
-      - MOODLE_DATABASE_PORT_NUMBER=3306
-      - MOODLE_DATABASE_USER=moodle
-      - MOODLE_DATABASE_PASSWORD=moodle_dev
-      - MOODLE_DATABASE_NAME=moodle
-      - MOODLE_USERNAME=admin
-      - MOODLE_PASSWORD=Admin123!
-      - MOODLE_EMAIL=admin@localhost
-      - MOODLE_SITE_NAME=Zenith Dev
-      - MOODLE_HOST=localhost
-      - MOODLE_SKIP_BOOTSTRAP=no
-      - PHP_MEMORY_LIMIT=512M
-      - PHP_MAX_UPLOAD_SIZE=256M
+      - MOODLE_DOCKER_DBTYPE=mariadb
+      - MOODLE_DOCKER_DBHOST=mariadb
+      - MOODLE_DOCKER_DBNAME=moodle
+      - MOODLE_DOCKER_DBUSER=moodle
+      - MOODLE_DOCKER_DBPASS=moodle_dev
     volumes:
-      - zenith_moodle_data_dev:/bitnami/moodle
-      - zenith_moodledata_dev:/bitnami/moodledata
+      - moodle_source:/var/www/html
+      - zenith_moodledata_dev:/var/www/moodledata
       # Bind mount theme source for live development
-      - ../theme/zenith:/bitnami/moodle/theme/zenith
+      - ../theme/zenith:/var/www/html/theme/zenith
     depends_on:
       mariadb:
         condition: service_healthy
@@ -58,7 +51,7 @@ services:
       - zenith-dev
 
 volumes:
-  zenith_moodle_data_dev:
+  moodle_source:
   zenith_moodledata_dev:
   zenith_mariadb_data_dev:
 

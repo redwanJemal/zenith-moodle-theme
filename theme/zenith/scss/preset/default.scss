@@ -1,0 +1,10 @@
+// Zenith Theme — Default Preset
+// This is the main SCSS entry point loaded via theme_zenith_get_main_scss_content().
+// As a Boost child theme, we inherit all of Boost's SCSS and add our customizations on top.
+
+// Zenith brand color.
+$primary: #6366f1 !default;
+
+// This file intentionally left minimal.
+// Boost parent theme handles Bootstrap imports.
+// Future phases will add design tokens and component styles here.

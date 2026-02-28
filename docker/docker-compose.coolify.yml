@@ -1,14 +1,12 @@
-version: "3.8"
-
 services:
   moodle:
-    image: bitnami/moodle:4.5
+    image: bitnamilegacy/moodle:4.5
     container_name: zenith-moodle
     restart: always
     ports:
       - "8081:8080"
     environment:
-      - MOODLE_DATABASE_HOST=zenith-mariadb
+      - MOODLE_DATABASE_HOST=mariadb
       - MOODLE_DATABASE_PORT_NUMBER=3306
       - MOODLE_DATABASE_USER=${MOODLE_DB_USER:-moodle}
       - MOODLE_DATABASE_PASSWORD=${MOODLE_DB_PASSWORD:-moodle_password}
