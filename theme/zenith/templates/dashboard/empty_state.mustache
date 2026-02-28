@@ -1,0 +1,18 @@
+{{!
+    @template theme_zenith/dashboard/empty_state
+
+    Dashboard empty state shown when user has no course enrollments.
+}}
+<div class="z-dash__empty-inner" role="status">
+    <div class="z-dash__empty-icon" aria-hidden="true">
+        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+            <path d="M6 12v5c0 1.1 2.7 2 6 2s6-.9 6-2v-5"/>
+        </svg>
+    </div>
+    <h3 class="z-dash__empty-title">{{#str}}dash_empty_title, theme_zenith{{/str}}</h3>
+    <p class="z-dash__empty-desc">{{#str}}dash_empty_desc, theme_zenith{{/str}}</p>
+    <a href="/course/index.php" class="btn btn-primary">
+        {{#str}}dash_browse_courses, theme_zenith{{/str}}
+    </a>
+</div>

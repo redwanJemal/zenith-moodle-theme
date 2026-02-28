@@ -1,0 +1,182 @@
+{{!
+    @template theme_zenith/accessibility/panel
+
+    Floating accessibility toolkit — trigger button + settings panel.
+    Included on all pages (no conditional). Preferences stored in
+    localStorage + Moodle UserRepository for persistence.
+}}
+<div class="z-a11y" data-region="accessibility">
+    {{! Floating trigger button }}
+    <button class="z-a11y__trigger"
+            data-action="toggle-a11y"
+            aria-expanded="false"
+            aria-controls="z-a11y-panel"
+            aria-label="{{#str}}a11y_open, theme_zenith{{/str}}">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="4" r="1.5"/>
+            <path d="M7 8h10"/>
+            <path d="M12 8v4"/>
+            <path d="M9 20l3-8 3 8"/>
+        </svg>
+    </button>
+
+    {{! Accessibility panel }}
+    <div class="z-a11y__panel"
+         id="z-a11y-panel"
+         role="dialog"
+         aria-label="{{#str}}a11y_title, theme_zenith{{/str}}"
+         aria-modal="false"
+         hidden>
+
+        {{! Header }}
+        <div class="z-a11y__header">
+            <h3 class="z-a11y__title">{{#str}}a11y_title, theme_zenith{{/str}}</h3>
+            <button class="z-a11y__close"
+                    data-action="close-a11y"
+                    aria-label="{{#str}}a11y_close, theme_zenith{{/str}}">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                    <line x1="18" y1="6" x2="6" y2="18"/>
+                    <line x1="6" y1="6" x2="18" y2="18"/>
+                </svg>
+            </button>
+        </div>
+
+        {{! Body }}
+        <div class="z-a11y__body">
+
+            {{! Font Size }}
+            <div class="z-a11y__item">
+                <div class="z-a11y__item-label">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <path d="M4 7V4h16v3"/><path d="M9 20h6"/><path d="M12 4v16"/>
+                    </svg>
+                    <span>{{#str}}a11y_fontsize, theme_zenith{{/str}}</span>
+                </div>
+                <div class="z-a11y__fontsize-group" role="radiogroup" aria-label="{{#str}}a11y_fontsize, theme_zenith{{/str}}">
+                    <button class="z-a11y__fontsize-btn z-a11y__fontsize-btn--active"
+                            data-action="set-fontsize" data-value="100"
+                            role="radio" aria-checked="true">
+                        {{#str}}a11y_fontsize_100, theme_zenith{{/str}}
+                    </button>
+                    <button class="z-a11y__fontsize-btn"
+                            data-action="set-fontsize" data-value="125"
+                            role="radio" aria-checked="false">
+                        {{#str}}a11y_fontsize_125, theme_zenith{{/str}}
+                    </button>
+                    <button class="z-a11y__fontsize-btn"
+                            data-action="set-fontsize" data-value="150"
+                            role="radio" aria-checked="false">
+                        {{#str}}a11y_fontsize_150, theme_zenith{{/str}}
+                    </button>
+                </div>
+            </div>
+
+            {{! High Contrast }}
+            <div class="z-a11y__item">
+                <div class="z-a11y__item-label">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <circle cx="12" cy="12" r="10"/>
+                        <path d="M12 2a10 10 0 0 1 0 20z" fill="currentColor"/>
+                    </svg>
+                    <span>{{#str}}a11y_contrast, theme_zenith{{/str}}</span>
+                </div>
+                <button class="z-a11y__toggle"
+                        data-action="toggle-a11y-feature" data-feature="contrast"
+                        role="switch" aria-checked="false"
+                        aria-label="{{#str}}a11y_contrast, theme_zenith{{/str}}">
+                    <span class="z-a11y__toggle-track">
+                        <span class="z-a11y__toggle-thumb"></span>
+                    </span>
+                </button>
+            </div>
+
+            {{! Dyslexia Font }}
+            <div class="z-a11y__item">
+                <div class="z-a11y__item-label">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                        <path d="M14 2v6h6"/><line x1="16" y1="13" x2="8" y2="13"/>
+                        <line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/>
+                    </svg>
+                    <span>{{#str}}a11y_dyslexia, theme_zenith{{/str}}</span>
+                </div>
+                <button class="z-a11y__toggle"
+                        data-action="toggle-a11y-feature" data-feature="dyslexia"
+                        role="switch" aria-checked="false"
+                        aria-label="{{#str}}a11y_dyslexia, theme_zenith{{/str}}">
+                    <span class="z-a11y__toggle-track">
+                        <span class="z-a11y__toggle-thumb"></span>
+                    </span>
+                </button>
+            </div>
+
+            {{! Reading Ruler }}
+            <div class="z-a11y__item">
+                <div class="z-a11y__item-label">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <line x1="4" y1="9" x2="20" y2="9"/><line x1="4" y1="15" x2="20" y2="15"/>
+                        <line x1="10" y1="3" x2="8" y2="21"/><line x1="16" y1="3" x2="14" y2="21"/>
+                    </svg>
+                    <span>{{#str}}a11y_ruler, theme_zenith{{/str}}</span>
+                </div>
+                <button class="z-a11y__toggle"
+                        data-action="toggle-a11y-feature" data-feature="ruler"
+                        role="switch" aria-checked="false"
+                        aria-label="{{#str}}a11y_ruler, theme_zenith{{/str}}">
+                    <span class="z-a11y__toggle-track">
+                        <span class="z-a11y__toggle-thumb"></span>
+                    </span>
+                </button>
+            </div>
+
+            {{! Highlight Links }}
+            <div class="z-a11y__item">
+                <div class="z-a11y__item-label">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+                        <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+                    </svg>
+                    <span>{{#str}}a11y_links, theme_zenith{{/str}}</span>
+                </div>
+                <button class="z-a11y__toggle"
+                        data-action="toggle-a11y-feature" data-feature="links"
+                        role="switch" aria-checked="false"
+                        aria-label="{{#str}}a11y_links, theme_zenith{{/str}}">
+                    <span class="z-a11y__toggle-track">
+                        <span class="z-a11y__toggle-thumb"></span>
+                    </span>
+                </button>
+            </div>
+
+            {{! Pause Animations }}
+            <div class="z-a11y__item">
+                <div class="z-a11y__item-label">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <circle cx="12" cy="12" r="10"/>
+                        <line x1="10" y1="15" x2="10" y2="9"/><line x1="14" y1="15" x2="14" y2="9"/>
+                    </svg>
+                    <span>{{#str}}a11y_animations, theme_zenith{{/str}}</span>
+                </div>
+                <button class="z-a11y__toggle"
+                        data-action="toggle-a11y-feature" data-feature="animations"
+                        role="switch" aria-checked="false"
+                        aria-label="{{#str}}a11y_animations, theme_zenith{{/str}}">
+                    <span class="z-a11y__toggle-track">
+                        <span class="z-a11y__toggle-thumb"></span>
+                    </span>
+                </button>
+            </div>
+        </div>
+
+        {{! Footer }}
+        <div class="z-a11y__footer">
+            <button class="btn btn-sm btn-outline-secondary w-100"
+                    data-action="reset-a11y">
+                {{#str}}a11y_reset, theme_zenith{{/str}}
+            </button>
+        </div>
+    </div>
+
+    {{! Reading ruler overlay }}
+    <div class="z-a11y__ruler" aria-hidden="true"></div>
+</div>

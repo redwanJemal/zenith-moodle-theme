@@ -1,0 +1,348 @@
+// ============================================================================
+// Zenith Accessibility Toolkit
+// ============================================================================
+// Floating panel with font size, contrast, dyslexia font, reading ruler,
+// link highlighting, and animation pause features.
+
+// ---- OpenDyslexic Font ----
+@font-face {
+    font-family: 'OpenDyslexic';
+    src: url('[[font:theme_zenith|OpenDyslexic-Regular.woff2]]') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+// ---- Feature CSS (activated by data attributes on <html>) ----
+
+// Font size scaling.
+[data-a11y-fontsize="125"] {
+    font-size: 125% !important; // stylelint-disable-line declaration-no-important
+}
+
+[data-a11y-fontsize="150"] {
+    font-size: 150% !important; // stylelint-disable-line declaration-no-important
+}
+
+// High contrast mode.
+[data-a11y-contrast="true"] {
+    --z-text-primary: #000 !important; // stylelint-disable-line declaration-no-important
+    --z-text-secondary: #333 !important; // stylelint-disable-line declaration-no-important
+    --z-bg-page: #fff !important; // stylelint-disable-line declaration-no-important
+    --z-bg-surface: #fff !important; // stylelint-disable-line declaration-no-important
+    --z-border: #000 !important; // stylelint-disable-line declaration-no-important
+
+    img {
+        filter: contrast(1.2);
+    }
+}
+
+[data-a11y-contrast="true"][data-theme="dark"] {
+    --z-text-primary: #fff !important; // stylelint-disable-line declaration-no-important
+    --z-text-secondary: #e0e0e0 !important; // stylelint-disable-line declaration-no-important
+    --z-bg-page: #000 !important; // stylelint-disable-line declaration-no-important
+    --z-bg-surface: #111 !important; // stylelint-disable-line declaration-no-important
+    --z-border: #fff !important; // stylelint-disable-line declaration-no-important
+}
+
+// Dyslexia-friendly font.
+[data-a11y-dyslexia="true"] {
+    &,
+    * {
+        font-family: 'OpenDyslexic', sans-serif !important; // stylelint-disable-line declaration-no-important
+    }
+}
+
+// Link highlighting.
+[data-a11y-links="true"] {
+    a:not(.btn):not(.z-a11y__trigger):not(.z-a11y__close) {
+        text-decoration: underline !important; // stylelint-disable-line declaration-no-important
+        outline: 2px solid currentColor !important; // stylelint-disable-line declaration-no-important
+        outline-offset: 2px;
+    }
+}
+
+// Pause all animations.
+[data-a11y-animations="true"] {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0s !important; // stylelint-disable-line declaration-no-important
+        animation-delay: 0s !important; // stylelint-disable-line declaration-no-important
+        transition-duration: 0s !important; // stylelint-disable-line declaration-no-important
+        transition-delay: 0s !important; // stylelint-disable-line declaration-no-important
+    }
+}
+
+// ---- Container ----
+.z-a11y {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    z-index: 1035;
+
+    @media (max-width: 575px) {
+        bottom: 1rem;
+        right: 1rem;
+    }
+}
+
+// ---- Trigger Button ----
+.z-a11y__trigger {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: none;
+    background: var(--z-primary, #6366f1);
+    color: #fff;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+    &:hover {
+        transform: scale(1.08);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    &:focus-visible {
+        outline: 3px solid var(--z-primary, #6366f1);
+        outline-offset: 3px;
+    }
+}
+
+// ---- Panel ----
+.z-a11y__panel {
+    position: absolute;
+    bottom: calc(100% + 0.75rem);
+    right: 0;
+    width: 320px;
+    background: var(--z-bg-surface, #fff);
+    border: 1px solid var(--z-border, #e2e8f0);
+    border-radius: 0.75rem;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+    overflow: hidden;
+    transform-origin: bottom right;
+    animation: z-a11y-slide-up 0.2s ease;
+
+    &[hidden] {
+        display: none;
+    }
+
+    @media (max-width: 575px) {
+        width: calc(100vw - 2rem);
+        right: -0.5rem;
+    }
+}
+
+@keyframes z-a11y-slide-up {
+    from {
+        opacity: 0;
+        transform: translateY(8px) scale(0.96);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+// ---- Panel Header ----
+.z-a11y__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.875rem 1rem;
+    border-bottom: 1px solid var(--z-border, #e2e8f0);
+}
+
+.z-a11y__title {
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0;
+    color: var(--z-text-primary, #1e293b);
+}
+
+.z-a11y__close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border: none;
+    background: transparent;
+    color: var(--z-text-secondary, #64748b);
+    border-radius: 6px;
+    cursor: pointer;
+
+    &:hover {
+        background: var(--z-bg-muted, #f1f5f9);
+        color: var(--z-text-primary, #1e293b);
+    }
+}
+
+// ---- Panel Body ----
+.z-a11y__body {
+    padding: 0.5rem 0;
+    max-height: 60vh;
+    overflow-y: auto;
+}
+
+// ---- Feature Items ----
+.z-a11y__item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.625rem 1rem;
+    gap: 0.75rem;
+
+    &:hover {
+        background: var(--z-bg-muted, #f8fafc);
+    }
+}
+
+.z-a11y__item-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--z-text-primary, #1e293b);
+
+    svg {
+        flex-shrink: 0;
+        color: var(--z-text-secondary, #64748b);
+    }
+}
+
+// ---- Toggle Switch ----
+.z-a11y__toggle {
+    flex-shrink: 0;
+    border: none;
+    background: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.z-a11y__toggle-track {
+    display: block;
+    width: 40px;
+    height: 22px;
+    background: var(--z-bg-muted, #cbd5e1);
+    border-radius: 11px;
+    position: relative;
+    transition: background-color 0.2s ease;
+}
+
+.z-a11y__toggle-thumb {
+    display: block;
+    width: 18px;
+    height: 18px;
+    background: #fff;
+    border-radius: 50%;
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    transition: transform 0.2s ease;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.z-a11y__toggle--active {
+    .z-a11y__toggle-track {
+        background: var(--z-primary, #6366f1);
+    }
+
+    .z-a11y__toggle-thumb {
+        transform: translateX(18px);
+    }
+}
+
+// ---- Font Size Radio Group ----
+.z-a11y__fontsize-group {
+    display: flex;
+    gap: 4px;
+    flex-shrink: 0;
+}
+
+.z-a11y__fontsize-btn {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    border: 1px solid var(--z-border, #e2e8f0);
+    background: transparent;
+    color: var(--z-text-secondary, #64748b);
+    border-radius: 4px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background-color 0.15s ease, color 0.15s ease;
+
+    &:hover {
+        background: var(--z-bg-muted, #f1f5f9);
+    }
+
+    &--active {
+        background: var(--z-primary, #6366f1);
+        color: #fff;
+        border-color: var(--z-primary, #6366f1);
+    }
+}
+
+// ---- Panel Footer ----
+.z-a11y__footer {
+    padding: 0.75rem 1rem;
+    border-top: 1px solid var(--z-border, #e2e8f0);
+}
+
+// ---- Reading Ruler ----
+.z-a11y__ruler {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: rgba(99, 102, 241, 0.5);
+    pointer-events: none;
+    z-index: 9999;
+    box-shadow: 0 0 0 2000px rgba(0, 0, 0, 0.05);
+}
+
+// ---- Dark Mode ----
+[data-theme="dark"] {
+    .z-a11y__panel {
+        background: var(--z-bg-surface);
+        border-color: var(--z-border);
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+    }
+
+    .z-a11y__item:hover {
+        background: var(--z-bg-muted);
+    }
+
+    .z-a11y__close:hover {
+        background: var(--z-bg-muted);
+    }
+
+    .z-a11y__toggle-track {
+        background: var(--z-bg-muted, #374151);
+    }
+
+    .z-a11y__toggle-thumb {
+        background: #e5e7eb;
+    }
+
+    .z-a11y__fontsize-btn {
+        border-color: var(--z-border);
+        color: var(--z-text-secondary);
+
+        &:hover {
+            background: var(--z-bg-muted);
+        }
+    }
+
+    .z-a11y__ruler {
+        background: rgba(129, 140, 248, 0.5);
+        box-shadow: 0 0 0 2000px rgba(0, 0, 0, 0.15);
+    }
+}

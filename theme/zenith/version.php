@@ -24,7 +24,7 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version   = 2026022804;
+$plugin->version   = 2026022805;
 $plugin->requires  = 2024100700; // Moodle 4.5.
 $plugin->component = 'theme_zenith';
 $plugin->release   = '1.0.0';

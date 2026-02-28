@@ -143,6 +143,11 @@
                 </div>
             {{/secondarymoremenu}}
 
+            {{! ===== Dashboard Widgets ===== }}
+            {{#isdashboard}}
+                {{> theme_zenith/dashboard/widgets }}
+            {{/isdashboard}}
+
             {{! ===== Page Content ===== }}
             <div id="page-content" class="pb-3 d-print-block">
                 <div id="region-main-box">
@@ -191,6 +196,8 @@
     {{> theme_zenith/setupwizard/main }}
 {{/showwizard}}
 
+{{> theme_zenith/accessibility/panel }}
+
 </body>
 </html>
 {{#js}}
@@ -199,6 +206,34 @@ require(['theme_boost/loader', 'theme_boost/drawer', 'theme_zenith/darkmode'], f
     Drawer.init();
     DarkMode.init();
     M.util.js_complete('theme_boost/loader');
+});
+{{/js}}
+{{#isdashboard}}
+{{#js}}
+require(['core/str', 'theme_zenith/dashboard'], function(Str, Dashboard) {
+    Str.get_strings([
+        {key: 'dash_no_recent', component: 'theme_zenith'},
+        {key: 'dash_no_deadlines', component: 'theme_zenith'},
+    ]).then(function(strings) {
+        Dashboard.init({strings: {no_recent: strings[0], no_deadlines: strings[1]}});
+        return strings;
+    }).catch(function() {
+        Dashboard.init({strings: {}});
+    });
+});
+{{/js}}
+{{/isdashboard}}
+{{#js}}
+require(['core/str', 'theme_zenith/accessibility'], function(Str, A11y) {
+    Str.get_strings([
+        {key: 'a11y_title', component: 'theme_zenith'},
+        {key: 'a11y_reset', component: 'theme_zenith'},
+    ]).then(function(strings) {
+        A11y.init({strings: {title: strings[0], reset: strings[1]}});
+        return strings;
+    }).catch(function() {
+        A11y.init({strings: {}});
+    });
 });
 {{/js}}
 {{#incourse}}

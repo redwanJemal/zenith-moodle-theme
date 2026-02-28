@@ -1,0 +1,99 @@
+{{!
+    @template theme_zenith/dashboard/widgets
+
+    Zenith enhanced dashboard widgets — stats cards, recent courses,
+    upcoming deadlines, and progress overview.
+
+    Context variables: none (all data loaded via AJAX).
+}}
+<section class="z-dash" aria-label="{{#str}}dash_title, theme_zenith{{/str}}">
+
+    {{! ===== Stats Row ===== }}
+    <div class="z-dash__stats" role="region" aria-label="{{#str}}dash_stats, theme_zenith{{/str}}">
+        <div class="z-dash__stat-card">
+            <div class="z-dash__stat-icon z-dash__stat-icon--enrolled">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+                    <path d="M6 12v5c0 1.1 2.7 2 6 2s6-.9 6-2v-5"/>
+                </svg>
+            </div>
+            <div class="z-dash__stat-value z-dash__skeleton" data-stat="enrolled">0</div>
+            <div class="z-dash__stat-label">{{#str}}dash_enrolled, theme_zenith{{/str}}</div>
+        </div>
+        <div class="z-dash__stat-card">
+            <div class="z-dash__stat-icon z-dash__stat-icon--inprogress">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <circle cx="12" cy="12" r="10"/>
+                    <polyline points="12 6 12 12 16 14"/>
+                </svg>
+            </div>
+            <div class="z-dash__stat-value z-dash__skeleton" data-stat="inprogress">0</div>
+            <div class="z-dash__stat-label">{{#str}}dash_inprogress, theme_zenith{{/str}}</div>
+        </div>
+        <div class="z-dash__stat-card">
+            <div class="z-dash__stat-icon z-dash__stat-icon--completed">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                    <polyline points="22 4 12 14.01 9 11.01"/>
+                </svg>
+            </div>
+            <div class="z-dash__stat-value z-dash__skeleton" data-stat="completed">0</div>
+            <div class="z-dash__stat-label">{{#str}}dash_completed, theme_zenith{{/str}}</div>
+        </div>
+        <div class="z-dash__stat-card">
+            <div class="z-dash__stat-icon z-dash__stat-icon--progress">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <line x1="18" y1="20" x2="18" y2="10"/>
+                    <line x1="12" y1="20" x2="12" y2="4"/>
+                    <line x1="6" y1="20" x2="6" y2="14"/>
+                </svg>
+            </div>
+            <div class="z-dash__stat-value z-dash__skeleton" data-stat="averageprogress"><span data-stat-suffix>0</span>%</div>
+            <div class="z-dash__stat-label">{{#str}}dash_avgprogress, theme_zenith{{/str}}</div>
+        </div>
+    </div>
+
+    {{! ===== Recent Courses ===== }}
+    <div class="z-dash__section" role="region" aria-label="{{#str}}dash_recent, theme_zenith{{/str}}">
+        <h3 class="z-dash__section-title">{{#str}}dash_recent, theme_zenith{{/str}}</h3>
+        <div class="z-dash__recent" data-region="recent-courses">
+            {{! Skeleton loaders — replaced by JS }}
+            <div class="z-dash__course-card z-dash__skeleton-card">
+                <div class="z-dash__skeleton z-dash__skeleton--image"></div>
+                <div class="z-dash__skeleton z-dash__skeleton--text"></div>
+                <div class="z-dash__skeleton z-dash__skeleton--bar"></div>
+            </div>
+            <div class="z-dash__course-card z-dash__skeleton-card">
+                <div class="z-dash__skeleton z-dash__skeleton--image"></div>
+                <div class="z-dash__skeleton z-dash__skeleton--text"></div>
+                <div class="z-dash__skeleton z-dash__skeleton--bar"></div>
+            </div>
+            <div class="z-dash__course-card z-dash__skeleton-card">
+                <div class="z-dash__skeleton z-dash__skeleton--image"></div>
+                <div class="z-dash__skeleton z-dash__skeleton--text"></div>
+                <div class="z-dash__skeleton z-dash__skeleton--bar"></div>
+            </div>
+        </div>
+    </div>
+
+    {{! ===== Upcoming Deadlines ===== }}
+    <div class="z-dash__section" role="region" aria-label="{{#str}}dash_deadlines, theme_zenith{{/str}}">
+        <h3 class="z-dash__section-title">{{#str}}dash_deadlines, theme_zenith{{/str}}</h3>
+        <div class="z-dash__deadlines" data-region="deadlines">
+            <div class="z-dash__deadline-item z-dash__skeleton-card">
+                <div class="z-dash__skeleton z-dash__skeleton--text"></div>
+                <div class="z-dash__skeleton z-dash__skeleton--text-sm"></div>
+            </div>
+            <div class="z-dash__deadline-item z-dash__skeleton-card">
+                <div class="z-dash__skeleton z-dash__skeleton--text"></div>
+                <div class="z-dash__skeleton z-dash__skeleton--text-sm"></div>
+            </div>
+        </div>
+    </div>
+
+    {{! ===== Empty State (hidden by default, shown by JS if enrolled === 0) ===== }}
+    <div class="z-dash__empty" data-region="empty-state" style="display: none;">
+        {{> theme_zenith/dashboard/empty_state }}
+    </div>
+
+</section>

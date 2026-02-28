@@ -1,0 +1,374 @@
+// ============================================================================
+// Zenith Dashboard Widgets
+// ============================================================================
+// BEM: .z-dash, .z-dash__stats, .z-dash__stat-card, etc.
+
+// Skeleton shimmer animation.
+@keyframes z-skeleton-pulse {
+    0% { opacity: 0.6; }
+    50% { opacity: 0.3; }
+    100% { opacity: 0.6; }
+}
+
+.z-dash {
+    padding: 1.5rem 0;
+    margin-bottom: 1rem;
+}
+
+// ---- Stats Row ----
+.z-dash__stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin-bottom: 2rem;
+
+    @media (max-width: 991px) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: 575px) {
+        grid-template-columns: 1fr;
+    }
+}
+
+.z-dash__stat-card {
+    background: var(--z-bg-surface, #fff);
+    border: 1px solid var(--z-border, #e2e8f0);
+    border-radius: 0.75rem;
+    padding: 1.25rem;
+    text-align: center;
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+
+    &:hover {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        transform: translateY(-2px);
+    }
+}
+
+.z-dash__stat-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    margin-bottom: 0.75rem;
+
+    &--enrolled {
+        background: rgba(99, 102, 241, 0.1);
+        color: #6366f1;
+    }
+
+    &--inprogress {
+        background: rgba(245, 158, 11, 0.1);
+        color: #f59e0b;
+    }
+
+    &--completed {
+        background: rgba(16, 185, 129, 0.1);
+        color: #10b981;
+    }
+
+    &--progress {
+        background: rgba(59, 130, 246, 0.1);
+        color: #3b82f6;
+    }
+}
+
+.z-dash__stat-value {
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1.2;
+    font-variant-numeric: tabular-nums;
+    color: var(--z-text-primary, #1e293b);
+    margin-bottom: 0.25rem;
+}
+
+.z-dash__stat-label {
+    font-size: 0.8125rem;
+    color: var(--z-text-secondary, #64748b);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 500;
+}
+
+// ---- Skeleton Loaders ----
+.z-dash__skeleton {
+    animation: z-skeleton-pulse 1.5s ease-in-out infinite;
+    background: var(--z-bg-muted, #e2e8f0);
+    border-radius: 4px;
+    color: transparent !important; // stylelint-disable-line declaration-no-important
+
+    &--image {
+        height: 120px;
+        border-radius: 0.5rem 0.5rem 0 0;
+    }
+
+    &--text {
+        height: 1rem;
+        width: 80%;
+        margin: 0.75rem auto 0;
+    }
+
+    &--text-sm {
+        height: 0.75rem;
+        width: 60%;
+        margin: 0.5rem auto 0;
+    }
+
+    &--bar {
+        height: 6px;
+        width: 100%;
+        margin: 0.75rem 0 0;
+    }
+}
+
+.z-dash__skeleton-card {
+    background: var(--z-bg-surface, #fff);
+    border: 1px solid var(--z-border, #e2e8f0);
+    border-radius: 0.75rem;
+    overflow: hidden;
+    padding-bottom: 1rem;
+}
+
+// ---- Section Layout ----
+.z-dash__section {
+    margin-bottom: 2rem;
+}
+
+.z-dash__section-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--z-text-primary, #1e293b);
+    margin-bottom: 1rem;
+}
+
+.z-dash__no-data {
+    color: var(--z-text-secondary, #64748b);
+    font-style: italic;
+    padding: 1rem 0;
+}
+
+// ---- Recent Courses ----
+.z-dash__recent {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+
+    @media (max-width: 991px) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: 575px) {
+        grid-template-columns: 1fr;
+    }
+}
+
+.z-dash__course-card {
+    display: block;
+    background: var(--z-bg-surface, #fff);
+    border: 1px solid var(--z-border, #e2e8f0);
+    border-radius: 0.75rem;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+
+    &:hover {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        transform: translateY(-2px);
+        text-decoration: none;
+        color: inherit;
+    }
+}
+
+.z-dash__course-img {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    display: block;
+
+    &--placeholder {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--z-bg-muted, #f1f5f9);
+        color: var(--z-text-secondary, #94a3b8);
+    }
+}
+
+.z-dash__course-info {
+    padding: 0.75rem 1rem 1rem;
+}
+
+.z-dash__course-name {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    margin: 0 0 0.5rem;
+    color: var(--z-text-primary, #1e293b);
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.z-dash__course-progress {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.z-dash__progress-bar {
+    flex: 1;
+    height: 6px;
+    background: var(--z-bg-muted, #e2e8f0);
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.z-dash__progress-fill {
+    height: 100%;
+    background: var(--z-primary, #6366f1);
+    border-radius: 3px;
+    transition: width 0.6s ease;
+}
+
+.z-dash__progress-text {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--z-text-secondary, #64748b);
+    min-width: 2.5rem;
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+}
+
+// ---- Deadlines ----
+.z-dash__deadlines {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.z-dash__deadline-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    background: var(--z-bg-surface, #fff);
+    border: 1px solid var(--z-border, #e2e8f0);
+    border-radius: 0.5rem;
+    transition: background-color 0.15s ease;
+
+    &:hover {
+        background: var(--z-bg-muted, #f8fafc);
+    }
+
+    &--overdue {
+        border-left: 3px solid var(--z-danger, #ef4444);
+
+        .z-dash__deadline-date {
+            color: var(--z-danger, #ef4444);
+            font-weight: 600;
+        }
+    }
+}
+
+.z-dash__deadline-icon {
+    flex-shrink: 0;
+    color: var(--z-text-secondary, #64748b);
+    margin-top: 2px;
+}
+
+.z-dash__deadline-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.z-dash__deadline-name {
+    font-weight: 600;
+    font-size: 0.875rem;
+    color: var(--z-text-primary, #1e293b);
+    text-decoration: none;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+.z-dash__deadline-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-top: 0.25rem;
+    font-size: 0.8125rem;
+    color: var(--z-text-secondary, #64748b);
+}
+
+.z-dash__deadline-course {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.z-dash__deadline-date {
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+// ---- Empty State ----
+.z-dash__empty-inner {
+    text-align: center;
+    padding: 3rem 1.5rem;
+    background: var(--z-bg-surface, #fff);
+    border: 1px solid var(--z-border, #e2e8f0);
+    border-radius: 0.75rem;
+}
+
+.z-dash__empty-icon {
+    color: var(--z-text-secondary, #94a3b8);
+    margin-bottom: 1rem;
+}
+
+.z-dash__empty-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--z-text-primary, #1e293b);
+    margin-bottom: 0.5rem;
+}
+
+.z-dash__empty-desc {
+    color: var(--z-text-secondary, #64748b);
+    margin-bottom: 1.5rem;
+    max-width: 32rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+// ---- Dark Mode ----
+[data-theme="dark"] {
+    .z-dash__stat-card,
+    .z-dash__course-card,
+    .z-dash__deadline-item,
+    .z-dash__skeleton-card,
+    .z-dash__empty-inner {
+        background: var(--z-bg-surface);
+        border-color: var(--z-border);
+    }
+
+    .z-dash__stat-card:hover,
+    .z-dash__course-card:hover {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    .z-dash__deadline-item:hover {
+        background: var(--z-bg-muted);
+    }
+
+    .z-dash__skeleton {
+        background: var(--z-bg-muted);
+    }
+
+    .z-dash__course-img--placeholder {
+        background: var(--z-bg-muted);
+    }
+}

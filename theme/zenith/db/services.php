@@ -65,4 +65,25 @@ $functions = [
         'ajax' => true,
         'capabilities' => 'moodle/site:config',
     ],
+    'theme_zenith_dashboard_stats' => [
+        'classname' => 'theme_zenith\external\dashboard_api',
+        'methodname' => 'get_stats',
+        'description' => 'Get dashboard statistics for the current user',
+        'type' => 'read',
+        'ajax' => true,
+    ],
+    'theme_zenith_dashboard_recent_courses' => [
+        'classname' => 'theme_zenith\external\dashboard_api',
+        'methodname' => 'get_recent_courses',
+        'description' => 'Get recent courses with progress for the current user',
+        'type' => 'read',
+        'ajax' => true,
+    ],
+    'theme_zenith_dashboard_deadlines' => [
+        'classname' => 'theme_zenith\external\dashboard_api',
+        'methodname' => 'get_upcoming_deadlines',
+        'description' => 'Get upcoming deadlines for the current user',
+        'type' => 'read',
+        'ajax' => true,
+    ],
 ];

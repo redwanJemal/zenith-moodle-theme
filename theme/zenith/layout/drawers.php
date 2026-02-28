@@ -100,6 +100,9 @@ $googlefonturl = \theme_zenith\customizer\customizer::get_google_font_url();
 // Focus mode — show toggle on course/incourse pages.
 $incourse = in_array($PAGE->pagelayout, ['course', 'incourse']);
 
+// Enhanced dashboard — show widgets on /my/ page.
+$isdashboard = ($PAGE->pagelayout === 'mydashboard' && isloggedin());
+
 // Setup wizard for first-time admin visit.
 $showwizard = \theme_zenith\setupwizard::should_show();
 $wizardcontext = $showwizard ? \theme_zenith\setupwizard::get_template_context() : [];
@@ -133,6 +136,7 @@ $templatecontext = [
     'customizersettingsjs' => $customizersettingsjs,
     'googlefonturl' => $googlefonturl,
     'incourse' => $incourse,
+    'isdashboard' => $isdashboard,
     'showwizard' => $showwizard,
     'wizardpresets' => $wizardcontext['presets'] ?? [],
     'wizardpresetsjs' => $wizardcontext['presetsjs'] ?? '[]',

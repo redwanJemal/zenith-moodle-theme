@@ -202,6 +202,37 @@ $string['wizard_open_customizer'] = 'Open Customizer';
 $string['wizard_relaunch'] = 'Setup wizard';
 $string['wizard_relaunch_desc'] = 'The setup wizard runs automatically on first use. To re-run it, go to Site administration > Development > Purge caches, or ask your administrator to reset the <code>wizard_completed</code> setting in the theme_zenith plugin config.';
 
+// Dashboard.
+$string['dash_title'] = 'Dashboard overview';
+$string['dash_stats'] = 'Learning statistics';
+$string['dash_enrolled'] = 'Enrolled';
+$string['dash_inprogress'] = 'In progress';
+$string['dash_completed'] = 'Completed';
+$string['dash_avgprogress'] = 'Avg. progress';
+$string['dash_recent'] = 'Recent courses';
+$string['dash_deadlines'] = 'Upcoming deadlines';
+$string['dash_no_recent'] = 'No recent courses';
+$string['dash_no_deadlines'] = 'No upcoming deadlines';
+$string['dash_empty_title'] = 'No courses yet';
+$string['dash_empty_desc'] = 'You are not enrolled in any courses yet. Browse the course catalogue to get started.';
+$string['dash_browse_courses'] = 'Browse courses';
+
+// Accessibility Toolkit.
+$string['a11y_title'] = 'Accessibility';
+$string['a11y_open'] = 'Open accessibility options';
+$string['a11y_close'] = 'Close accessibility panel';
+$string['a11y_fontsize'] = 'Font size';
+$string['a11y_fontsize_100'] = 'Default';
+$string['a11y_fontsize_125'] = 'Large';
+$string['a11y_fontsize_150'] = 'Extra large';
+$string['a11y_contrast'] = 'High contrast';
+$string['a11y_dyslexia'] = 'Dyslexia font';
+$string['a11y_ruler'] = 'Reading ruler';
+$string['a11y_links'] = 'Highlight links';
+$string['a11y_animations'] = 'Pause animations';
+$string['a11y_reset'] = 'Reset all';
+$string['a11y_reset_done'] = 'Accessibility settings reset';
+
 // Visual Customizer.
 $string['customizer'] = 'Visual Customizer';
 $string['customizer_sections'] = 'Customizer sections';
