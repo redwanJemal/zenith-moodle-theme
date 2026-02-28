@@ -1,0 +1,22 @@
+{
+  "name": "theme-zenith",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Zenith Moodle Theme build tools",
+  "scripts": {
+    "amd": "npx grunt amd",
+    "lint": "npx grunt lint",
+    "lint:scss": "npx stylelint 'scss/**/*.scss'",
+    "lint:js": "npx eslint 'amd/src/**/*.js'",
+    "watch": "npx grunt watch"
+  },
+  "devDependencies": {
+    "eslint": "^8.57.0",
+    "grunt": "^1.6.1",
+    "grunt-contrib-uglify": "^5.2.2",
+    "grunt-contrib-watch": "^1.1.0",
+    "grunt-eslint": "^24.3.0",
+    "stylelint": "^16.3.0",
+    "stylelint-config-standard-scss": "^13.0.0"
+  }
+}
