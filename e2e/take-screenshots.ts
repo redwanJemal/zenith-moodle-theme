@@ -103,22 +103,38 @@ async function run(): Promise<void> {
   for (const [viewportName, viewport] of Object.entries(viewportsToRun)) {
     console.log(`\n=== ${viewportName.toUpperCase()} (${viewport.width}x${viewport.height}) ===\n`);
 
+    // Take unauthenticated screenshots first (login page).
+    const unauthPages = PAGES.filter((p) => !p.requiresAuth);
+    const authPages = PAGES.filter((p) => p.requiresAuth);
+
+    // Unauthenticated context for login page etc.
+    const unauthContext = await browser.newContext({
+      viewport,
+      ignoreHTTPSErrors: true,
+    });
+    const unauthPage = await unauthContext.newPage();
+    unauthPage.on('pageerror', (err) => {
+      console.warn(`  [JS Error] ${err.message}`);
+    });
+
+    for (const pageDef of unauthPages) {
+      await takeScreenshot(unauthPage, viewportName, pageDef);
+    }
+    await unauthContext.close();
+
+    // Authenticated context for dashboard, course, etc.
     const context = await browser.newContext({
       viewport,
       ignoreHTTPSErrors: true,
     });
     const page = await context.newPage();
-
-    // Track page errors
     page.on('pageerror', (err) => {
       console.warn(`  [JS Error] ${err.message}`);
     });
 
-    // Login first
     await login(page);
 
-    // Take screenshots
-    for (const pageDef of PAGES) {
+    for (const pageDef of authPages) {
       await takeScreenshot(page, viewportName, pageDef);
     }
 

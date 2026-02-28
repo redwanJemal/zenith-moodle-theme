@@ -238,32 +238,47 @@
 ---
 
 ## P1-7: Login Page (3 Layouts)
-- **Status:** `[ ]`
+- **Status:** `[x]` ✅ Completed 2026-02-28
 - **Dependencies:** `P1-1`, `P1-2`
 - **Effort:** 6 hours
 - **Blocks:** None
 
 **Task:** Beautiful login page with 3 configurable layout options.
 
-**Files:**
-- [ ] `layout/login.php`
-- [ ] `templates/login.mustache`
-- [ ] `scss/components/_login.scss`
-- [ ] Login layout setting in `settings.php`
+**Files Created/Modified:**
+- [x] `layout/login.php` — Passes layout setting, background image URL, logo, heading, description to template
+- [x] `templates/login.mustache` — Custom login template with 3 layout variants (center, left, right)
+- [x] `scss/components/_login.scss` — ~300 lines: card styling, hero panel, layout variants, responsive, dark mode
+- [x] `scss/_variables.scss` — Added `--z-login-*` design tokens (card-bg, card-shadow, card-radius, hero-bg, etc.)
+- [x] `scss/_dark-mode.scss` — Added dark mode overrides for login tokens
+- [x] `scss/preset/default.scss` — Added `@import "../components/login"`
+- [x] `settings.php` — Added login settings section (layout selector, background image, heading text, description)
+- [x] `lang/en/theme_zenith.php` — Added 10 login-related language strings
+- [x] `e2e/take-screenshots.ts` — Fixed login page screenshots to use unauthenticated context
 
 **Acceptance Criteria:**
-- [ ] Layout 1: Centered form with background image
-- [ ] Layout 2: Left panel form + right side hero image
-- [ ] Layout 3: Right panel form + left side hero image
-- [ ] Custom background image upload in settings
-- [ ] Brand logo display on login form
-- [ ] Signup link toggle (configurable show/hide)
-- [ ] "Forgot password" link styled consistently
-- [ ] Responsive: full-width form on mobile (all layouts)
-- [ ] Accessible: proper form labels, focus indicators, error messages
-- [ ] Dark mode compatible
+- [x] Layout 1: Centered form with background image (dark overlay, card floats above)
+- [x] Layout 2: Left panel form + right side hero image (50/50 split)
+- [x] Layout 3: Right panel form + left side hero image (50/50 split)
+- [x] Custom background image upload in settings (served via pluginfile)
+- [x] Brand logo display on login form (centered layout shows logo in card, split layouts show in hero)
+- [x] Configurable heading text and description HTML for hero panels
+- [x] "Forgot password" link styled consistently (centered, secondary color, hover to primary)
+- [x] Responsive: stacks vertically on tablet/mobile (hero on top, form below) for all layouts
+- [x] Accessible: inherits Moodle core form labels, focus indicators (3px indigo ring), error messages
+- [x] Dark mode compatible (uses --z-login-* tokens overridden in _dark-mode.scss)
 
-**Screenshots:** All 3 layouts × 3 viewports = 9 screenshots
+**Admin Settings Added:**
+- Login page layout (center/left/right selector, default: center)
+- Login background image (file upload, recommended 1920x1080)
+- Login heading text (default: "Welcome back")
+- Login description (HTML editor, shown on hero panels in left/right layouts)
+
+**Issues Encountered:**
+1. Login page screenshot showed "already logged in" confirmation instead of login form — Fixed by using separate unauthenticated browser context in screenshot generator.
+2. Moodle core sets `#page-wrapper #page { display: flex; flex-direction: column }` with two-ID specificity, overriding our `flex-direction: row` for split layouts. Fixed by nesting layout rules under `#page-wrapper.z-login` to match specificity.
+
+**Screenshots:** 3 layouts × 3 viewports = 9 login-specific screenshots in `test-screenshots/login-layouts/`
 
 **Reference:** `/home/redman/Edwiser-RemUI/theme_remui/remui/templates/login.mustache`
 

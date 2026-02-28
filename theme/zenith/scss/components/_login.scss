@@ -1,0 +1,382 @@
+// Zenith Theme — Login Page Component
+// Three layout variants: center, left, right.
+// Uses --z-login-* design tokens.
+//
+// Moodle core sets `#page-wrapper #page { display: flex; flex-direction: column; }`
+// (two-ID specificity). We use `#page-wrapper.z-login #page` to match/exceed it.
+
+// ============================================================================
+// BASE — Shared across all layouts
+// ============================================================================
+
+#page-wrapper.z-login {
+    min-height: 100vh;
+    background-color: var(--z-login-bg);
+
+    // Override Moodle's #page-wrapper #page { flex-direction: column }.
+    #page.z-login__page {
+        display: flex;
+        min-height: 100vh;
+        margin: 0;
+        padding: 0;
+        max-width: 100%;
+    }
+}
+
+.z-login__form-panel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    padding: var(--z-space-6);
+    position: relative;
+}
+
+.z-login__form-wrapper {
+    width: 100%;
+    max-width: var(--z-login-card-max-width);
+}
+
+.z-login__card {
+    background: var(--z-login-card-bg);
+    border-radius: var(--z-login-card-radius);
+    box-shadow: var(--z-login-card-shadow);
+    padding: var(--z-login-card-padding);
+}
+
+// Logo inside card (centered layout).
+.z-login__logo {
+    text-align: center;
+    margin-bottom: var(--z-space-6);
+
+    img {
+        max-height: 48px;
+        width: auto;
+    }
+}
+
+// Override Moodle core login form styles.
+.z-login {
+    .login-wrapper {
+        display: block;
+    }
+
+    .login-container {
+        max-width: 100%;
+    }
+
+    .loginform {
+        // Heading.
+        .login-heading {
+            font-family: var(--z-font-sans);
+            font-weight: var(--z-font-bold);
+            font-size: var(--z-text-2xl);
+            color: var(--z-text-primary);
+            margin-bottom: var(--z-space-6);
+        }
+
+        #loginlogo {
+            text-align: center;
+            margin-bottom: var(--z-space-4);
+
+            #logoimage {
+                max-height: 48px;
+                width: auto;
+            }
+        }
+
+        // Input fields.
+        .form-control {
+            background-color: var(--z-input-bg);
+            border: 1px solid var(--z-input-border);
+            border-radius: var(--z-input-radius);
+            padding: var(--z-input-padding-y) var(--z-input-padding-x);
+            font-size: var(--z-input-font-size);
+            color: var(--z-text-primary);
+            transition: border-color var(--z-transition-fast), box-shadow var(--z-transition-fast);
+            height: auto;
+
+            &:focus {
+                border-color: var(--z-input-border-focus);
+                box-shadow: 0 0 0 3px var(--z-primary-light);
+                outline: none;
+            }
+
+            &::placeholder {
+                color: var(--z-text-muted);
+            }
+        }
+
+        // Login button.
+        .login-form-submit .btn-primary {
+            width: 100%;
+            padding: 0.75rem 1.5rem;
+            font-size: var(--z-text-base);
+            font-weight: var(--z-font-semibold);
+            border-radius: var(--z-btn-radius);
+            transition: var(--z-btn-transition);
+        }
+
+        // Forgot password link.
+        .login-form-forgotpassword {
+            text-align: center;
+
+            a {
+                color: var(--z-text-secondary);
+                font-size: var(--z-text-sm);
+                text-decoration: none;
+
+                &:hover {
+                    color: var(--z-primary);
+                    text-decoration: underline;
+                }
+            }
+        }
+
+        // Dividers.
+        .login-divider {
+            border-top: 1px solid var(--z-border-color);
+            margin: var(--z-space-6) 0;
+        }
+
+        // "First time here?" / instructions.
+        .login-instructions {
+            h2 {
+                font-size: var(--z-text-lg);
+                font-weight: var(--z-font-semibold);
+                margin-bottom: var(--z-space-2);
+            }
+        }
+
+        // Signup link.
+        .login-signup .btn-secondary {
+            width: 100%;
+            border-radius: var(--z-btn-radius);
+        }
+
+        // Identity providers (OAuth/SSO).
+        .login-identityproviders {
+            .login-identityprovider-btn {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: var(--z-space-2);
+                border-radius: var(--z-btn-radius);
+                margin-bottom: var(--z-space-2);
+
+                img {
+                    border-radius: 0;
+                }
+            }
+        }
+
+        // Language menu + cookies notice.
+        .login-languagemenu {
+            .btn {
+                font-size: var(--z-text-sm);
+            }
+        }
+    }
+}
+
+// ============================================================================
+// HERO PANEL — Shared by left and right layouts
+// ============================================================================
+
+.z-login__hero {
+    flex: 1;
+    background-color: var(--z-login-hero-bg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    display: flex;
+}
+
+.z-login__hero-overlay {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: var(--z-space-12);
+    background: var(--z-login-hero-overlay);
+}
+
+.z-login__hero-content {
+    max-width: 480px;
+    text-align: center;
+}
+
+.z-login__hero-logo {
+    max-height: 56px;
+    width: auto;
+    margin-bottom: var(--z-space-8);
+    filter: brightness(0) invert(1); // Make logo white on hero.
+}
+
+.z-login__hero-heading {
+    font-family: var(--z-font-sans);
+    font-weight: var(--z-font-bold);
+    font-size: var(--z-text-4xl);
+    color: var(--z-login-hero-text);
+    margin-bottom: var(--z-space-4);
+    line-height: 1.2;
+}
+
+.z-login__hero-description {
+    font-size: var(--z-text-lg);
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.6;
+}
+
+// ============================================================================
+// LAYOUT: CENTER
+// ============================================================================
+
+.z-login--center {
+    .z-login__form-panel {
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        position: relative;
+
+        // Overlay when background image is set.
+        &[style*="background-image"]::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: var(--z-login-hero-overlay);
+            z-index: 0;
+        }
+
+        .z-login__form-wrapper {
+            position: relative;
+            z-index: 1;
+        }
+    }
+}
+
+// ============================================================================
+// LAYOUT: LEFT (form left, hero right)
+// ============================================================================
+
+#page-wrapper.z-login--left {
+    #page.z-login__page {
+        flex-direction: row;
+    }
+
+    .z-login__form-panel {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+
+    .z-login__hero {
+        flex: 0 0 50%;
+        max-width: 50%;
+        order: 2;
+    }
+
+    .z-login__form-wrapper {
+        max-width: var(--z-login-card-max-width);
+        margin-left: auto;
+        margin-right: var(--z-space-12);
+    }
+}
+
+// ============================================================================
+// LAYOUT: RIGHT (hero left, form right)
+// ============================================================================
+
+#page-wrapper.z-login--right {
+    #page.z-login__page {
+        flex-direction: row;
+    }
+
+    .z-login__hero {
+        flex: 0 0 50%;
+        max-width: 50%;
+        order: 1;
+    }
+
+    .z-login__form-panel {
+        flex: 0 0 50%;
+        max-width: 50%;
+        order: 2;
+    }
+
+    .z-login__form-wrapper {
+        max-width: var(--z-login-card-max-width);
+        margin-right: auto;
+        margin-left: var(--z-space-12);
+    }
+}
+
+// ============================================================================
+// RESPONSIVE — Mobile (all layouts stack vertically)
+// ============================================================================
+
+@media (max-width: 991.98px) {
+    #page-wrapper.z-login--left,
+    #page-wrapper.z-login--right {
+        #page.z-login__page {
+            flex-direction: column;
+        }
+
+        .z-login__hero {
+            flex: 0 0 auto;
+            max-width: 100%;
+            min-height: 240px;
+            order: 1;
+        }
+
+        .z-login__form-panel {
+            flex: 1 1 auto;
+            max-width: 100%;
+            order: 2;
+        }
+
+        .z-login__form-wrapper {
+            max-width: var(--z-login-card-max-width);
+            margin: 0 auto;
+        }
+    }
+}
+
+@media (max-width: 575.98px) {
+    .z-login__form-panel {
+        padding: var(--z-space-4);
+    }
+
+    .z-login__card {
+        padding: var(--z-space-6);
+        border-radius: var(--z-radius-xl);
+    }
+
+    .z-login__hero {
+        min-height: 180px;
+    }
+
+    .z-login__hero-overlay {
+        padding: var(--z-space-6);
+    }
+
+    .z-login__hero-heading {
+        font-size: var(--z-text-2xl);
+    }
+
+    .z-login__hero-description {
+        font-size: var(--z-text-base);
+    }
+}
+
+// ============================================================================
+// HIDE NAVBAR + FOOTER — Login page is standalone
+// ============================================================================
+
+.pagelayout-login {
+    // The login layout file doesn't include navbar/footer,
+    // but in case any standard elements leak through:
+    #page-wrapper > footer {
+        display: none;
+    }
+}

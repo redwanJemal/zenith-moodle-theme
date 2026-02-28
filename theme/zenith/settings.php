@@ -106,6 +106,53 @@ if ($ADMIN->fulltree) {
     }
 
     // ========================================================================
+    // Login page settings.
+    // ========================================================================
+
+    $settings->add(new admin_setting_heading(
+        'theme_zenith/loginheading_setting',
+        get_string('loginsettings', 'theme_zenith'),
+        ''
+    ));
+
+    // Login layout chooser.
+    $name = 'theme_zenith/loginlayout';
+    $title = get_string('loginlayout', 'theme_zenith');
+    $description = get_string('loginlayout_desc', 'theme_zenith');
+    $choices = [
+        'center' => get_string('loginlayout_center', 'theme_zenith'),
+        'left'   => get_string('loginlayout_left', 'theme_zenith'),
+        'right'  => get_string('loginlayout_right', 'theme_zenith'),
+    ];
+    $setting = new admin_setting_configselect($name, $title, $description, 'center', $choices);
+    $setting->set_updatedcallback('theme_reset_all_caches');
+    $settings->add($setting);
+
+    // Login background image.
+    $name = 'theme_zenith/loginbackgroundimage';
+    $title = get_string('loginbackgroundimage', 'theme_zenith');
+    $description = get_string('loginbackgroundimage_desc', 'theme_zenith');
+    $setting = new admin_setting_configstoredfile($name, $title, $description, 'loginbackgroundimage');
+    $setting->set_updatedcallback('theme_reset_all_caches');
+    $settings->add($setting);
+
+    // Login heading text.
+    $name = 'theme_zenith/loginheadingtext';
+    $title = get_string('loginheading', 'theme_zenith');
+    $description = get_string('loginheading_desc', 'theme_zenith');
+    $setting = new admin_setting_configtext($name, $title, $description, get_string('loginheading', 'theme_zenith'));
+    $setting->set_updatedcallback('theme_reset_all_caches');
+    $settings->add($setting);
+
+    // Login description (for hero panels).
+    $name = 'theme_zenith/logindescription';
+    $title = get_string('logindescription', 'theme_zenith');
+    $description = get_string('logindescription_desc', 'theme_zenith');
+    $setting = new admin_setting_confightmleditor($name, $title, $description, '');
+    $setting->set_updatedcallback('theme_reset_all_caches');
+    $settings->add($setting);
+
+    // ========================================================================
     // Advanced settings.
     // ========================================================================
 

@@ -26,6 +26,30 @@ defined('MOODLE_INTERNAL') || die();
 
 $bodyattributes = $OUTPUT->body_attributes();
 
+// Get login layout setting.
+$loginlayout = get_config('theme_zenith', 'loginlayout') ?: 'center';
+
+// Build background image URL.
+$loginbgimage = '';
+if (!empty($PAGE->theme->settings->loginbackgroundimage)) {
+    $loginbgimage = $PAGE->theme->setting_file_url('loginbackgroundimage', 'loginbackgroundimage');
+}
+
+// Get login page logo.
+$loginlogo = '';
+if (!empty($PAGE->theme->settings->logo)) {
+    $loginlogo = $PAGE->theme->setting_file_url('logo', 'logo');
+}
+
+// Get login heading text.
+$loginheading = get_config('theme_zenith', 'loginheadingtext') ?: get_string('loginheading', 'theme_zenith');
+
+// Get login description for hero panels.
+$logindescription = '';
+if (!empty($PAGE->theme->settings->logindescription)) {
+    $logindescription = format_text($PAGE->theme->settings->logindescription, FORMAT_HTML);
+}
+
 $templatecontext = [
     'sitename' => format_string(
         $SITE->shortname,
@@ -34,6 +58,17 @@ $templatecontext = [
     ),
     'output' => $OUTPUT,
     'bodyattributes' => $bodyattributes,
+    'loginlayout' => $loginlayout,
+    'layoutcenter' => ($loginlayout === 'center'),
+    'layoutleft' => ($loginlayout === 'left'),
+    'layoutright' => ($loginlayout === 'right'),
+    'loginbgimage' => $loginbgimage,
+    'hasbgimage' => !empty($loginbgimage),
+    'loginlogo' => $loginlogo,
+    'haslogo' => !empty($loginlogo),
+    'loginheading' => $loginheading,
+    'logindescription' => $logindescription,
+    'hasdescription' => !empty($logindescription),
 ];
 
-echo $OUTPUT->render_from_template('theme_boost/login', $templatecontext);
+echo $OUTPUT->render_from_template('theme_zenith/login', $templatecontext);

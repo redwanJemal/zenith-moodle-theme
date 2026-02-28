@@ -244,6 +244,20 @@
     --z-input-font-size: var(--z-text-sm);
 
     // ========================================================================
+    // COMPONENT — Login
+    // ========================================================================
+
+    --z-login-bg: var(--z-bg-page);
+    --z-login-card-bg: var(--z-bg-surface);
+    --z-login-card-shadow: var(--z-shadow-xl);
+    --z-login-card-radius: var(--z-radius-2xl);
+    --z-login-card-padding: var(--z-space-10);
+    --z-login-card-max-width: 440px;
+    --z-login-hero-bg: var(--z-primary);
+    --z-login-hero-text: var(--z-white);
+    --z-login-hero-overlay: rgba(0, 0, 0, 0.4);
+
+    // ========================================================================
     // COMPONENT — Footer
     // ========================================================================
 

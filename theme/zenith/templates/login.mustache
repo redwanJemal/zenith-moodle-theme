@@ -1,0 +1,106 @@
+{{!
+    This file is part of Moodle - http://moodle.org/
+
+    Moodle is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Moodle is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+}}
+{{!
+    @template theme_zenith/login
+
+    Zenith login page template with 3 configurable layouts:
+    - center: Centred form with optional background image
+    - left: Form on left, hero image on right
+    - right: Form on right, hero image on left
+
+    Context variables required for this template:
+    * output - The output renderer
+    * bodyattributes - Body tag attributes
+    * sitename - The site short name
+    * loginlayout - Layout choice: center, left, right
+    * layoutcenter - Boolean: true if center layout
+    * layoutleft - Boolean: true if left layout
+    * layoutright - Boolean: true if right layout
+    * loginbgimage - URL to background image
+    * hasbgimage - Boolean: true if background image set
+    * loginlogo - URL to site logo
+    * haslogo - Boolean: true if logo set
+    * loginheading - Heading text for hero panel
+    * logindescription - Description HTML for hero panel
+    * hasdescription - Boolean: true if description set
+}}
+{{> theme_boost/head }}
+
+<body {{{ bodyattributes }}}>
+{{> core/local/toast/wrapper}}
+
+<div id="page-wrapper" class="z-login z-login--{{loginlayout}}">
+
+    {{{ output.standard_top_of_body_html }}}
+
+    <div id="page" class="z-login__page">
+        {{! ================================================================ }}
+        {{! HERO PANEL — shown for left/right layouts                        }}
+        {{! ================================================================ }}
+        {{^layoutcenter}}
+        <div class="z-login__hero" {{#hasbgimage}}style="background-image: url('{{{loginbgimage}}}')"{{/hasbgimage}}>
+            <div class="z-login__hero-overlay">
+                <div class="z-login__hero-content">
+                    {{#haslogo}}
+                        <img src="{{{loginlogo}}}" class="z-login__hero-logo" alt="{{sitename}}">
+                    {{/haslogo}}
+                    <h2 class="z-login__hero-heading">{{loginheading}}</h2>
+                    {{#hasdescription}}
+                        <div class="z-login__hero-description">
+                            {{{logindescription}}}
+                        </div>
+                    {{/hasdescription}}
+                </div>
+            </div>
+        </div>
+        {{/layoutcenter}}
+
+        {{! ================================================================ }}
+        {{! LOGIN FORM PANEL                                                 }}
+        {{! ================================================================ }}
+        <div class="z-login__form-panel" {{#layoutcenter}}{{#hasbgimage}}style="background-image: url('{{{loginbgimage}}}')"{{/hasbgimage}}{{/layoutcenter}}>
+            <div class="z-login__form-wrapper">
+                <div class="z-login__card">
+                    {{#layoutcenter}}
+                        {{#haslogo}}
+                            <div class="z-login__logo">
+                                <img src="{{{loginlogo}}}" alt="{{sitename}}">
+                            </div>
+                        {{/haslogo}}
+                    {{/layoutcenter}}
+                    <div id="region-main">
+                        <div class="login-wrapper">
+                            <div class="login-container">
+                                {{{ output.main_content }}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
+{{#js}}
+M.util.js_pending('theme_boost/loader');
+require(['theme_boost/loader'], function() {
+  M.util.js_complete('theme_boost/loader');
+});
+{{/js}}

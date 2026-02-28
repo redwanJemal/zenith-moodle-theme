@@ -64,6 +64,20 @@ $string['socialyoutube_desc'] = 'Your YouTube channel URL.';
 $string['socialinstagram'] = 'Instagram URL';
 $string['socialinstagram_desc'] = 'Your Instagram profile URL.';
 
+// Login page.
+$string['loginsettings'] = 'Login page';
+$string['loginlayout'] = 'Login page layout';
+$string['loginlayout_desc'] = 'Choose the login page layout style.';
+$string['loginlayout_center'] = 'Centred form';
+$string['loginlayout_left'] = 'Left panel';
+$string['loginlayout_right'] = 'Right panel';
+$string['loginbackgroundimage'] = 'Login background image';
+$string['loginbackgroundimage_desc'] = 'Upload a background image for the login page. Used as a full-screen background (centred layout) or as the hero panel image (left/right layouts). Recommended size: 1920x1080px.';
+$string['loginheading'] = 'Welcome back';
+$string['loginheading_desc'] = 'Heading text displayed above the login form.';
+$string['logindescription'] = 'Login description';
+$string['logindescription_desc'] = 'Description text displayed below the heading on the hero panel (left/right layouts only). Supports HTML.';
+
 // Advanced - SCSS.
 $string['rawscss'] = 'Raw SCSS';
 $string['rawscss_desc'] = 'Custom SCSS code appended after the theme SCSS. Use this for minor style adjustments.';
