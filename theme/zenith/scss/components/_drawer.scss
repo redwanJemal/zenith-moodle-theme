@@ -1,0 +1,470 @@
+// Zenith Theme — Drawer Component
+// Overrides Boost's default drawer styling with Zenith design tokens.
+// Drawers: left (course index), right (blocks sidebar), primary (mobile nav).
+// All drawer JS behavior is inherited from Boost's drawers.js — we only restyle.
+
+// ============================================================================
+// DRAWER — Core Panel
+// ============================================================================
+
+.drawer {
+    background-color: var(--z-drawer-bg);
+    border: none;
+
+    &.drawer-left {
+        border-right: 1px solid var(--z-drawer-border);
+        box-shadow: var(--z-shadow-lg);
+
+        &.show {
+            box-shadow: var(--z-shadow-lg);
+        }
+    }
+
+    &.drawer-right {
+        border-left: 1px solid var(--z-drawer-border);
+        box-shadow: var(--z-shadow-lg);
+
+        &.show {
+            box-shadow: var(--z-shadow-lg);
+        }
+    }
+
+    // Primary (mobile navigation) drawer
+    &.drawer-primary {
+        background-color: var(--z-drawer-bg);
+        border-right: 1px solid var(--z-drawer-border);
+    }
+}
+
+// ============================================================================
+// DRAWER — Header
+// ============================================================================
+
+.drawerheader {
+    padding: 0 var(--z-space-4);
+    border-bottom: 1px solid var(--z-drawer-border);
+    background-color: var(--z-drawer-bg);
+
+    // Close button
+    .drawertoggle {
+        width: 36px;
+        height: 36px;
+        border-radius: var(--z-radius-lg);
+        color: var(--z-text-secondary);
+        transition: all var(--z-transition-fast);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: none;
+        background: transparent;
+
+        &:hover {
+            background-color: var(--z-bg-surface-hover);
+            color: var(--z-text-primary);
+        }
+
+        &:focus {
+            outline: 2px solid var(--z-primary);
+            outline-offset: 2px;
+        }
+
+        .icon {
+            width: 16px;
+            height: 16px;
+            font-size: 16px;
+            margin: 0;
+        }
+    }
+
+    // Site name in mobile drawer
+    .sitename {
+        font-weight: var(--z-font-semibold);
+        font-size: var(--z-text-base);
+        color: var(--z-text-primary);
+    }
+}
+
+// Scrolled state — add shadow to header
+.drawer.scrolled .drawerheader {
+    box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.1);
+    border-bottom-color: transparent;
+}
+
+// ============================================================================
+// DRAWER — Content Area
+// ============================================================================
+
+.drawercontent {
+    padding: var(--z-space-3);
+    background-color: var(--z-drawer-bg);
+
+    // Custom scrollbar
+    &::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: var(--z-gray-300);
+        border-radius: var(--z-radius-full);
+
+        &:hover {
+            background-color: var(--z-gray-400);
+        }
+    }
+
+    // Scrollbar for Firefox
+    scrollbar-width: thin;
+    scrollbar-color: var(--z-gray-300) transparent;
+}
+
+// ============================================================================
+// DRAWER — Course Index (Left Drawer) Specific
+// ============================================================================
+
+#theme_boost-drawers-courseindex {
+    .drawercontent {
+        // Course index items
+        .courseindex {
+            font-size: var(--z-text-sm);
+        }
+
+        // Section headers
+        [data-for="section"] {
+            .courseindex-section-title {
+                font-weight: var(--z-font-semibold);
+                color: var(--z-text-primary);
+                padding: var(--z-space-2) var(--z-space-3);
+                border-radius: var(--z-radius-md);
+                transition: background-color var(--z-transition-fast);
+
+                &:hover {
+                    background-color: var(--z-bg-surface-hover);
+                }
+            }
+        }
+
+        // Activity/resource items
+        [data-for="cm"] {
+            .courseindex-item-content {
+                padding: var(--z-space-1) var(--z-space-3);
+                padding-left: var(--z-space-6);
+                border-radius: var(--z-radius-md);
+                color: var(--z-text-secondary);
+                transition: all var(--z-transition-fast);
+
+                &:hover {
+                    background-color: var(--z-bg-surface-hover);
+                    color: var(--z-text-primary);
+                }
+            }
+
+            // Active/current item
+            &.pageitem .courseindex-item-content {
+                background-color: var(--z-primary-subtle);
+                color: var(--z-primary);
+                font-weight: var(--z-font-medium);
+            }
+        }
+
+        // Completion indicators
+        .completioninfo .icon {
+            color: var(--z-gray-400);
+        }
+
+        .completioninfo .text-success .icon {
+            color: var(--z-success);
+        }
+    }
+
+    // Course index drawer controls (expand/collapse all dropdown)
+    .drawerheadercontent {
+        #courseindexdrawercontrols {
+            .btn-icon {
+                width: 32px;
+                height: 32px;
+                color: var(--z-text-secondary);
+                border-radius: var(--z-radius-md);
+                transition: all var(--z-transition-fast);
+
+                &:hover {
+                    background-color: var(--z-bg-surface-hover);
+                    color: var(--z-text-primary);
+                }
+            }
+
+            .dropdown-menu {
+                border: 1px solid var(--z-border-color);
+                border-radius: var(--z-radius-lg);
+                box-shadow: var(--z-shadow-lg);
+                background-color: var(--z-bg-surface);
+                padding: var(--z-space-1);
+
+                .dropdown-item {
+                    border-radius: var(--z-radius-md);
+                    padding: var(--z-space-2) var(--z-space-3);
+                    color: var(--z-text-secondary);
+                    font-size: var(--z-text-sm);
+                    transition: all var(--z-transition-fast);
+
+                    &:hover {
+                        background-color: var(--z-primary);
+                        color: #fff;
+                    }
+                }
+            }
+        }
+    }
+}
+
+// ============================================================================
+// DRAWER — Blocks Sidebar (Right Drawer) Specific
+// ============================================================================
+
+#theme_boost-drawers-blocks {
+    .drawercontent {
+        // Add block button
+        .addblock {
+            .btn {
+                width: 100%;
+                border: 2px dashed var(--z-border-color);
+                border-radius: var(--z-radius-lg);
+                color: var(--z-text-tertiary);
+                background: transparent;
+                padding: var(--z-space-3);
+                font-size: var(--z-text-sm);
+                transition: all var(--z-transition-fast);
+
+                &:hover {
+                    border-color: var(--z-primary);
+                    color: var(--z-primary);
+                    background-color: var(--z-primary-subtle);
+                }
+            }
+        }
+
+        // Block cards
+        .block {
+            border: 1px solid var(--z-border-color);
+            border-radius: var(--z-radius-xl);
+            background-color: var(--z-bg-surface);
+            margin-bottom: var(--z-space-3);
+            overflow: hidden;
+            box-shadow: none;
+            transition: box-shadow var(--z-transition-fast);
+
+            &:hover {
+                box-shadow: var(--z-shadow-sm);
+            }
+
+            .card-body {
+                padding: var(--z-space-4);
+            }
+
+            // Block header
+            .card-title,
+            .card-header {
+                font-size: var(--z-text-sm);
+                font-weight: var(--z-font-semibold);
+                color: var(--z-text-primary);
+                background: transparent;
+                border-bottom: 1px solid var(--z-border-color);
+                padding: var(--z-space-3) var(--z-space-4);
+            }
+
+            // Action icons
+            .block-controls .dropdown-toggle {
+                color: var(--z-text-tertiary);
+
+                &:hover {
+                    color: var(--z-text-primary);
+                }
+            }
+        }
+    }
+}
+
+// ============================================================================
+// DRAWER — Mobile Primary Navigation
+// ============================================================================
+
+#theme_boost-drawers-primary {
+    .drawercontent {
+        padding: var(--z-space-2);
+
+        .list-group {
+            border: none;
+
+            .list-group-item {
+                border: none;
+                border-radius: var(--z-radius-lg);
+                padding: var(--z-space-3) var(--z-space-4);
+                color: var(--z-text-secondary);
+                background-color: transparent;
+                font-size: var(--z-text-base);
+                font-weight: var(--z-font-medium);
+                margin-bottom: 2px;
+                transition: all var(--z-transition-fast);
+
+                &:hover,
+                &:focus {
+                    background-color: var(--z-bg-surface-hover);
+                    color: var(--z-text-primary);
+                }
+
+                &.active {
+                    background-color: var(--z-primary-subtle);
+                    color: var(--z-primary);
+                    font-weight: var(--z-font-semibold);
+                }
+
+                // Sub-items (collapsed children)
+                &.ps-5 {
+                    padding-left: var(--z-space-10) !important;
+                    font-size: var(--z-text-sm);
+                }
+            }
+
+            // Expand/collapse icons
+            .icons-collapse-expand {
+                .expanded-icon,
+                .collapsed-icon {
+                    color: var(--z-text-tertiary);
+                }
+            }
+        }
+    }
+}
+
+// ============================================================================
+// DRAWER — Toggle Buttons (in page content area)
+// ============================================================================
+
+.drawer-toggler {
+    .btn {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: var(--z-radius-lg);
+        color: var(--z-text-secondary);
+        background-color: var(--z-bg-surface);
+        border: 1px solid var(--z-border-color);
+        box-shadow: var(--z-shadow-sm);
+        transition: all var(--z-transition-fast);
+        padding: 0;
+
+        &:hover {
+            background-color: var(--z-bg-surface-hover);
+            color: var(--z-text-primary);
+            box-shadow: var(--z-shadow-md);
+            border-color: var(--z-border-color-hover);
+        }
+
+        &:focus {
+            outline: 2px solid var(--z-primary);
+            outline-offset: 2px;
+            box-shadow: none;
+        }
+
+        .icon {
+            width: 18px;
+            height: 18px;
+            font-size: 18px;
+            margin: 0;
+        }
+    }
+}
+
+// Toggle button positioning
+.drawer-toggles {
+    padding: var(--z-space-2) 0;
+    gap: var(--z-space-2);
+
+    .drawer-left-toggle {
+        margin-left: var(--z-space-2);
+    }
+
+    .drawer-right-toggle {
+        margin-right: var(--z-space-2);
+    }
+}
+
+// ============================================================================
+// DRAWER — Page Content Margin Adjustments
+// ============================================================================
+
+// When left drawer is open, content shifts right
+body.drawer-open-left #page.drawers {
+    @media (min-width: 992px) {
+        padding-left: var(--z-space-4);
+    }
+}
+
+// Smooth transitions for page content
+#page.drawers {
+    transition: margin-left var(--z-transition-base),
+                margin-right var(--z-transition-base);
+}
+
+// ============================================================================
+// DRAWER — Responsive Overrides
+// ============================================================================
+
+@media (max-width: 767.98px) {
+    .drawer {
+        // Full-height on mobile, cover navbar
+        z-index: calc(var(--z-index-fixed) + 5);
+
+        &.drawer-left,
+        &.drawer-right,
+        &.drawer-primary {
+            box-shadow: var(--z-shadow-2xl);
+        }
+    }
+
+    // Hide toggle buttons on mobile (hamburger handles it)
+    .drawer-toggles {
+        .drawer-left-toggle {
+            display: none !important;
+        }
+    }
+}
+
+// ============================================================================
+// DRAWER — Right-Hand Drawer (Messages, etc.)
+// ============================================================================
+
+[data-region="right-hand-drawer"] {
+    &.drawer {
+        background-color: var(--z-bg-surface);
+        border-left: 1px solid var(--z-drawer-border);
+        box-shadow: var(--z-shadow-xl);
+    }
+}
+
+// ============================================================================
+// DRAWER — Dark Mode Adjustments (complement _dark-mode.scss tokens)
+// ============================================================================
+
+[data-theme="dark"] {
+    .drawer.scrolled .drawerheader {
+        box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.3);
+    }
+
+    .drawercontent {
+        &::-webkit-scrollbar-thumb {
+            background-color: var(--z-gray-600);
+
+            &:hover {
+                background-color: var(--z-gray-500);
+            }
+        }
+
+        scrollbar-color: var(--z-gray-600) transparent;
+    }
+}

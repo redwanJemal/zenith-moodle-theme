@@ -24,7 +24,6 @@ Thumbs.db
 localcache/
 
 # Test output
-test-screenshots/
 e2e/.auth/
 playwright-report/
 test-results/

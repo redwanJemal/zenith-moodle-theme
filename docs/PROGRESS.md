@@ -10,13 +10,13 @@
 | Phase | Progress | Tasks | Done | Hours Est. | Weeks |
 |-------|----------|-------|------|-----------|-------|
 | [P0: Infrastructure](tasks/phase-0-infrastructure.md) | ██████░░░░ 67% | 6 | 4/6 | 17h | Week 1 |
-| [P1: Core Theme](tasks/phase-1-core-theme.md) | ████░░░░░░ 40% | 10 | 4/10 | 74h | Weeks 2-4 |
+| [P1: Core Theme](tasks/phase-1-core-theme.md) | █████░░░░░ 50% | 10 | 5/10 | 74h | Weeks 2-4 |
 | [P2: Customizer](tasks/phase-2-customizer.md) | ░░░░░░░░░░ 0% | 3 | 0/3 | 38h | Weeks 5-6 |
 | [P3: Differentiators](tasks/phase-3-differentiators.md) | ░░░░░░░░░░ 0% | 7 | 0/7 | 92h | Weeks 7-10 |
 | [P4: Polish](tasks/phase-4-polish.md) | ░░░░░░░░░░ 0% | 6 | 0/6 | 48h | Weeks 11-12 |
 | [P5: Ecosystem](tasks/phase-5-ecosystem.md) | ░░░░░░░░░░ 0% | 3 | 0/3 | 40h | Weeks 13-16 |
 | [P6: Launch](tasks/phase-6-launch.md) | ░░░░░░░░░░ 0% | 4 | 0/4 | 28h | Weeks 17-18 |
-| **TOTAL** | **██░░░░░░░░ 21%** | **39** | **8/39** | **337h** | **18 weeks** |
+| **TOTAL** | **██░░░░░░░░ 23%** | **39** | **9/39** | **337h** | **18 weeks** |
 
 ---
 
@@ -70,7 +70,7 @@ P4-4 ──→ P6-3 (Marketing Assets)
 ## What To Work On Next
 
 > Pick the first task that has all dependencies met (marked `[x]`).
-> Currently: **P1-5 (Drawers)** — unblocked (P1-3 done). **P1-7 (Login Page)** — unblocked. Critical path: P1-5 → P1-6 (Layouts). P1-8 (Dark Mode) needs P1-5.
+> Currently: **P1-6 (Layout Files)** — unblocked (P1-3 + P1-4 + P1-5 done). **P1-7 (Login Page)** — unblocked. **P1-8 (Dark Mode)** — unblocked (P1-1 + P1-3 + P1-4 + P1-5 done). Critical path: P1-6 → P1-9 (Template Overrides).
 
 ---
 
@@ -103,6 +103,7 @@ P4-4 ──→ P6-3 (Marketing Assets)
 |------|----------|--------------|-------|
 | 2026-02-28 | all | 12 pages × 3 viewports | Baseline screenshots with default Boost styling (Zenith scaffold) |
 | 2026-02-28 | all | 12 pages × 3 viewports | Post-P1-1: Design tokens + dark mode tokens compiled into CSS |
+| 2026-02-28 | all | 12 pages × 3 viewports + 3 drawer-specific | Post-P1-5: Drawer system styled with --z-drawer-* tokens |
 
 **Command:** `cd e2e && npm run screenshots`
 
@@ -113,4 +114,4 @@ P4-4 ──→ P6-3 (Marketing Assets)
 | Week | Date | Tasks Completed | Notes |
 |------|------|----------------|-------|
 | 1 | 2026-02-28 | P0-1, P0-3, P0-4, P0-5 | Docker dev + theme scaffold + build tools + 36 baseline screenshots |
-| 2 | 2026-02-28 | P1-1, P1-2, P1-3, P1-4 | Design tokens + Bootstrap + navbar + footer with settings + renderer |
+| 2 | 2026-02-28 | P1-1, P1-2, P1-3, P1-4, P1-5 | Design tokens + Bootstrap + navbar + footer + drawer system |
