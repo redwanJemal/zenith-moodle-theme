@@ -1,0 +1,36 @@
+{{!
+    @template theme_zenith/setupwizard/step_branding
+
+    Wizard step 2: Branding overview — shows current logo/favicon state.
+}}
+<div class="z-wizard__step-content z-wizard__step-branding">
+    <h2 class="z-wizard__heading">{{#str}}wizard_branding_title, theme_zenith{{/str}}</h2>
+    <p class="z-wizard__desc">{{#str}}wizard_branding_desc, theme_zenith{{/str}}</p>
+
+    <div class="z-wizard__branding-items">
+        <div class="z-wizard__branding-item">
+            <div class="z-wizard__branding-label">{{#str}}wizard_sitename, theme_zenith{{/str}}</div>
+            <div class="z-wizard__branding-value">{{wizardsitename}}</div>
+        </div>
+        <div class="z-wizard__branding-item">
+            <div class="z-wizard__branding-label">{{#str}}logo, theme_zenith{{/str}}</div>
+            <div class="z-wizard__branding-value z-wizard__branding-value--muted">
+                {{#str}}wizard_upload_in_settings, theme_zenith{{/str}}
+            </div>
+        </div>
+        <div class="z-wizard__branding-item">
+            <div class="z-wizard__branding-label">{{#str}}favicon, theme_zenith{{/str}}</div>
+            <div class="z-wizard__branding-value z-wizard__branding-value--muted">
+                {{#str}}wizard_upload_in_settings, theme_zenith{{/str}}
+            </div>
+        </div>
+    </div>
+
+    <a href="{{settingsurl}}" class="z-wizard__settings-link" target="_blank" rel="noopener">
+        {{#str}}wizard_open_settings_branding, theme_zenith{{/str}}
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="2" stroke-linecap="round" aria-hidden="true">
+            <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/>
+        </svg>
+    </a>
+</div>

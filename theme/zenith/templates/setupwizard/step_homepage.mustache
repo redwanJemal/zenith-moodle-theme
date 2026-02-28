@@ -1,0 +1,38 @@
+{{!
+    @template theme_zenith/setupwizard/step_homepage
+
+    Wizard step 4: Homepage hero configuration.
+}}
+<div class="z-wizard__step-content z-wizard__step-homepage">
+    <h2 class="z-wizard__heading">{{#str}}wizard_homepage_title, theme_zenith{{/str}}</h2>
+    <p class="z-wizard__desc">{{#str}}wizard_homepage_desc, theme_zenith{{/str}}</p>
+
+    <div class="z-wizard__form-group">
+        <label class="z-wizard__label" for="z-wizard-heroenabled">
+            {{#str}}heroenabled, theme_zenith{{/str}}
+        </label>
+        <div class="z-wizard__toggle">
+            <input type="checkbox" id="z-wizard-heroenabled" data-setting="heroenabled"
+                   {{#heroenabled}}checked{{/heroenabled}}>
+            <span class="z-wizard__toggle-label">{{#str}}wizard_hero_toggle, theme_zenith{{/str}}</span>
+        </div>
+    </div>
+
+    <div class="z-wizard__form-group">
+        <label class="z-wizard__label" for="z-wizard-herotitle">
+            {{#str}}herotitle, theme_zenith{{/str}}
+        </label>
+        <input type="text" id="z-wizard-herotitle" class="form-control" data-setting="herotitle"
+               value="{{herotitle}}" maxlength="100">
+    </div>
+
+    <div class="z-wizard__form-group">
+        <label class="z-wizard__label" for="z-wizard-herosubtitle">
+            {{#str}}herosubtitle, theme_zenith{{/str}}
+        </label>
+        <textarea id="z-wizard-herosubtitle" class="form-control" data-setting="herosubtitle"
+                  rows="3" maxlength="300">{{herosubtitle}}</textarea>
+    </div>
+
+    <p class="z-wizard__note">{{#str}}wizard_more_options, theme_zenith{{/str}}</p>
+</div>

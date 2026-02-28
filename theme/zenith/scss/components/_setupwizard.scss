@@ -1,0 +1,508 @@
+// ==========================================================================
+// Setup Wizard — Full-screen modal overlay
+// ==========================================================================
+// 5-step guided setup for new Zenith installations.
+// BEM naming: .z-wizard__element--modifier
+
+// Overlay
+.z-wizard {
+    position: fixed;
+    inset: 0;
+    z-index: 10000; // Above customizer (9999).
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: z-wizard-fadein 0.3s ease-out;
+}
+
+.z-wizard--closing {
+    animation: z-wizard-fadeout 0.3s ease-in forwards;
+}
+
+// Backdrop
+.z-wizard__backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+}
+
+// Container card
+.z-wizard__container {
+    position: relative;
+    width: 100%;
+    max-width: 640px;
+    max-height: 90vh;
+    margin: 1rem;
+    padding: 2rem;
+    background: #fff;
+    border-radius: var(--z-radius-lg, 0.75rem);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+// Skip / close button
+.z-wizard__skip {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+    background: transparent;
+    color: var(--z-text-secondary, #64748b);
+    cursor: pointer;
+    transition: background-color 0.15s ease, color 0.15s ease;
+
+    &:hover {
+        background: var(--z-bg-hover, #f1f5f9);
+        color: var(--z-text-primary, #0f172a);
+    }
+}
+
+// ==========================================================================
+// Progress dots
+// ==========================================================================
+
+.z-wizard__progress {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+}
+
+.z-wizard__progress-dots {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.z-wizard__dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #e2e8f0;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+
+    &--active {
+        background: var(--z-primary, #6366f1);
+        transform: scale(1.2);
+    }
+
+    &--completed {
+        background: var(--z-primary, #6366f1);
+        opacity: 0.5;
+    }
+}
+
+// ==========================================================================
+// Step content
+// ==========================================================================
+
+.z-wizard__steps {
+    flex: 1;
+    min-height: 0;
+}
+
+.z-wizard__step {
+    display: none;
+    animation: z-wizard-stepin 0.3s ease-out;
+
+    &--active {
+        display: block;
+    }
+}
+
+.z-wizard__step-content {
+    text-align: center;
+    padding: 0 1rem;
+}
+
+// Icon (welcome step)
+.z-wizard__icon {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+    color: var(--z-primary, #6366f1);
+}
+
+// Headings
+.z-wizard__heading {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--z-text-primary, #0f172a);
+    margin-bottom: 0.5rem;
+}
+
+.z-wizard__desc {
+    font-size: 0.9375rem;
+    color: var(--z-text-secondary, #64748b);
+    margin-bottom: 1.5rem;
+    line-height: 1.5;
+}
+
+// Feature list (welcome step)
+.z-wizard__features {
+    list-style: none;
+    padding: 0;
+    margin: 0 auto 1rem;
+    max-width: 320px;
+    text-align: left;
+
+    li {
+        position: relative;
+        padding: 0.5rem 0 0.5rem 1.75rem;
+        font-size: 0.9375rem;
+        color: var(--z-text-primary, #0f172a);
+
+        &::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--z-primary-subtle, rgba(99, 102, 241, 0.1));
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236366f1' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: 12px;
+        }
+    }
+}
+
+// ==========================================================================
+// Branding step
+// ==========================================================================
+
+.z-wizard__branding-items {
+    max-width: 400px;
+    margin: 0 auto 1.5rem;
+    text-align: left;
+}
+
+.z-wizard__branding-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid #f1f5f9;
+
+    &:last-child {
+        border-bottom: none;
+    }
+}
+
+.z-wizard__branding-label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--z-text-primary, #0f172a);
+}
+
+.z-wizard__branding-value {
+    font-size: 0.875rem;
+    color: var(--z-text-primary, #0f172a);
+
+    &--muted {
+        color: var(--z-text-secondary, #94a3b8);
+        font-style: italic;
+    }
+}
+
+.z-wizard__settings-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    font-size: 0.875rem;
+    color: var(--z-primary, #6366f1);
+    text-decoration: none;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+// ==========================================================================
+// Color preset cards
+// ==========================================================================
+
+.z-wizard__preset-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 0.75rem;
+    max-width: 520px;
+    margin: 0 auto 1rem;
+}
+
+.z-wizard__preset-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 0.75rem;
+    border: 2px solid #e2e8f0;
+    border-radius: var(--z-radius-md, 0.5rem);
+    background: #fff;
+    cursor: pointer;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+
+    &:hover {
+        border-color: var(--z-primary, #6366f1);
+        box-shadow: 0 0 0 1px var(--z-primary, #6366f1);
+    }
+
+    &--selected {
+        border-color: var(--z-primary, #6366f1);
+        box-shadow: 0 0 0 2px var(--z-primary, #6366f1);
+
+        .z-wizard__preset-check {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+}
+
+.z-wizard__preset-swatches {
+    display: flex;
+    gap: 4px;
+}
+
+.z-wizard__swatch {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+}
+
+.z-wizard__preset-name {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--z-text-primary, #0f172a);
+}
+
+.z-wizard__preset-check {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    width: 22px;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: var(--z-primary, #6366f1);
+    color: #fff;
+    opacity: 0;
+    transform: scale(0.5);
+    transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+// ==========================================================================
+// Homepage step — form controls
+// ==========================================================================
+
+.z-wizard__form-group {
+    max-width: 440px;
+    margin: 0 auto 1rem;
+    text-align: left;
+}
+
+.z-wizard__label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--z-text-primary, #0f172a);
+    margin-bottom: 0.375rem;
+}
+
+.z-wizard__toggle {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.z-wizard__toggle-label {
+    font-size: 0.875rem;
+    color: var(--z-text-secondary, #64748b);
+}
+
+.z-wizard__note {
+    font-size: 0.8125rem;
+    color: var(--z-text-secondary, #94a3b8);
+    font-style: italic;
+    margin-top: 0.5rem;
+}
+
+// ==========================================================================
+// Complete step
+// ==========================================================================
+
+.z-wizard__celebration {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+    color: var(--z-success, #10b981);
+    opacity: 0;
+    transform: scale(0.5);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+
+    &--animate {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.z-wizard__summary {
+    max-width: 320px;
+    margin: 0 auto 1.5rem;
+    text-align: left;
+}
+
+.z-wizard__summary-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.375rem 0;
+    font-size: 0.875rem;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.z-wizard__summary-label {
+    color: var(--z-text-secondary, #64748b);
+}
+
+.z-wizard__summary-value {
+    font-weight: 600;
+    color: var(--z-text-primary, #0f172a);
+}
+
+.z-wizard__complete-actions {
+    display: flex;
+    justify-content: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+}
+
+// ==========================================================================
+// Navigation actions
+// ==========================================================================
+
+.z-wizard__actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid #f1f5f9;
+}
+
+// ==========================================================================
+// Animations
+// ==========================================================================
+
+@keyframes z-wizard-fadein {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes z-wizard-fadeout {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes z-wizard-stepin {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+// ==========================================================================
+// Responsive — full screen on mobile
+// ==========================================================================
+
+@media (max-width: 575.98px) {
+    .z-wizard__container {
+        max-width: 100%;
+        max-height: 100vh;
+        margin: 0;
+        border-radius: 0;
+        padding: 1.5rem 1rem;
+    }
+
+    .z-wizard__preset-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .z-wizard__heading {
+        font-size: 1.25rem;
+    }
+}
+
+// ==========================================================================
+// Dark mode support
+// ==========================================================================
+
+[data-theme="dark"] {
+    .z-wizard__container {
+        background: var(--z-bg-surface, #1e293b);
+    }
+
+    .z-wizard__heading {
+        color: var(--z-text-primary, #f1f5f9);
+    }
+
+    .z-wizard__branding-label,
+    .z-wizard__branding-value,
+    .z-wizard__label,
+    .z-wizard__preset-name,
+    .z-wizard__summary-value {
+        color: var(--z-text-primary, #f1f5f9);
+    }
+
+    .z-wizard__preset-card {
+        background: var(--z-bg-surface, #334155);
+        border-color: var(--z-border, #475569);
+
+        &:hover,
+        &--selected {
+            border-color: var(--z-primary, #6366f1);
+        }
+    }
+
+    .z-wizard__dot {
+        background: #475569;
+    }
+
+    .z-wizard__branding-item,
+    .z-wizard__summary-item,
+    .z-wizard__actions {
+        border-color: #334155;
+    }
+
+    .z-wizard__features li::before {
+        background-color: rgba(99, 102, 241, 0.2);
+    }
+}

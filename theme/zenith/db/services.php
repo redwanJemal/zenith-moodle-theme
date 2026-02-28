@@ -49,4 +49,20 @@ $functions = [
         'ajax' => true,
         'capabilities' => 'moodle/site:config',
     ],
+    'theme_zenith_wizard_save_step' => [
+        'classname' => 'theme_zenith\external\setupwizard_api',
+        'methodname' => 'save_step',
+        'description' => 'Save settings for a setup wizard step',
+        'type' => 'write',
+        'ajax' => true,
+        'capabilities' => 'moodle/site:config',
+    ],
+    'theme_zenith_wizard_complete' => [
+        'classname' => 'theme_zenith\external\setupwizard_api',
+        'methodname' => 'complete_wizard',
+        'description' => 'Mark the setup wizard as completed',
+        'type' => 'write',
+        'ajax' => true,
+        'capabilities' => 'moodle/site:config',
+    ],
 ];

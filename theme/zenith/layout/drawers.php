@@ -97,6 +97,13 @@ if ($cancustomize) {
 // Google Fonts link for customizer font.
 $googlefonturl = \theme_zenith\customizer\customizer::get_google_font_url();
 
+// Focus mode — show toggle on course/incourse pages.
+$incourse = in_array($PAGE->pagelayout, ['course', 'incourse']);
+
+// Setup wizard for first-time admin visit.
+$showwizard = \theme_zenith\setupwizard::should_show();
+$wizardcontext = $showwizard ? \theme_zenith\setupwizard::get_template_context() : [];
+
 $templatecontext = [
     'sitename' => format_string(
         $SITE->shortname,
@@ -125,6 +132,16 @@ $templatecontext = [
     'presets' => $customizerpresets,
     'customizersettingsjs' => $customizersettingsjs,
     'googlefonturl' => $googlefonturl,
+    'incourse' => $incourse,
+    'showwizard' => $showwizard,
+    'wizardpresets' => $wizardcontext['presets'] ?? [],
+    'wizardpresetsjs' => $wizardcontext['presetsjs'] ?? '[]',
+    'wizardsitename' => $wizardcontext['sitename'] ?? '',
+    'heroenabled' => $wizardcontext['heroenabled'] ?? true,
+    'herotitle' => $wizardcontext['herotitle'] ?? '',
+    'herosubtitle' => $wizardcontext['herosubtitle'] ?? '',
+    'settingsurl' => $wizardcontext['settingsurl'] ?? '',
+    'dashboardurl' => $wizardcontext['dashboardurl'] ?? '',
 ];
 
 echo $OUTPUT->render_from_template('theme_boost/drawers', $templatecontext);

@@ -164,6 +164,44 @@ $string['customjs_desc'] = 'JavaScript code injected into every page. Use for tr
 $string['developermode'] = 'Developer mode';
 $string['developermode_desc'] = 'Enable theme designer mode and disable caching. Only use during development.';
 
+// Focus Mode.
+$string['focusmode'] = 'Focus mode';
+$string['focusmode_toggle'] = 'Toggle focus mode';
+$string['focusmode_exit'] = 'Exit';
+$string['focusmode_prev'] = 'Previous';
+$string['focusmode_next'] = 'Next';
+
+// Setup Wizard.
+$string['wizard_title'] = 'Setup Wizard';
+$string['wizard_welcome_title'] = 'Welcome to Zenith';
+$string['wizard_welcome_desc'] = 'Let\'s get your site looking great in just a few steps.';
+$string['wizard_feature_branding'] = 'Set up your site branding';
+$string['wizard_feature_colors'] = 'Choose a colour preset';
+$string['wizard_feature_homepage'] = 'Configure your homepage';
+$string['wizard_get_started'] = 'Get started';
+$string['wizard_next'] = 'Next';
+$string['wizard_back'] = 'Back';
+$string['wizard_finish'] = 'Finish';
+$string['wizard_skip'] = 'Skip setup';
+$string['wizard_branding_title'] = 'Branding';
+$string['wizard_branding_desc'] = 'Your site name is set. Upload your logo and favicon in the theme settings.';
+$string['wizard_sitename'] = 'Site name';
+$string['wizard_upload_in_settings'] = 'Upload in Settings';
+$string['wizard_open_settings_branding'] = 'Open Settings to upload';
+$string['wizard_colors_title'] = 'Choose a colour preset';
+$string['wizard_colors_desc'] = 'Select a preset to instantly apply colours, typography, and button styles.';
+$string['wizard_homepage_title'] = 'Homepage';
+$string['wizard_homepage_desc'] = 'Configure the hero section shown on your site front page.';
+$string['wizard_hero_toggle'] = 'Show hero banner on the front page';
+$string['wizard_more_options'] = 'More homepage options are available in Settings.';
+$string['wizard_complete_title'] = 'You\'re all set!';
+$string['wizard_complete_desc'] = 'Your site is ready to go. You can always adjust these settings later.';
+$string['wizard_go_dashboard'] = 'Go to Dashboard';
+$string['wizard_open_settings'] = 'Open Settings';
+$string['wizard_open_customizer'] = 'Open Customizer';
+$string['wizard_relaunch'] = 'Setup wizard';
+$string['wizard_relaunch_desc'] = 'The setup wizard runs automatically on first use. To re-run it, go to Site administration > Development > Purge caches, or ask your administrator to reset the <code>wizard_completed</code> setting in the theme_zenith plugin config.';
+
 // Visual Customizer.
 $string['customizer'] = 'Visual Customizer';
 $string['customizer_sections'] = 'Customizer sections';

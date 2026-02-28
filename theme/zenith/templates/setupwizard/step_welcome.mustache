@@ -1,0 +1,20 @@
+{{!
+    @template theme_zenith/setupwizard/step_welcome
+
+    Wizard step 1: Welcome screen with feature highlights.
+}}
+<div class="z-wizard__step-content z-wizard__step-welcome">
+    <div class="z-wizard__icon">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+        </svg>
+    </div>
+    <h2 class="z-wizard__heading">{{#str}}wizard_welcome_title, theme_zenith{{/str}}</h2>
+    <p class="z-wizard__desc">{{#str}}wizard_welcome_desc, theme_zenith{{/str}}</p>
+    <ul class="z-wizard__features">
+        <li>{{#str}}wizard_feature_branding, theme_zenith{{/str}}</li>
+        <li>{{#str}}wizard_feature_colors, theme_zenith{{/str}}</li>
+        <li>{{#str}}wizard_feature_homepage, theme_zenith{{/str}}</li>
+    </ul>
+</div>

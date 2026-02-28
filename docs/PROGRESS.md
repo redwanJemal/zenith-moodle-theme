@@ -9,14 +9,14 @@
 
 | Phase | Progress | Tasks | Done | Hours Est. | Weeks |
 |-------|----------|-------|------|-----------|-------|
-| [P0: Infrastructure](tasks/phase-0-infrastructure.md) | ████████░░ 83% | 6 | 5/6 | 17h | Week 1 |
+| [P0: Infrastructure](tasks/phase-0-infrastructure.md) | ██████████ 100% | 6 | 6/6 | 17h | Week 1 |
 | [P1: Core Theme](tasks/phase-1-core-theme.md) | ██████████ 100% | 10 | 10/10 | 74h | Weeks 2-4 |
-| [P2: Customizer](tasks/phase-2-customizer.md) | ███████░░░ 67% | 3 | 2/3 | 38h | Weeks 5-6 |
-| [P3: Differentiators](tasks/phase-3-differentiators.md) | ░░░░░░░░░░ 0% | 7 | 0/7 | 92h | Weeks 7-10 |
+| [P2: Customizer](tasks/phase-2-customizer.md) | ██████████ 100% | 3 | 3/3 | 38h | Weeks 5-6 |
+| [P3: Differentiators](tasks/phase-3-differentiators.md) | █░░░░░░░░░ 14% | 7 | 1/7 | 92h | Weeks 7-10 |
 | [P4: Polish](tasks/phase-4-polish.md) | ░░░░░░░░░░ 0% | 6 | 0/6 | 48h | Weeks 11-12 |
 | [P5: Ecosystem](tasks/phase-5-ecosystem.md) | ░░░░░░░░░░ 0% | 3 | 0/3 | 40h | Weeks 13-16 |
 | [P6: Launch](tasks/phase-6-launch.md) | ░░░░░░░░░░ 0% | 4 | 0/4 | 28h | Weeks 17-18 |
-| **TOTAL** | **████░░░░░░ 44%** | **39** | **17/39** | **337h** | **18 weeks** |
+| **TOTAL** | **█████░░░░░ 51%** | **39** | **20/39** | **337h** | **18 weeks** |
 
 ---
 
@@ -70,7 +70,7 @@ P4-4 ──→ P6-3 (Marketing Assets)
 ## What To Work On Next
 
 > Pick the first task that has all dependencies met (marked `[x]`).
-> Currently: **P2-3 (Setup Wizard)** — unblocked (P2-1 done). Also unblocked: P3-1 through P3-7 (Differentiators).
+> Currently: **Phases 0, 1, 2 complete!** Next: P3-2 (Enhanced Dashboard) or P3-4 (Accessibility Toolkit).
 
 ---
 
@@ -130,3 +130,6 @@ P4-4 ──→ P6-3 (Marketing Assets)
 | 4 | 2026-02-28 | P0-2 | Production deployment: lms.endlessmaker.com live with Zenith theme via Traefik + Cloudflare HTTPS |
 | 5 | 2026-02-28 | P2-1 | Tabbed settings panel: 6 tabs (General, Homepage, Courses, Footer, Login, Advanced), 37 settings |
 | 5 | 2026-02-28 | P2-2 | Visual Customizer: live preview sidebar, 24 settings across 6 sections, 7 presets, AJAX save/reset, CSS custom property injection |
+| 5 | 2026-02-28 | P2-3 | Setup Wizard: 5-step guided modal overlay, preset selection, homepage config, AJAX save, auto-show on first admin visit. **Phase 2 complete!** |
+| 5 | 2026-02-28 | P0-6 | CI/CD: GitHub Actions workflow — lint JS + SCSS, build AMD, verify build freshness. Fixed 11 pre-existing lint errors. **Phase 0 complete!** |
+| 6 | 2026-02-28 | P3-1 | Focus Mode: distraction-free course viewing, minimal top bar with exit/nav, section navigation, Escape to exit, user preference persistence |

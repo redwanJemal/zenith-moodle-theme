@@ -1,0 +1,222 @@
+// ==========================================================================
+// Focus Mode — Distraction-free course viewing
+// ==========================================================================
+// Activated via [data-focusmode="true"] on <html>.
+// Hides navbar, drawers, footer, breadcrumbs. Shows minimal top bar.
+
+// --------------------------------------------------------------------------
+// Focus mode active state
+// --------------------------------------------------------------------------
+
+[data-focusmode="true"] {
+    // Hide main navbar.
+    .z-navbar {
+        transform: translateY(-100%);
+        opacity: 0;
+        pointer-events: none;
+        position: fixed;
+    }
+
+    // Hide drawers.
+    .drawer {
+        display: none !important; /* stylelint-disable-line declaration-no-important */
+    }
+
+    .drawer-toggler {
+        display: none !important; /* stylelint-disable-line declaration-no-important */
+    }
+
+    // Hide footer.
+    .z-footer {
+        display: none;
+    }
+
+    // Hide breadcrumbs.
+    .breadcrumb {
+        display: none;
+    }
+
+    // Hide secondary navigation.
+    .secondary-navigation {
+        display: none;
+    }
+
+    // Hide page header (already shown in focus bar).
+    .page-header-headings {
+        display: none;
+    }
+
+    // Remove drawer spacing from page.
+    #page {
+        margin-left: 0 !important; /* stylelint-disable-line declaration-no-important */
+        margin-right: 0 !important; /* stylelint-disable-line declaration-no-important */
+    }
+
+    // Add top padding for focus bar.
+    #topofscroll {
+        padding-top: 56px;
+    }
+
+    // Make content wider.
+    #region-main-box {
+        max-width: 900px;
+        margin: 0 auto;
+    }
+
+    // Smooth transitions.
+    .z-navbar,
+    .z-footer,
+    .drawer {
+        transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+}
+
+// --------------------------------------------------------------------------
+// Focus bar — minimal top navigation
+// --------------------------------------------------------------------------
+
+.z-focusbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1040;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    height: 48px;
+    padding: 0 1rem;
+    background: var(--z-bg-surface, #fff);
+    border-bottom: 1px solid var(--z-border-color, #e2e8f0);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+    animation: z-focusbar-slidein 0.3s ease-out;
+}
+
+// Exit button
+.z-focusbar__exit {
+    display: flex;
+    align-items: center;
+    gap: 0.375rem;
+    padding: 0.25rem 0.75rem;
+    border: 1px solid var(--z-border-color, #e2e8f0);
+    border-radius: var(--z-radius-md, 0.375rem);
+    background: transparent;
+    color: var(--z-text-secondary, #64748b);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.15s ease, color 0.15s ease;
+    white-space: nowrap;
+
+    &:hover {
+        background: var(--z-bg-hover, #f1f5f9);
+        color: var(--z-text-primary, #0f172a);
+    }
+}
+
+// Course title
+.z-focusbar__title {
+    flex: 1;
+    min-width: 0;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--z-text-primary, #0f172a);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+// Section navigation
+.z-focusbar__nav {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.z-focusbar__nav-btn {
+    padding: 0.25rem 0.75rem;
+    border: 1px solid var(--z-border-color, #e2e8f0);
+    border-radius: var(--z-radius-md, 0.375rem);
+    background: transparent;
+    color: var(--z-text-secondary, #64748b);
+    font-size: 0.8125rem;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.15s ease, color 0.15s ease;
+
+    &:hover {
+        background: var(--z-bg-hover, #f1f5f9);
+        color: var(--z-text-primary, #0f172a);
+        text-decoration: none;
+    }
+}
+
+.z-focusbar__counter {
+    font-size: 0.8125rem;
+    color: var(--z-text-tertiary, #94a3b8);
+    white-space: nowrap;
+}
+
+// --------------------------------------------------------------------------
+// Navbar toggle button
+// --------------------------------------------------------------------------
+
+.z-focusmode__toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--z-navbar-text, #64748b);
+
+    &:hover {
+        color: var(--z-navbar-text-active, #0f172a);
+    }
+}
+
+// --------------------------------------------------------------------------
+// Animation
+// --------------------------------------------------------------------------
+
+@keyframes z-focusbar-slidein {
+    from {
+        transform: translateY(-100%);
+    }
+
+    to {
+        transform: translateY(0);
+    }
+}
+
+// --------------------------------------------------------------------------
+// Responsive
+// --------------------------------------------------------------------------
+
+@media (max-width: 575.98px) {
+    .z-focusbar {
+        gap: 0.5rem;
+        padding: 0 0.75rem;
+    }
+
+    .z-focusbar__exit span {
+        display: none;
+    }
+
+    .z-focusbar__title {
+        font-size: 0.8125rem;
+    }
+
+    .z-focusbar__nav-btn {
+        padding: 0.25rem 0.5rem;
+        font-size: 0.75rem;
+    }
+}
+
+// --------------------------------------------------------------------------
+// Dark mode
+// --------------------------------------------------------------------------
+
+[data-theme="dark"] {
+    .z-focusbar {
+        background: var(--z-bg-surface, #1e293b);
+        border-bottom-color: var(--z-border-color, #334155);
+    }
+}

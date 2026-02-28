@@ -187,6 +187,10 @@
     {{> theme_zenith/customizer/panel }}
 {{/cancustomize}}
 
+{{#showwizard}}
+    {{> theme_zenith/setupwizard/main }}
+{{/showwizard}}
+
 </body>
 </html>
 {{#js}}
@@ -197,6 +201,50 @@ require(['theme_boost/loader', 'theme_boost/drawer', 'theme_zenith/darkmode'], f
     M.util.js_complete('theme_boost/loader');
 });
 {{/js}}
+{{#incourse}}
+{{#js}}
+require(['core/str', 'theme_zenith/focusmode'], function(Str, FocusMode) {
+    Str.get_strings([
+        {key: 'focusmode_exit', component: 'theme_zenith'},
+        {key: 'focusmode', component: 'theme_zenith'},
+        {key: 'focusmode_prev', component: 'theme_zenith'},
+        {key: 'focusmode_next', component: 'theme_zenith'},
+    ]).then(function(strings) {
+        FocusMode.init({strings: {exit: strings[0], focusmode: strings[1], prev: strings[2], next: strings[3]}});
+        return strings;
+    }).catch(function() {
+        FocusMode.init({strings: {}});
+    });
+});
+{{/js}}
+{{/incourse}}
+{{#showwizard}}
+{{#js}}
+require(['core/str', 'theme_zenith/setupwizard'], function(Str, Wizard) {
+    Str.get_strings([
+        {key: 'wizard_get_started', component: 'theme_zenith'},
+        {key: 'wizard_next', component: 'theme_zenith'},
+        {key: 'wizard_back', component: 'theme_zenith'},
+        {key: 'wizard_finish', component: 'theme_zenith'},
+        {key: 'wizard_skip', component: 'theme_zenith'},
+    ]).then(function(strings) {
+        Wizard.init({
+            strings: {
+                get_started: strings[0],
+                next: strings[1],
+                back: strings[2],
+                finish: strings[3],
+                skip: strings[4],
+            },
+            presets: {{{wizardpresetsjs}}},
+        });
+        return strings;
+    }).catch(function() {
+        Wizard.init({strings: {}, presets: {{{wizardpresetsjs}}}});
+    });
+});
+{{/js}}
+{{/showwizard}}
 {{#cancustomize}}
 {{#js}}
 require(['core/str', 'theme_zenith/customizer/main'], function(Str, Customizer) {

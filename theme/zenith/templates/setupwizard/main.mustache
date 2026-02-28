@@ -1,0 +1,74 @@
+{{!
+    This file is part of Moodle - http://moodle.org/
+
+    Moodle is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Moodle is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+}}
+{{!
+    @template theme_zenith/setupwizard/main
+
+    Full-screen setup wizard overlay with 5 steps.
+}}
+<div id="z-wizard" class="z-wizard" role="dialog" aria-label="{{#str}}wizard_title, theme_zenith{{/str}}" aria-modal="true">
+    <div class="z-wizard__backdrop"></div>
+    <div class="z-wizard__container">
+        {{! Close / Skip button }}
+        <button class="z-wizard__skip" data-action="wizard-skip" type="button"
+                aria-label="{{#str}}wizard_skip, theme_zenith{{/str}}">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                <path d="M18 6L6 18M6 6l12 12"/>
+            </svg>
+        </button>
+
+        {{! Progress bar }}
+        <div class="z-wizard__progress" role="progressbar" aria-valuemin="1" aria-valuemax="5" aria-valuenow="1">
+            <div class="z-wizard__progress-dots">
+                <span class="z-wizard__dot z-wizard__dot--active" data-step="0" aria-label="{{#str}}wizard_welcome_title, theme_zenith{{/str}}"></span>
+                <span class="z-wizard__dot" data-step="1" aria-label="{{#str}}wizard_branding_title, theme_zenith{{/str}}"></span>
+                <span class="z-wizard__dot" data-step="2" aria-label="{{#str}}wizard_colors_title, theme_zenith{{/str}}"></span>
+                <span class="z-wizard__dot" data-step="3" aria-label="{{#str}}wizard_homepage_title, theme_zenith{{/str}}"></span>
+                <span class="z-wizard__dot" data-step="4" aria-label="{{#str}}wizard_complete_title, theme_zenith{{/str}}"></span>
+            </div>
+        </div>
+
+        {{! Step content area }}
+        <div class="z-wizard__steps">
+            <div class="z-wizard__step z-wizard__step--active" data-wizard-step="0">
+                {{> theme_zenith/setupwizard/step_welcome }}
+            </div>
+            <div class="z-wizard__step" data-wizard-step="1">
+                {{> theme_zenith/setupwizard/step_branding }}
+            </div>
+            <div class="z-wizard__step" data-wizard-step="2">
+                {{> theme_zenith/setupwizard/step_colors }}
+            </div>
+            <div class="z-wizard__step" data-wizard-step="3">
+                {{> theme_zenith/setupwizard/step_homepage }}
+            </div>
+            <div class="z-wizard__step" data-wizard-step="4">
+                {{> theme_zenith/setupwizard/step_complete }}
+            </div>
+        </div>
+
+        {{! Navigation actions }}
+        <div class="z-wizard__actions">
+            <button class="btn btn-outline-secondary z-wizard__btn-back" data-action="wizard-back" type="button" style="visibility: hidden;">
+                {{#str}}wizard_back, theme_zenith{{/str}}
+            </button>
+            <button class="btn btn-primary z-wizard__btn-next" data-action="wizard-next" type="button">
+                {{#str}}wizard_get_started, theme_zenith{{/str}}
+            </button>
+        </div>
+    </div>
+</div>

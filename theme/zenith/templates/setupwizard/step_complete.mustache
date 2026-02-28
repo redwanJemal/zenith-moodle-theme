@@ -1,0 +1,27 @@
+{{!
+    @template theme_zenith/setupwizard/step_complete
+
+    Wizard step 5: Success / completion with action links.
+}}
+<div class="z-wizard__step-content z-wizard__step-complete">
+    <div class="z-wizard__celebration" aria-hidden="true">
+        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/>
+            <polyline points="22 4 12 14.01 9 11.01"/>
+        </svg>
+    </div>
+    <h2 class="z-wizard__heading">{{#str}}wizard_complete_title, theme_zenith{{/str}}</h2>
+    <p class="z-wizard__desc">{{#str}}wizard_complete_desc, theme_zenith{{/str}}</p>
+
+    <div class="z-wizard__summary" id="z-wizard-summary"></div>
+
+    <div class="z-wizard__complete-actions">
+        <a href="{{dashboardurl}}" class="btn btn-primary">
+            {{#str}}wizard_go_dashboard, theme_zenith{{/str}}
+        </a>
+        <a href="{{settingsurl}}" class="btn btn-outline-secondary">
+            {{#str}}wizard_open_settings, theme_zenith{{/str}}
+        </a>
+    </div>
+</div>

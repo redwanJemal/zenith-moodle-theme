@@ -1,7 +1,6 @@
 // Zenith Theme — Login Page Component
 // Three layout variants: center, left, right.
 // Uses --z-login-* design tokens.
-//
 // Moodle core sets `#page-wrapper #page { display: flex; flex-direction: column; }`
 // (two-ID specificity). We use `#page-wrapper.z-login #page` to match/exceed it.
 

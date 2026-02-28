@@ -1,0 +1,30 @@
+{{!
+    @template theme_zenith/setupwizard/step_colors
+
+    Wizard step 3: Preset colour selection with 7 cards.
+}}
+<div class="z-wizard__step-content z-wizard__step-colors">
+    <h2 class="z-wizard__heading">{{#str}}wizard_colors_title, theme_zenith{{/str}}</h2>
+    <p class="z-wizard__desc">{{#str}}wizard_colors_desc, theme_zenith{{/str}}</p>
+
+    <div class="z-wizard__preset-grid">
+        {{#wizardpresets}}
+        <button class="z-wizard__preset-card" data-preset="{{key}}" type="button"
+                aria-label="{{name}}" aria-pressed="false">
+            <div class="z-wizard__preset-swatches">
+                <span class="z-wizard__swatch" style="background-color: {{primary}};"></span>
+                <span class="z-wizard__swatch" style="background-color: {{secondary}};"></span>
+                <span class="z-wizard__swatch" style="background-color: {{navbar_bg}}; border: 1px solid #e2e8f0;"></span>
+                <span class="z-wizard__swatch" style="background-color: {{footer_bg}};"></span>
+            </div>
+            <span class="z-wizard__preset-name">{{name}}</span>
+            <span class="z-wizard__preset-check" aria-hidden="true">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                     stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12"/>
+                </svg>
+            </span>
+        </button>
+        {{/wizardpresets}}
+    </div>
+</div>

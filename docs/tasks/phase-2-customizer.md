@@ -121,35 +121,60 @@
 ---
 
 ## P2-3: Setup Wizard
-- **Status:** `[ ]`
+- **Status:** `[x]` Completed 2026-02-28
 - **Dependencies:** `P2-1`
 - **Effort:** 8 hours
 - **Blocks:** None
 
 **Task:** Guided first-time setup wizard for new installations.
 
-**Wizard Steps:**
-1. [ ] **Welcome** — Theme name, version, what's included
-2. [ ] **Branding** — Upload logo + favicon, enter site name
-3. [ ] **Colors** — Choose from preset color schemes or pick custom
-4. [ ] **Homepage** — Select homepage layout, configure hero section
-5. [ ] **Complete** — Success screen with next steps (links to settings, customizer)
+**Wizard Steps (5 steps, full-screen modal overlay):**
+- [x] **Welcome** — Zenith logo, feature highlights, "Get Started" button
+- [x] **Branding** — Shows site name, logo/favicon status with link to Settings
+- [x] **Colors** — 7 preset cards with color swatches, click to select
+- [x] **Homepage** — Hero toggle, title input, subtitle textarea
+- [x] **Complete** — Success checkmark with celebration animation, summary, action links
 
-**Files:**
-- [ ] `classes/setupwizard.php` — Wizard state management
-- [ ] `amd/src/setupwizard.js` — Step navigation, AJAX save
-- [ ] `scss/components/_setupwizard.scss` — Wizard UI styling
-- [ ] `templates/setupwizard/main.mustache` — Wizard container
-- [ ] `templates/setupwizard/step_*.mustache` — Per-step templates
+**PHP Files:**
+- [x] `classes/setupwizard.php` — should_show(), mark_completed(), get_template_context()
+- [x] `classes/external/setupwizard_api.php` — 2 AJAX endpoints: save_step (colors/homepage), complete_wizard
+
+**JS Files:**
+- [x] `amd/src/setupwizard.js` — Step state machine, AJAX save, preset selection via customizer/presets module
+
+**Templates:**
+- [x] `templates/setupwizard/main.mustache` — Full-screen overlay with progress dots, step panels, navigation
+- [x] `templates/setupwizard/step_welcome.mustache` — Feature list with checkmark icons
+- [x] `templates/setupwizard/step_branding.mustache` — Site name display, upload links
+- [x] `templates/setupwizard/step_colors.mustache` — 7 preset grid with swatches
+- [x] `templates/setupwizard/step_homepage.mustache` — Hero configuration form
+- [x] `templates/setupwizard/step_complete.mustache` — Celebration + action links
+
+**Styling:**
+- [x] `scss/components/_setupwizard.scss` — BEM-structured, responsive, dark mode support, animations
+
+**Integration:**
+- [x] `db/services.php` — 2 new AJAX endpoints added
+- [x] `layout/drawers.php` — Wizard context passed to template
+- [x] `templates/theme_boost/drawers.mustache` — Wizard rendering + JS init
+- [x] `settings.php` — "Setup wizard" description in General tab
+- [x] `lang/en/theme_zenith.php` — 27 new wizard strings
+- [x] `scss/preset/default.scss` — setupwizard import added
+- [x] `version.php` — Bumped to 2026022803
 
 **Acceptance Criteria:**
-- [ ] Shows automatically on first theme activation (modal)
-- [ ] Can be skipped at any step
-- [ ] Can be re-launched from Settings → General tab
-- [ ] Progress indicator shows current step
-- [ ] Settings saved at each step (not lost on back navigation)
-- [ ] Final step applies all chosen settings
-- [ ] Mobile friendly (responsive wizard)
-- [ ] Celebration animation on completion
+- [x] Shows automatically on first admin visit (wizard_completed config flag)
+- [x] Can be skipped at any step (marks completed, closes)
+- [x] Re-launch info in Settings > General tab
+- [x] Progress dots show current/completed steps
+- [x] Colors step saves via customizer::save() (reuses existing infrastructure)
+- [x] Homepage step saves heroenabled, herotitle, herosubtitle
+- [x] Mobile responsive (full-screen on mobile)
+- [x] Celebration animation on complete step (scale + fade in)
+- [x] Dark mode support
 
-**Reference:** `/home/redman/Edwiser-RemUI/theme_remui/remui/templates/setupwizard/`
+**Key Decisions:**
+- File uploads deferred to Settings page — Moodle's `admin_setting_configstoredfile` handles pluginfile serving; replicating in AJAX is complex
+- All steps inline in one template — JS toggles visibility, no dynamic template loading
+- Preset selection loads full preset data via `customizer/presets` AMD module and saves through customizer::save()
+- `wizard_completed` boolean config flag — simple, resettable

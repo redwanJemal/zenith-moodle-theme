@@ -92,6 +92,13 @@ if ($ADMIN->fulltree) {
     $setting->set_updatedcallback('theme_reset_all_caches');
     $page->add($setting);
 
+    // Re-launch setup wizard.
+    $page->add(new admin_setting_description(
+        'theme_zenith/wizardrelaunch',
+        get_string('wizard_relaunch', 'theme_zenith'),
+        get_string('wizard_relaunch_desc', 'theme_zenith')
+    ));
+
     // Google Analytics ID.
     $setting = new admin_setting_configtext(
         'theme_zenith/googleanalytics',

@@ -101,6 +101,23 @@
             <div class="z-navbar__divider d-none d-md-block" aria-hidden="true"></div>
             {{/cancustomize}}
 
+            {{! Focus Mode Toggle ===== }}
+            {{#incourse}}
+            <button class="z-focusmode__toggle btn btn-link p-1 d-flex align-items-center"
+                    data-action="toggle-focusmode"
+                    type="button"
+                    aria-label="{{#str}}focusmode_toggle, theme_zenith{{/str}}"
+                    aria-pressed="false">
+                <svg class="z-focusmode__icon z-focusmode__icon--enter" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M8 3H5a2 2 0 00-2 2v3m18 0V5a2 2 0 00-2-2h-3m0 18h3a2 2 0 002-2v-3M3 16v3a2 2 0 002 2h3"/>
+                </svg>
+                <svg class="z-focusmode__icon z-focusmode__icon--exit" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:none">
+                    <path d="M8 3v3a2 2 0 01-2 2H3m18 0h-3a2 2 0 01-2-2V3m0 18v-3a2 2 0 012-2h3M3 16h3a2 2 0 012 2v3"/>
+                </svg>
+            </button>
+            <div class="z-navbar__divider d-none d-md-block" aria-hidden="true"></div>
+            {{/incourse}}
+
             {{! Dark Mode Toggle ===== }}
             <button class="z-darkmode__toggle btn btn-link p-1 d-flex align-items-center"
                     data-action="toggle-darkmode"

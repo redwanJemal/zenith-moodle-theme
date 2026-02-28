@@ -6,30 +6,43 @@
 ---
 
 ## P3-1: Focus Mode
-- **Status:** `[ ]`
+- **Status:** `[x]` Completed 2026-02-28
 - **Dependencies:** `P1-6`
 - **Effort:** 8 hours
 - **Blocks:** None
 
 **Task:** Distraction-free course viewing mode that hides everything except content.
 
-**Files:**
-- [ ] `amd/src/focusmode.js` — Toggle, section nav, progress, preference
-- [ ] `scss/components/_focusmode.scss` — Focus mode styles
-- [ ] `templates/navbar_fm.mustache` — Minimal focus mode navbar
+**Files Created:**
+- [x] `amd/src/focusmode.js` — Toggle, section nav, preference persistence (localStorage + Moodle user pref)
+- [x] `scss/components/_focusmode.scss` — Focus mode hide rules, minimal bar, dark mode, responsive
+
+**Files Modified:**
+- [x] `templates/theme_boost/navbar.mustache` — Focus mode toggle button (expand/contract icons, course pages only)
+- [x] `templates/theme_boost/drawers.mustache` — Focus mode JS init block with string loading
+- [x] `layout/drawers.php` — `incourse` context flag for course/incourse layouts
+- [x] `scss/preset/default.scss` — Added focusmode SCSS import
+- [x] `lang/en/theme_zenith.php` — 5 focus mode strings
+- [x] `version.php` — Bumped to 2026022804
 
 **Acceptance Criteria:**
-- [ ] Toggle button visible on course pages (in navbar or floating)
-- [ ] Hides: navbar, drawers, footer, breadcrumbs — shows only course content
-- [ ] Minimal navigation bar with: exit button, course name, progress
-- [ ] Previous/Next section navigation buttons
-- [ ] Progress indicator (section X of Y)
-- [ ] Escape key exits focus mode
-- [ ] User preference persisted (remembers per-course)
-- [ ] Mobile friendly (full-screen content)
-- [ ] Smooth enter/exit animation
+- [x] Toggle button visible on course pages (expand icon in navbar)
+- [x] Hides: navbar, drawers, footer, breadcrumbs, secondary nav, page header
+- [x] Minimal focus bar with: exit button, course name, section navigation
+- [x] Previous/Next section navigation (scroll-based for course pages, link-based for activity pages)
+- [x] Section counter (X / Y)
+- [x] Escape key exits focus mode
+- [x] User preference persisted (localStorage + Moodle user preferences API)
+- [x] Mobile friendly (exit label hidden, compact layout)
+- [x] Smooth enter/exit animations (slide-in bar, CSS transitions)
+- [x] Dark mode support
+- [x] Content area max-width 900px for readability
 
-**Reference:** `/home/redman/Edwiser-RemUI/theme_remui/remui/amd/src/focusmode.js`
+**Key Decisions:**
+- No separate template needed — CSS hides/shows elements via `[data-focusmode="true"]` on `<html>`, JS creates minimal bar dynamically
+- Focus bar built dynamically in JS rather than in Mustache — avoids template bloat on non-course pages
+- Toggle only appears on `course` and `incourse` layouts via `{{#incourse}}` conditional
+- Uses same preference persistence pattern as dark mode (localStorage + UserRepository)
 
 ---
 

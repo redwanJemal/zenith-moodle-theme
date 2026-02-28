@@ -1,6 +1,7 @@
 // Zenith Theme — Dark Mode Token Overrides
 // Activated via [data-theme="dark"] on the <html> element.
 // Only semantic tokens are overridden — palette tokens stay the same.
+/* stylelint-disable no-duplicate-selectors -- Intentional split for code organization */
 
 // ============================================================================
 // SMOOTH TRANSITIONS — Applied after initial load to prevent flash
@@ -676,6 +677,7 @@
     }
 
     // Images — prevent overly bright images
+    /* stylelint-disable-next-line selector-not-notation -- Multiple :not() for broad compat */
     img:not(.userpicture):not([src*="logo"]) {
         opacity: 0.9;
     }
