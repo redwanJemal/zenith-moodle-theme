@@ -11,12 +11,12 @@
 |-------|----------|-------|------|-----------|-------|
 | [P0: Infrastructure](tasks/phase-0-infrastructure.md) | ████████░░ 83% | 6 | 5/6 | 17h | Week 1 |
 | [P1: Core Theme](tasks/phase-1-core-theme.md) | ██████████ 100% | 10 | 10/10 | 74h | Weeks 2-4 |
-| [P2: Customizer](tasks/phase-2-customizer.md) | ░░░░░░░░░░ 0% | 3 | 0/3 | 38h | Weeks 5-6 |
+| [P2: Customizer](tasks/phase-2-customizer.md) | ███░░░░░░░ 33% | 3 | 1/3 | 38h | Weeks 5-6 |
 | [P3: Differentiators](tasks/phase-3-differentiators.md) | ░░░░░░░░░░ 0% | 7 | 0/7 | 92h | Weeks 7-10 |
 | [P4: Polish](tasks/phase-4-polish.md) | ░░░░░░░░░░ 0% | 6 | 0/6 | 48h | Weeks 11-12 |
 | [P5: Ecosystem](tasks/phase-5-ecosystem.md) | ░░░░░░░░░░ 0% | 3 | 0/3 | 40h | Weeks 13-16 |
 | [P6: Launch](tasks/phase-6-launch.md) | ░░░░░░░░░░ 0% | 4 | 0/4 | 28h | Weeks 17-18 |
-| **TOTAL** | **████░░░░░░ 38%** | **39** | **15/39** | **337h** | **18 weeks** |
+| **TOTAL** | **████░░░░░░ 41%** | **39** | **16/39** | **337h** | **18 weeks** |
 
 ---
 
@@ -70,7 +70,7 @@ P4-4 ──→ P6-3 (Marketing Assets)
 ## What To Work On Next
 
 > Pick the first task that has all dependencies met (marked `[x]`).
-> Currently: **P2-1 (Settings Panel)** — unblocked (P1-6 done). Phase 1 is 100% complete. Next up is the admin settings panel and visual customizer.
+> Currently: **P2-2 (Visual Customizer)** — unblocked (P2-1 done). Also unblocked: P2-3 (Setup Wizard).
 
 ---
 
@@ -125,3 +125,4 @@ P4-4 ──→ P6-3 (Marketing Assets)
 | 3 | 2026-02-28 | P1-7, P1-8 | Login page: 3 configurable layouts + Dark mode: toggle, anti-flash, preference persistence |
 | 4 | 2026-02-28 | P1-9, P1-10 | Template overrides + premium visual polish + Course archive: renderer override, toolbar, AJAX search, grid/list toggle. **Phase 1 complete!** |
 | 4 | 2026-02-28 | P0-2 | Production deployment: lms.endlessmaker.com live with Zenith theme via Traefik + Cloudflare HTTPS |
+| 5 | 2026-02-28 | P2-1 | Tabbed settings panel: 6 tabs (General, Homepage, Courses, Footer, Login, Advanced), 37 settings |

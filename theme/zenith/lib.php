@@ -77,9 +77,10 @@ function theme_zenith_get_main_scss_content($theme) {
 function theme_zenith_get_pre_scss($theme) {
     $scss = '';
 
-    // Inject brand color from settings.
+    // Inject brand/secondary colors from settings.
     $configurable = [
         'brandcolor' => ['primary'],
+        'secondarycolor' => ['secondary'],
     ];
 
     foreach ($configurable as $configkey => $targets) {
@@ -148,7 +149,8 @@ function theme_zenith_pluginfile($course, $cm, $context, $filearea, $args, $forc
         $theme = theme_config::load('zenith');
 
         // Serve theme setting files (logo, favicon, background images).
-        $settingsfiles = ['logo', 'logomini', 'favicon', 'backgroundimage', 'loginbackgroundimage'];
+        $settingsfiles = ['logo', 'logomini', 'favicon', 'backgroundimage',
+            'loginbackgroundimage', 'herobackgroundimage'];
         if (in_array($filearea, $settingsfiles)) {
             if (!array_key_exists('cacheability', $options)) {
                 $options['cacheability'] = 'public';

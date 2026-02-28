@@ -5,34 +5,44 @@
 ---
 
 ## P2-1: Settings Panel (Tabbed Admin UI)
-- **Status:** `[ ]`
+- **Status:** `[x]` ✅ Completed 2026-02-28
 - **Dependencies:** `P1-6`
 - **Effort:** 10 hours
 - **Blocks:** P2-2, P2-3, P5-3
 
 **Task:** Multi-tab admin settings interface for all theme configuration.
 
-**Settings Tabs:**
-- [ ] **General** — Logo, logo mini, site name, favicon, Google Analytics ID
-- [ ] **Homepage** — Hero section, about section, featured courses
-- [ ] **Course** — Archive layout, courses per page, card animations
-- [ ] **Footer** — Column count, column content, social media links, copyright
-- [ ] **Login** — Layout selection (1/2/3), background image, logo position
-- [ ] **Advanced** — Custom CSS, custom JS, developer mode toggle
+**Settings Tabs (6 tabs, 37 settings):**
+- [x] **General** (6 settings) — Brand colour, secondary colour, logo, logo mini, favicon, Google Analytics ID
+- [x] **Homepage** (8 settings) — Hero section (enable, title, subtitle, bg image, CTA button text/URL), about section (enable, content), featured courses (enable, IDs)
+- [x] **Courses** (5 settings) — Archive layout (grid/list), courses per page, card animations, category badge, instructor names
+- [x] **Footer** (8 settings) — Footer content (HTML), copyright text, show branding, social media URLs (Facebook, X, LinkedIn, YouTube, Instagram)
+- [x] **Login** (4 settings) — Layout selection (center/left/right), background image, heading text, description HTML
+- [x] **Advanced** (4 settings) — Raw SCSS pre, Raw SCSS post, custom JS, developer mode toggle
 
-**Files:**
-- [ ] `settings.php` — Full tabbed settings with all controls
-- [ ] `classes/admin_settingspage_tabs.php` — Tab container class
+**Files Modified:**
+- [x] `settings.php` — Full tabbed settings using `theme_boost_admin_settingspage_tabs`
+- [x] `lang/en/theme_zenith.php` — Added 40+ new language strings for all settings
+- [x] `lib.php` — Updated pluginfile to serve herobackgroundimage; added secondarycolor to pre-SCSS injection
+
+**Not Needed:**
+- `classes/admin_settingspage_tabs.php` — Boost's built-in `theme_boost_admin_settingspage_tabs` class works perfectly, no custom class required
 
 **Acceptance Criteria:**
-- [ ] All settings save and persist correctly
-- [ ] File uploads work (logo, favicon, backgrounds) via `admin_setting_configstoredfile`
-- [ ] Color pickers work via `admin_setting_configcolourpicker`
-- [ ] HTML editors work for footer columns
-- [ ] Select dropdowns for layout choices
-- [ ] Settings organized logically in tabs
-- [ ] Descriptive help text on each setting
-- [ ] Active tab remembered on save
+- [x] All settings save and persist correctly
+- [x] File uploads work (logo, favicon, backgrounds) via `admin_setting_configstoredfile`
+- [x] Color pickers work via `admin_setting_configcolourpicker`
+- [x] HTML editors work for footer content and about section
+- [x] Select dropdowns for layout choices
+- [x] Settings organized logically in 6 tabs
+- [x] Descriptive help text on each setting
+- [x] Active tab remembered on save (via Boost's `activetab` URL parameter)
+
+**Key Decisions:**
+- Used Boost's `theme_boost_admin_settingspage_tabs` directly instead of creating a custom class — it handles tab rendering, active tab persistence, and settings merging already
+- Boost's `admin_setting_tabs.mustache` template renders Bootstrap nav-tabs + tab-content
+- Social media URLs validated with PARAM_URL
+- Secondary colour setting added with SCSS variable injection via lib.php
 
 **Reference:** `/home/redman/Edwiser-RemUI/theme_remui/remui/settings.php`
 
