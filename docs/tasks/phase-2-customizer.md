@@ -49,56 +49,72 @@
 ---
 
 ## P2-2: Visual Customizer (Live Preview)
-- **Status:** `[ ]`
+- **Status:** `[x]` Completed 2026-02-28
 - **Dependencies:** `P2-1`
 - **Effort:** 20 hours
 - **Blocks:** None
 
 **Task:** Live preview visual customizer with AJAX save — the premium feature.
 
-**Customizer Sections:**
-- [ ] **Colors** — Primary, secondary, background, text, border, accent
-- [ ] **Typography** — Font family (Google Fonts), sizes, weights, line heights
-- [ ] **Buttons** — Colors, border radius, padding, hover effects
-- [ ] **Header** — Background, height, logo size, layout
-- [ ] **Footer** — Background, text color, font family
-- [ ] **Quick Setup** — One-click presets (5+ color schemes)
+**Customizer Sections (6 sections, 24 settings):**
+- [x] **Presets** — 7 one-click color schemes (Zenith, Ocean, Forest, Sunset, Rose, Midnight, Slate)
+- [x] **Colors** (8) — Primary, secondary, success, warning, danger, info, navbar bg, footer bg
+- [x] **Typography** (5) — Font family (10 Google Fonts + system-ui), size, heading weight, body weight, line height
+- [x] **Buttons** (4) — Border radius, padding Y, padding X, font weight
+- [x] **Header** (4) — Height, shadow toggle, border toggle, style (light/dark)
+- [x] **Footer** (3) — Text color, link color, border color
 
 **PHP Files:**
-- [ ] `classes/customizer/customizer.php` — Singleton controller with traits
-- [ ] `classes/customizer/elements/color.php` — Color picker element
-- [ ] `classes/customizer/elements/fontselect.php` — Font selector element
-- [ ] `classes/customizer/elements/range.php` — Range slider element
-- [ ] `classes/customizer/elements/select.php` — Dropdown element
-- [ ] `classes/customizer/process/colors.php` — Generate color CSS
-- [ ] `classes/customizer/process/typography.php` — Generate typography CSS
-- [ ] `classes/customizer/process/buttons.php` — Generate button CSS
-- [ ] `classes/customizer/external/api.php` — AJAX save/load endpoint
+- [x] `classes/customizer/customizer.php` — Static controller with 24 settings, sanitization, CSS generation, settings for JS
+- [x] `classes/customizer/color_utils.php` — HSL color math: hex↔HSL conversion, shade/tint, palette generation
+- [x] `classes/customizer/presets.php` — 7 preset definitions with flatten() and get_for_template()
+- [x] `classes/external/customizer_api.php` — 3 AJAX endpoints (save, get, reset) with capability checks
 
-**JS Files:**
-- [ ] `amd/src/customizer/main.js` — Controller
-- [ ] `amd/src/customizer/colors.js` — Color picker + live preview
-- [ ] `amd/src/customizer/typography.js` — Font preview
-- [ ] `amd/src/customizer/smartcolor.js` — Auto-generate palette from primary
+**JS Files (AMD modules):**
+- [x] `amd/src/customizer/main.js` — Panel controller: open/close, tabs, input binding, AJAX save/reset, focus trap
+- [x] `amd/src/customizer/preview.js` — Live preview: CSS custom property injection, snapshot/revert, Google Fonts
+- [x] `amd/src/customizer/presets.js` — 7 preset definitions mirroring PHP
+- [x] `amd/src/customizer/smartcolor.js` — HSL math mirroring PHP color_utils
 
 **Templates:**
-- [ ] `templates/customizer/main.mustache` — Customizer panel UI
-- [ ] `templates/customizer/elements/*.mustache` — Control templates
+- [x] `templates/customizer/panel.mustache` — Main panel with header, 6 tabs, content, footer actions
+- [x] `templates/customizer/section_presets.mustache` — 7 preset cards with color swatches
+- [x] `templates/customizer/section_colors.mustache` — 8 color pickers with hex inputs
+- [x] `templates/customizer/section_typography.mustache` — Font family select, size/weight/height controls
+- [x] `templates/customizer/section_buttons.mustache` — Radius/padding/weight controls with live button preview
+- [x] `templates/customizer/section_header.mustache` — Height, shadow, border, style controls
+- [x] `templates/customizer/section_footer.mustache` — 3 footer color controls
 
 **Services:**
-- [ ] `db/services.php` — `theme_zenith_customizer_save_settings` AJAX endpoint
+- [x] `db/services.php` — 3 AJAX endpoints: save, get, reset
+
+**Styling:**
+- [x] `scss/components/_customizer.scss` — 533 lines BEM-structured panel styling
+
+**Integration:**
+- [x] `layout/drawers.php` — Passes customizer context (capability check, presets, settings JSON, Google Font URL)
+- [x] `templates/theme_boost/drawers.mustache` — Renders panel, initializes JS with settings data
+- [x] `templates/theme_boost/navbar.mustache` — Customizer launch button (pen icon) for admins
+- [x] `lib.php` — generate_css() injects CSS custom property overrides via extra SCSS
 
 **Acceptance Criteria:**
-- [ ] Customizer panel opens as sidebar overlay
-- [ ] Color changes preview instantly (CSS variable injection)
-- [ ] Font changes preview instantly (Google Fonts dynamic load)
-- [ ] Save button persists all settings to database via AJAX
-- [ ] Reset to defaults works (per-section and global)
-- [ ] 5+ preset color schemes (one-click apply)
-- [ ] Smart color: generate secondary, accent, hover from primary
-- [ ] Generated CSS is valid, minimal, and properly scoped
-- [ ] Mobile friendly (full-screen customizer on mobile)
-- [ ] Keyboard accessible
+- [x] Customizer panel opens as sidebar overlay (360px desktop, full-screen mobile)
+- [x] Color changes preview instantly (CSS variable injection on :root)
+- [x] Font changes preview instantly (Google Fonts dynamic load)
+- [x] Save button persists all settings to database via AJAX
+- [x] Reset to defaults works (global reset with confirmation)
+- [x] 7 preset color schemes (one-click apply with visual card selection)
+- [x] Smart color: generate hover, active, light, subtle variants from base colors
+- [x] Generated CSS is valid, minimal, and properly scoped (:root { --z-*: val; })
+- [x] Mobile friendly (full-screen customizer on mobile via CSS media query)
+- [x] Keyboard accessible (Escape to close, Tab focus trap, ARIA labels)
+
+**Key Decisions:**
+- Used static methods instead of singleton pattern — simpler, no state to manage
+- Settings stored with `cust_` prefix in theme_zenith plugin config
+- AMD `define()` syntax for JS modules (Moodle 4.5 uses RequireJS, not native ES modules)
+- `M.str.theme_zenith` for string pre-loading instead of deprecated `M.util.set_string`
+- Used `closebuttontitle` instead of `close` for Moodle 4.5+ string compatibility
 
 **Reference:** `/home/redman/Edwiser-RemUI/theme_remui/remui/classes/customizer/`
 

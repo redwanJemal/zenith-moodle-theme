@@ -42,6 +42,9 @@
     * addblockbutton - Add block button HTML
 }}
 {{> theme_boost/head }}
+{{#googlefonturl}}
+<link rel="stylesheet" href="{{googlefonturl}}">
+{{/googlefonturl}}
 
 <body {{{ bodyattributes }}}>
 {{> core/local/toast/wrapper}}
@@ -180,6 +183,10 @@
     {{{ output.standard_after_main_region_html }}}
 </div>
 
+{{#cancustomize}}
+    {{> theme_zenith/customizer/panel }}
+{{/cancustomize}}
+
 </body>
 </html>
 {{#js}}
@@ -190,3 +197,26 @@ require(['theme_boost/loader', 'theme_boost/drawer', 'theme_zenith/darkmode'], f
     M.util.js_complete('theme_boost/loader');
 });
 {{/js}}
+{{#cancustomize}}
+{{#js}}
+require(['core/str', 'theme_zenith/customizer/main'], function(Str, Customizer) {
+    // Pre-load strings needed by JS into M.str cache.
+    Str.get_strings([
+        {key: 'customizer_save', component: 'theme_zenith'},
+        {key: 'customizer_saved', component: 'theme_zenith'},
+        {key: 'customizer_reset_confirm', component: 'theme_zenith'},
+        {key: 'customizer_reset_done', component: 'theme_zenith'},
+    ]).then(function(strings) {
+        if (!M.str.theme_zenith) { M.str.theme_zenith = {}; }
+        M.str.theme_zenith.customizer_save = strings[0];
+        M.str.theme_zenith.customizer_saved = strings[1];
+        M.str.theme_zenith.customizer_reset_confirm = strings[2];
+        M.str.theme_zenith.customizer_reset_done = strings[3];
+        Customizer.init({settings: {{{customizersettingsjs}}}});
+        return strings;
+    }).catch(function() {
+        Customizer.init({settings: {{{customizersettingsjs}}}});
+    });
+});
+{{/js}}
+{{/cancustomize}}

@@ -1,0 +1,532 @@
+// Zenith Theme — Visual Customizer Panel
+// Fixed right sidebar with slide-in transition, 360px desktop, full-screen mobile.
+
+// ============================================================================
+// PANEL CONTAINER
+// ============================================================================
+
+.z-customizer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1080; // Above modals.
+    pointer-events: none;
+    visibility: hidden;
+
+    &.z-customizer--open {
+        pointer-events: auto;
+        visibility: visible;
+
+        .z-customizer__backdrop {
+            opacity: 1;
+        }
+
+        .z-customizer__panel {
+            transform: translateX(0);
+        }
+    }
+}
+
+// ============================================================================
+// BACKDROP
+// ============================================================================
+
+.z-customizer__backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    opacity: 0;
+    transition: opacity 300ms ease;
+    cursor: pointer;
+}
+
+// ============================================================================
+// PANEL
+// ============================================================================
+
+.z-customizer__panel {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 360px;
+    height: 100%;
+    background-color: var(--z-bg-surface);
+    box-shadow: var(--z-shadow-2xl);
+    display: flex;
+    flex-direction: column;
+    transform: translateX(100%);
+    transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+}
+
+// ============================================================================
+// HEADER
+// ============================================================================
+
+.z-customizer__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--z-space-4) var(--z-space-5);
+    border-bottom: 1px solid var(--z-border-color);
+    flex-shrink: 0;
+}
+
+.z-customizer__title {
+    font-size: var(--z-text-lg);
+    font-weight: var(--z-font-semibold);
+    color: var(--z-text-primary);
+    margin: 0;
+}
+
+.z-customizer__close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border: none;
+    border-radius: var(--z-radius-md);
+    background: transparent;
+    color: var(--z-text-muted);
+    cursor: pointer;
+    transition: background-color 150ms ease, color 150ms ease;
+
+    &:hover,
+    &:focus-visible {
+        background-color: var(--z-bg-surface-hover);
+        color: var(--z-text-primary);
+    }
+}
+
+// ============================================================================
+// TABS
+// ============================================================================
+
+.z-customizer__tabs {
+    display: flex;
+    overflow-x: auto;
+    border-bottom: 1px solid var(--z-border-color);
+    flex-shrink: 0;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+.z-customizer__tab {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: var(--z-space-2) var(--z-space-3);
+    border: none;
+    border-bottom: 2px solid transparent;
+    background: transparent;
+    color: var(--z-text-tertiary);
+    font-size: var(--z-text-xs);
+    font-weight: var(--z-font-medium);
+    white-space: nowrap;
+    cursor: pointer;
+    transition: color 150ms ease, border-color 150ms ease;
+
+    &:hover {
+        color: var(--z-text-primary);
+    }
+
+    &.z-customizer__tab--active {
+        color: var(--z-primary);
+        border-bottom-color: var(--z-primary);
+    }
+
+    svg {
+        flex-shrink: 0;
+    }
+}
+
+// ============================================================================
+// CONTENT
+// ============================================================================
+
+.z-customizer__content {
+    flex: 1;
+    overflow-y: auto;
+    padding: var(--z-space-5);
+}
+
+.z-customizer__section {
+    display: none;
+
+    &.z-customizer__section--active {
+        display: block;
+    }
+}
+
+.z-customizer__section-title {
+    font-size: var(--z-text-base);
+    font-weight: var(--z-font-semibold);
+    color: var(--z-text-primary);
+    margin-bottom: var(--z-space-1);
+}
+
+.z-customizer__section-desc {
+    font-size: var(--z-text-sm);
+    color: var(--z-text-muted);
+    margin-bottom: var(--z-space-5);
+}
+
+// ============================================================================
+// CONTROLS — Shared
+// ============================================================================
+
+.z-customizer__control-group {
+    margin-bottom: var(--z-space-4);
+
+    &--inline {
+        margin-bottom: var(--z-space-3);
+    }
+}
+
+.z-customizer__label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: var(--z-text-sm);
+    font-weight: var(--z-font-medium);
+    color: var(--z-text-secondary);
+    margin-bottom: var(--z-space-2);
+
+    &--checkbox {
+        justify-content: flex-start;
+        gap: var(--z-space-2);
+        cursor: pointer;
+        margin-bottom: 0;
+    }
+}
+
+.z-customizer__value-display {
+    font-size: var(--z-text-xs);
+    color: var(--z-text-muted);
+    font-weight: var(--z-font-regular);
+    background: var(--z-bg-muted);
+    padding: 2px 8px;
+    border-radius: var(--z-radius-sm);
+}
+
+// ============================================================================
+// CONTROLS — Color Picker
+// ============================================================================
+
+.z-customizer__color-input {
+    display: flex;
+    align-items: center;
+    gap: var(--z-space-2);
+}
+
+.z-customizer__color-picker {
+    width: 36px;
+    height: 36px;
+    padding: 2px;
+    border: 2px solid var(--z-border-color);
+    border-radius: var(--z-radius-md);
+    background: transparent;
+    cursor: pointer;
+    flex-shrink: 0;
+
+    &::-webkit-color-swatch-wrapper {
+        padding: 0;
+    }
+
+    &::-webkit-color-swatch {
+        border: none;
+        border-radius: 4px;
+    }
+
+    &::-moz-color-swatch {
+        border: none;
+        border-radius: 4px;
+    }
+
+    &:focus-visible {
+        outline: 2px solid var(--z-primary);
+        outline-offset: 2px;
+    }
+}
+
+.z-customizer__hex-input {
+    width: 90px;
+    padding: var(--z-space-2) var(--z-space-2);
+    border: 1px solid var(--z-border-color);
+    border-radius: var(--z-radius-md);
+    font-size: var(--z-text-sm);
+    font-family: var(--z-font-mono);
+    color: var(--z-text-primary);
+    background: var(--z-bg-surface);
+    text-transform: lowercase;
+
+    &:focus {
+        outline: none;
+        border-color: var(--z-primary);
+        box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+    }
+}
+
+// ============================================================================
+// CONTROLS — Select
+// ============================================================================
+
+.z-customizer__select {
+    width: 100%;
+    padding: var(--z-space-2) var(--z-space-3);
+    border: 1px solid var(--z-border-color);
+    border-radius: var(--z-radius-md);
+    font-size: var(--z-text-sm);
+    color: var(--z-text-primary);
+    background-color: var(--z-bg-surface);
+    cursor: pointer;
+    appearance: auto;
+
+    &:focus {
+        outline: none;
+        border-color: var(--z-primary);
+        box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+    }
+}
+
+// ============================================================================
+// CONTROLS — Range Slider
+// ============================================================================
+
+.z-customizer__range {
+    width: 100%;
+    height: 6px;
+    margin: var(--z-space-2) 0;
+    appearance: none;
+    background: var(--z-gray-200);
+    border-radius: var(--z-radius-full);
+    outline: none;
+
+    &::-webkit-slider-thumb {
+        appearance: none;
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        background: var(--z-primary);
+        border: 2px solid var(--z-bg-surface);
+        box-shadow: var(--z-shadow-sm);
+        cursor: pointer;
+        transition: transform 150ms ease;
+    }
+
+    &::-moz-range-thumb {
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        background: var(--z-primary);
+        border: 2px solid var(--z-bg-surface);
+        box-shadow: var(--z-shadow-sm);
+        cursor: pointer;
+    }
+
+    &:focus-visible::-webkit-slider-thumb {
+        box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.3);
+    }
+
+    &:hover::-webkit-slider-thumb {
+        transform: scale(1.15);
+    }
+}
+
+// ============================================================================
+// CONTROLS — Checkbox
+// ============================================================================
+
+.z-customizer__checkbox {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--z-primary);
+    cursor: pointer;
+}
+
+// ============================================================================
+// PRESET CARDS
+// ============================================================================
+
+.z-customizer__presets-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--z-space-3);
+}
+
+.z-customizer__preset-card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: var(--z-space-3);
+    border: 2px solid var(--z-border-color);
+    border-radius: var(--z-radius-lg);
+    background: var(--z-bg-surface);
+    cursor: pointer;
+    transition: border-color 150ms ease, box-shadow 150ms ease;
+    text-align: left;
+
+    &:hover {
+        border-color: var(--z-primary);
+        box-shadow: var(--z-shadow-sm);
+    }
+
+    &.z-customizer__preset-card--active {
+        border-color: var(--z-primary);
+        box-shadow: 0 0 0 1px var(--z-primary);
+    }
+}
+
+.z-customizer__preset-swatch {
+    display: flex;
+    gap: 3px;
+    margin-bottom: var(--z-space-2);
+    width: 100%;
+}
+
+.z-customizer__preset-color {
+    width: 100%;
+    height: 24px;
+    border-radius: 4px;
+
+    &--primary {
+        border-radius: 4px 0 0 4px;
+    }
+    &--footer {
+        border-radius: 0 4px 4px 0;
+    }
+}
+
+.z-customizer__preset-name {
+    font-size: var(--z-text-sm);
+    font-weight: var(--z-font-semibold);
+    color: var(--z-text-primary);
+    margin-bottom: 2px;
+}
+
+.z-customizer__preset-desc {
+    font-size: var(--z-text-xs);
+    color: var(--z-text-muted);
+}
+
+// ============================================================================
+// BUTTON PREVIEW
+// ============================================================================
+
+.z-customizer__preview-box {
+    margin-top: var(--z-space-4);
+    padding: var(--z-space-4);
+    background: var(--z-bg-muted);
+    border-radius: var(--z-radius-lg);
+}
+
+.z-customizer__preview-label {
+    font-size: var(--z-text-xs);
+    color: var(--z-text-muted);
+    margin-bottom: var(--z-space-3);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.z-customizer__btn-preview {
+    display: flex;
+    gap: var(--z-space-2);
+}
+
+// ============================================================================
+// FOOTER
+// ============================================================================
+
+.z-customizer__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--z-space-3) var(--z-space-5);
+    border-top: 1px solid var(--z-border-color);
+    flex-shrink: 0;
+}
+
+.z-customizer__footer-right {
+    display: flex;
+    gap: var(--z-space-2);
+}
+
+// ============================================================================
+// NAVBAR LAUNCH BUTTON
+// ============================================================================
+
+.z-customizer__launch {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 var(--z-space-2);
+    border: none;
+    background: transparent;
+    color: var(--z-navbar-text);
+    cursor: pointer;
+    border-radius: var(--z-radius-md);
+    transition: color 150ms ease, background-color 150ms ease;
+
+    &:hover,
+    &:focus-visible {
+        color: var(--z-primary);
+        background-color: var(--z-bg-surface-hover);
+    }
+
+    &:focus-visible {
+        outline: 2px solid var(--z-primary);
+        outline-offset: -2px;
+    }
+}
+
+// ============================================================================
+// TOAST
+// ============================================================================
+
+.z-customizer__toast {
+    position: fixed;
+    bottom: var(--z-space-6);
+    left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    background: var(--z-gray-900);
+    color: var(--z-white, #fff);
+    padding: var(--z-space-3) var(--z-space-5);
+    border-radius: var(--z-radius-lg);
+    font-size: var(--z-text-sm);
+    font-weight: var(--z-font-medium);
+    box-shadow: var(--z-shadow-lg);
+    z-index: 1090;
+    opacity: 0;
+    transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1), opacity 300ms ease;
+    pointer-events: none;
+
+    &.z-customizer__toast--show {
+        transform: translateX(-50%) translateY(0);
+        opacity: 1;
+    }
+}
+
+// ============================================================================
+// RESPONSIVE
+// ============================================================================
+
+@media (max-width: 576px) {
+    .z-customizer__panel {
+        width: 100%;
+    }
+
+    .z-customizer__presets-grid {
+        grid-template-columns: 1fr;
+    }
+}

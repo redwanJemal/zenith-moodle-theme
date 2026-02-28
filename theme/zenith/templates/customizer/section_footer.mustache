@@ -1,0 +1,34 @@
+{{!
+    @template theme_zenith/customizer/section_footer
+
+    Footer background, text, link, border color pickers.
+}}
+<div class="z-customizer__section-title">{{#str}}customizer_footer_title, theme_zenith{{/str}}</div>
+<p class="z-customizer__section-desc">{{#str}}customizer_footer_desc, theme_zenith{{/str}}</p>
+
+<div class="z-customizer__control-group">
+    <label class="z-customizer__label" for="z-cust-footer_text">{{#str}}customizer_footer_text, theme_zenith{{/str}}</label>
+    <div class="z-customizer__color-input">
+        <input type="color" id="z-cust-footer_text" data-setting="footer_text" class="z-customizer__color-picker">
+        <input type="text" data-setting="footer_text" data-type="hex" class="z-customizer__hex-input"
+               maxlength="7" pattern="#[0-9a-fA-F]{6}" aria-label="{{#str}}customizer_hex, theme_zenith{{/str}}">
+    </div>
+</div>
+
+<div class="z-customizer__control-group">
+    <label class="z-customizer__label" for="z-cust-footer_link">{{#str}}customizer_footer_link, theme_zenith{{/str}}</label>
+    <div class="z-customizer__color-input">
+        <input type="color" id="z-cust-footer_link" data-setting="footer_link" class="z-customizer__color-picker">
+        <input type="text" data-setting="footer_link" data-type="hex" class="z-customizer__hex-input"
+               maxlength="7" pattern="#[0-9a-fA-F]{6}" aria-label="{{#str}}customizer_hex, theme_zenith{{/str}}">
+    </div>
+</div>
+
+<div class="z-customizer__control-group">
+    <label class="z-customizer__label" for="z-cust-footer_border">{{#str}}customizer_footer_border, theme_zenith{{/str}}</label>
+    <div class="z-customizer__color-input">
+        <input type="color" id="z-cust-footer_border" data-setting="footer_border" class="z-customizer__color-picker">
+        <input type="text" data-setting="footer_border" data-type="hex" class="z-customizer__hex-input"
+               maxlength="7" pattern="#[0-9a-fA-F]{6}" aria-label="{{#str}}customizer_hex, theme_zenith{{/str}}">
+    </div>
+</div>

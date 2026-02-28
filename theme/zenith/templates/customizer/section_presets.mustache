@@ -1,0 +1,22 @@
+{{!
+    @template theme_zenith/customizer/section_presets
+
+    Preset cards grid — 7 one-click color presets.
+}}
+<div class="z-customizer__section-title">{{#str}}customizer_presets_title, theme_zenith{{/str}}</div>
+<p class="z-customizer__section-desc">{{#str}}customizer_presets_desc, theme_zenith{{/str}}</p>
+<div class="z-customizer__presets-grid">
+    {{#presets}}
+    <button class="z-customizer__preset-card" data-action="customizer-preset" data-preset="{{key}}" type="button"
+            aria-label="{{name}}">
+        <div class="z-customizer__preset-swatch">
+            <span class="z-customizer__preset-color z-customizer__preset-color--primary" style="background-color: {{primary}}"></span>
+            <span class="z-customizer__preset-color z-customizer__preset-color--secondary" style="background-color: {{secondary}}"></span>
+            <span class="z-customizer__preset-color z-customizer__preset-color--navbar" style="background-color: {{navbar_bg}}; border: 1px solid #e2e8f0"></span>
+            <span class="z-customizer__preset-color z-customizer__preset-color--footer" style="background-color: {{footer_bg}}"></span>
+        </div>
+        <div class="z-customizer__preset-name">{{name}}</div>
+        <div class="z-customizer__preset-desc">{{description}}</div>
+    </button>
+    {{/presets}}
+</div>

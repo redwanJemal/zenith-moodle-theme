@@ -163,3 +163,73 @@ $string['customjs_desc'] = 'JavaScript code injected into every page. Use for tr
 // Advanced — Developer mode.
 $string['developermode'] = 'Developer mode';
 $string['developermode_desc'] = 'Enable theme designer mode and disable caching. Only use during development.';
+
+// Visual Customizer.
+$string['customizer'] = 'Visual Customizer';
+$string['customizer_sections'] = 'Customizer sections';
+$string['customizer_open'] = 'Open visual customizer';
+$string['customizer_save'] = 'Save changes';
+$string['customizer_reset'] = 'Reset';
+$string['customizer_saved'] = 'Settings saved successfully';
+$string['customizer_reset_confirm'] = 'Reset all customizer settings to defaults? This cannot be undone.';
+$string['customizer_reset_done'] = 'Settings reset to defaults';
+$string['customizer_hex'] = 'Hex colour value';
+$string['customizer_preview'] = 'Preview';
+
+// Customizer — Section tabs.
+$string['customizer_presets'] = 'Presets';
+$string['customizer_colors'] = 'Colours';
+$string['customizer_typography'] = 'Typography';
+$string['customizer_buttons'] = 'Buttons';
+$string['customizer_header'] = 'Header';
+$string['customizer_footer'] = 'Footer';
+
+// Customizer — Presets section.
+$string['customizer_presets_title'] = 'Quick Setup';
+$string['customizer_presets_desc'] = 'Select a preset to instantly change the look and feel of your site.';
+
+// Customizer — Colors section.
+$string['customizer_colors_title'] = 'Colours';
+$string['customizer_colors_desc'] = 'Customise the colour palette used throughout your site.';
+$string['customizer_primary'] = 'Primary colour';
+$string['customizer_secondary'] = 'Secondary colour';
+$string['customizer_success'] = 'Success colour';
+$string['customizer_warning'] = 'Warning colour';
+$string['customizer_danger'] = 'Danger colour';
+$string['customizer_info'] = 'Info colour';
+$string['customizer_navbar_bg'] = 'Navbar background';
+$string['customizer_footer_bg'] = 'Footer background';
+
+// Customizer — Typography section.
+$string['customizer_typography_title'] = 'Typography';
+$string['customizer_typography_desc'] = 'Choose fonts, sizes, and weights for your site content.';
+$string['customizer_font_family'] = 'Font family';
+$string['customizer_font_size'] = 'Base font size';
+$string['customizer_heading_weight'] = 'Heading weight';
+$string['customizer_body_weight'] = 'Body weight';
+$string['customizer_line_height'] = 'Line height';
+
+// Customizer — Buttons section.
+$string['customizer_buttons_title'] = 'Buttons';
+$string['customizer_buttons_desc'] = 'Adjust button appearance across your site.';
+$string['customizer_btn_radius'] = 'Border radius';
+$string['customizer_btn_padding_y'] = 'Vertical padding';
+$string['customizer_btn_padding_x'] = 'Horizontal padding';
+$string['customizer_btn_weight'] = 'Font weight';
+
+// Customizer — Header section.
+$string['customizer_header_title'] = 'Header';
+$string['customizer_header_desc'] = 'Configure the navigation bar appearance.';
+$string['customizer_navbar_height'] = 'Navbar height';
+$string['customizer_navbar_style'] = 'Navbar style';
+$string['customizer_navbar_shadow'] = 'Show shadow';
+$string['customizer_navbar_border'] = 'Show bottom border';
+$string['customizer_style_light'] = 'Light';
+$string['customizer_style_dark'] = 'Dark';
+
+// Customizer — Footer section.
+$string['customizer_footer_title'] = 'Footer';
+$string['customizer_footer_desc'] = 'Customise footer text and link colours.';
+$string['customizer_footer_text'] = 'Text colour';
+$string['customizer_footer_link'] = 'Link colour';
+$string['customizer_footer_border'] = 'Border colour';

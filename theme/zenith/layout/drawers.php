@@ -85,6 +85,18 @@ $regionmainsettingsmenu = $buildregionmainsettings ? $OUTPUT->region_main_settin
 $header = $PAGE->activityheader;
 $headercontent = $header->export_for_template($renderer);
 
+// Visual customizer for admins.
+$cancustomize = \theme_zenith\customizer\customizer::can_use();
+$customizerpresets = [];
+$customizersettingsjs = '{}';
+if ($cancustomize) {
+    $customizerpresets = \theme_zenith\customizer\presets::get_for_template();
+    $customizersettingsjs = json_encode(\theme_zenith\customizer\customizer::get_settings());
+}
+
+// Google Fonts link for customizer font.
+$googlefonturl = \theme_zenith\customizer\customizer::get_google_font_url();
+
 $templatecontext = [
     'sitename' => format_string(
         $SITE->shortname,
@@ -109,6 +121,10 @@ $templatecontext = [
     'overflow' => $overflow,
     'headercontent' => $headercontent,
     'addblockbutton' => $addblockbutton,
+    'cancustomize' => $cancustomize,
+    'presets' => $customizerpresets,
+    'customizersettingsjs' => $customizersettingsjs,
+    'googlefonturl' => $googlefonturl,
 ];
 
 echo $OUTPUT->render_from_template('theme_boost/drawers', $templatecontext);

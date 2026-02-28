@@ -1,0 +1,100 @@
+/**
+ * Preset data and apply logic for the Zenith visual customizer.
+ *
+ * @module     theme_zenith/customizer/presets
+ * @copyright  2026 Zenith Theme
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
+define([], function() {
+
+    /**
+     * All 7 preset definitions — flat key-value settings.
+     * Mirrors the PHP presets class.
+     * @type {Object}
+     */
+    var PRESETS = {
+        zenith: {
+            primary: '#6366f1', secondary: '#64748b', success: '#10b981', warning: '#f59e0b',
+            danger: '#ef4444', info: '#3b82f6', navbar_bg: '#ffffff', footer_bg: '#0f172a',
+            font_family: 'Inter', font_size: '15', heading_weight: '700', body_weight: '400', line_height: '1.5',
+            btn_radius: '8', btn_padding_y: '10', btn_padding_x: '16', btn_weight: '600',
+            navbar_height: '64', navbar_shadow: '1', navbar_border: '1', navbar_style: 'light',
+            footer_text: '#94a3b8', footer_link: '#cbd5e1', footer_border: '#1e293b',
+        },
+        ocean: {
+            primary: '#0ea5e9', secondary: '#64748b', success: '#10b981', warning: '#f59e0b',
+            danger: '#ef4444', info: '#6366f1', navbar_bg: '#ffffff', footer_bg: '#0c4a6e',
+            font_family: 'Inter', font_size: '15', heading_weight: '700', body_weight: '400', line_height: '1.5',
+            btn_radius: '8', btn_padding_y: '10', btn_padding_x: '16', btn_weight: '600',
+            navbar_height: '64', navbar_shadow: '1', navbar_border: '1', navbar_style: 'light',
+            footer_text: '#7dd3fc', footer_link: '#bae6fd', footer_border: '#075985',
+        },
+        forest: {
+            primary: '#059669', secondary: '#64748b', success: '#10b981', warning: '#f59e0b',
+            danger: '#ef4444', info: '#3b82f6', navbar_bg: '#ffffff', footer_bg: '#064e3b',
+            font_family: 'Source Sans Pro', font_size: '16', heading_weight: '700', body_weight: '400',
+            line_height: '1.6',
+            btn_radius: '6', btn_padding_y: '10', btn_padding_x: '16', btn_weight: '600',
+            navbar_height: '64', navbar_shadow: '1', navbar_border: '1', navbar_style: 'light',
+            footer_text: '#6ee7b7', footer_link: '#a7f3d0', footer_border: '#065f46',
+        },
+        sunset: {
+            primary: '#ea580c', secondary: '#78716c', success: '#16a34a', warning: '#eab308',
+            danger: '#dc2626', info: '#0284c7', navbar_bg: '#ffffff', footer_bg: '#431407',
+            font_family: 'Nunito', font_size: '15', heading_weight: '800', body_weight: '400', line_height: '1.5',
+            btn_radius: '12', btn_padding_y: '10', btn_padding_x: '20', btn_weight: '700',
+            navbar_height: '64', navbar_shadow: '1', navbar_border: '0', navbar_style: 'light',
+            footer_text: '#fdba74', footer_link: '#fed7aa', footer_border: '#7c2d12',
+        },
+        rose: {
+            primary: '#e11d48', secondary: '#6b7280', success: '#10b981', warning: '#f59e0b',
+            danger: '#dc2626', info: '#6366f1', navbar_bg: '#ffffff', footer_bg: '#1c1917',
+            font_family: 'DM Sans', font_size: '15', heading_weight: '700', body_weight: '400', line_height: '1.5',
+            btn_radius: '24', btn_padding_y: '10', btn_padding_x: '20', btn_weight: '600',
+            navbar_height: '64', navbar_shadow: '0', navbar_border: '1', navbar_style: 'light',
+            footer_text: '#a8a29e', footer_link: '#d6d3d1', footer_border: '#292524',
+        },
+        midnight: {
+            primary: '#7c3aed', secondary: '#6b7280', success: '#10b981', warning: '#f59e0b',
+            danger: '#ef4444', info: '#06b6d4', navbar_bg: '#1e1b4b', footer_bg: '#0f0a2e',
+            font_family: 'Inter', font_size: '15', heading_weight: '700', body_weight: '400', line_height: '1.5',
+            btn_radius: '8', btn_padding_y: '10', btn_padding_x: '16', btn_weight: '600',
+            navbar_height: '64', navbar_shadow: '1', navbar_border: '0', navbar_style: 'dark',
+            footer_text: '#a5b4fc', footer_link: '#c7d2fe', footer_border: '#1e1b4b',
+        },
+        slate: {
+            primary: '#475569', secondary: '#94a3b8', success: '#10b981', warning: '#f59e0b',
+            danger: '#ef4444', info: '#3b82f6', navbar_bg: '#ffffff', footer_bg: '#0f172a',
+            font_family: 'IBM Plex Sans', font_size: '15', heading_weight: '600', body_weight: '400',
+            line_height: '1.5',
+            btn_radius: '4', btn_padding_y: '10', btn_padding_x: '16', btn_weight: '500',
+            navbar_height: '60', navbar_shadow: '0', navbar_border: '1', navbar_style: 'light',
+            footer_text: '#94a3b8', footer_link: '#cbd5e1', footer_border: '#1e293b',
+        },
+    };
+
+    /**
+     * Get a preset's flat settings.
+     *
+     * @param {string} key Preset key.
+     * @returns {Object|null}
+     */
+    var getPreset = function(key) {
+        return PRESETS[key] || null;
+    };
+
+    /**
+     * Get all preset keys.
+     *
+     * @returns {string[]}
+     */
+    var getPresetKeys = function() {
+        return Object.keys(PRESETS);
+    };
+
+    return {
+        PRESETS: PRESETS,
+        getPreset: getPreset,
+        getPresetKeys: getPresetKeys,
+    };
+});

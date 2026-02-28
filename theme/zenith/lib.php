@@ -109,6 +109,12 @@ function theme_zenith_get_pre_scss($theme) {
 function theme_zenith_get_extra_scss($theme) {
     $scss = '';
 
+    // Inject customizer CSS overrides (CSS custom properties).
+    $customizercss = \theme_zenith\customizer\customizer::generate_css();
+    if (!empty($customizercss)) {
+        $scss .= $customizercss;
+    }
+
     // Append custom SCSS from settings.
     if (!empty($theme->settings->scss)) {
         $scss .= $theme->settings->scss;

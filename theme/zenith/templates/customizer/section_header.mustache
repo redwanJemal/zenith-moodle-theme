@@ -1,0 +1,40 @@
+{{!
+    @template theme_zenith/customizer/section_header
+
+    Navbar background, height, shadow, border, style controls.
+}}
+<div class="z-customizer__section-title">{{#str}}customizer_header_title, theme_zenith{{/str}}</div>
+<p class="z-customizer__section-desc">{{#str}}customizer_header_desc, theme_zenith{{/str}}</p>
+
+<div class="z-customizer__control-group">
+    <label class="z-customizer__label" for="z-cust-navbar_height">
+        {{#str}}customizer_navbar_height, theme_zenith{{/str}}
+        <span class="z-customizer__value-display" data-display="navbar_height">64px</span>
+    </label>
+    <input type="range" id="z-cust-navbar_height" data-setting="navbar_height"
+           class="z-customizer__range" min="48" max="80" step="2" value="64">
+</div>
+
+<div class="z-customizer__control-group">
+    <label class="z-customizer__label" for="z-cust-navbar_style">{{#str}}customizer_navbar_style, theme_zenith{{/str}}</label>
+    <select id="z-cust-navbar_style" data-setting="navbar_style" class="z-customizer__select">
+        <option value="light">{{#str}}customizer_style_light, theme_zenith{{/str}}</option>
+        <option value="dark">{{#str}}customizer_style_dark, theme_zenith{{/str}}</option>
+    </select>
+</div>
+
+<div class="z-customizer__control-group z-customizer__control-group--inline">
+    <label class="z-customizer__label z-customizer__label--checkbox">
+        <input type="checkbox" id="z-cust-navbar_shadow" data-setting="navbar_shadow"
+               class="z-customizer__checkbox" checked>
+        <span>{{#str}}customizer_navbar_shadow, theme_zenith{{/str}}</span>
+    </label>
+</div>
+
+<div class="z-customizer__control-group z-customizer__control-group--inline">
+    <label class="z-customizer__label z-customizer__label--checkbox">
+        <input type="checkbox" id="z-cust-navbar_border" data-setting="navbar_border"
+               class="z-customizer__checkbox" checked>
+        <span>{{#str}}customizer_navbar_border, theme_zenith{{/str}}</span>
+    </label>
+</div>

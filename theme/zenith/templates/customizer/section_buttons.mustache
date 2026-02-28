@@ -1,0 +1,52 @@
+{{!
+    @template theme_zenith/customizer/section_buttons
+
+    Button radius, padding, weight controls.
+}}
+<div class="z-customizer__section-title">{{#str}}customizer_buttons_title, theme_zenith{{/str}}</div>
+<p class="z-customizer__section-desc">{{#str}}customizer_buttons_desc, theme_zenith{{/str}}</p>
+
+<div class="z-customizer__control-group">
+    <label class="z-customizer__label" for="z-cust-btn_radius">
+        {{#str}}customizer_btn_radius, theme_zenith{{/str}}
+        <span class="z-customizer__value-display" data-display="btn_radius">8px</span>
+    </label>
+    <input type="range" id="z-cust-btn_radius" data-setting="btn_radius"
+           class="z-customizer__range" min="0" max="24" step="1" value="8">
+</div>
+
+<div class="z-customizer__control-group">
+    <label class="z-customizer__label" for="z-cust-btn_padding_y">
+        {{#str}}customizer_btn_padding_y, theme_zenith{{/str}}
+        <span class="z-customizer__value-display" data-display="btn_padding_y">10px</span>
+    </label>
+    <input type="range" id="z-cust-btn_padding_y" data-setting="btn_padding_y"
+           class="z-customizer__range" min="4" max="16" step="1" value="10">
+</div>
+
+<div class="z-customizer__control-group">
+    <label class="z-customizer__label" for="z-cust-btn_padding_x">
+        {{#str}}customizer_btn_padding_x, theme_zenith{{/str}}
+        <span class="z-customizer__value-display" data-display="btn_padding_x">16px</span>
+    </label>
+    <input type="range" id="z-cust-btn_padding_x" data-setting="btn_padding_x"
+           class="z-customizer__range" min="8" max="32" step="2" value="16">
+</div>
+
+<div class="z-customizer__control-group">
+    <label class="z-customizer__label" for="z-cust-btn_weight">{{#str}}customizer_btn_weight, theme_zenith{{/str}}</label>
+    <select id="z-cust-btn_weight" data-setting="btn_weight" class="z-customizer__select">
+        <option value="400">Regular (400)</option>
+        <option value="500">Medium (500)</option>
+        <option value="600">Semi Bold (600)</option>
+        <option value="700">Bold (700)</option>
+    </select>
+</div>
+
+<div class="z-customizer__preview-box">
+    <div class="z-customizer__preview-label">{{#str}}customizer_preview, theme_zenith{{/str}}</div>
+    <div class="z-customizer__btn-preview">
+        <button class="btn btn-primary btn-sm" type="button" disabled>Primary</button>
+        <button class="btn btn-outline-secondary btn-sm" type="button" disabled>Secondary</button>
+    </div>
+</div>
