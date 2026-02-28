@@ -1,0 +1,38 @@
+{{!
+    @template block_myoverview/view-cards
+
+    Zenith theme override — Cards view extending core_course/coursecards
+    with visual progress bar, 2-line title clamp, category badge, and action menu.
+}}
+{{< core_course/coursecards }}
+    {{$menu}}
+        <div class="z-coursecard__menu card-footer menu border-0 bg-transparent ms-auto p-0">
+            {{> block_myoverview/course-action-menu }}
+        </div>
+    {{/menu}}
+    {{$progress}}
+        {{#hasprogress}}
+            <div class="z-coursecard__progress w-100">
+                {{> block_myoverview/progress-bar}}
+            </div>
+        {{/hasprogress}}
+    {{/progress}}
+    {{$coursename}}
+        <span class="multiline" title="{{fullname}}">
+            <span class="sr-only">{{{fullname}}}</span>
+            <span aria-hidden="true">
+                {{#shortentext}}55, {{{fullname}}} {{/shortentext}}
+            </span>
+        </span>
+    {{/coursename}}
+    {{$coursecategory}}
+        {{#showcoursecategory}}
+            <span class="sr-only">
+                {{#str}}aria:coursecategory, core_course{{/str}}
+            </span>
+            <span class="z-coursecard__category categoryname">
+                {{{coursecategory}}}
+            </span>
+        {{/showcoursecategory}}
+    {{/coursecategory}}
+{{/ core_course/coursecards }}

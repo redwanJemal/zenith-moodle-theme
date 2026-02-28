@@ -1,0 +1,66 @@
+{{!
+    @template block_myoverview/view-list
+
+    Zenith theme override — Enhanced list view with better image sizing,
+    hover states, visual progress bar, and clean spacing.
+}}
+<ul class="list-group">
+    {{#courses}}
+        <li class="z-courselist__item list-group-item course-listitem border-start-0 border-end-0 border-top-0 rounded-0"
+            data-region="course-content"
+            data-course-id="{{{id}}}">
+            <div class="row align-items-center">
+                <div class="col-md-2 d-flex align-items-center mb-2 mb-md-0">
+                    <a href="{{viewurl}}" tabindex="-1" class="mw-100 w-100">
+                        <div class="z-courselist__image rounded list-image mw-100" style='background-image: url("{{{courseimage}}}");'>
+                            <span class="sr-only">{{fullname}}</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-9 d-flex flex-column">
+                    {{#showshortname}}
+                        <div class="text-muted muted d-flex flex-wrap">
+                            {{#showcoursecategory}}
+                                <div class="px-1">|</div>
+                            {{/showcoursecategory}}
+                            <span class="sr-only">
+                                {{#str}}aria:courseshortname, core_course{{/str}}
+                            </span>
+                            <div>{{{shortname}}}</div>
+                        </div>
+                    {{/showshortname}}
+                    <a href="{{viewurl}}" class="aalink coursename font-weight-bold">
+                        {{> core_course/favouriteicon }}
+                        <span class="sr-only">
+                            {{#str}}aria:coursename, core_course{{/str}}
+                        </span>
+                        {{{fullname}}}
+                    </a>
+                    {{#showcoursecategory}}
+                        <div class="text-muted muted d-flex flex-wrap">
+                            <span class="sr-only">
+                                {{#str}}aria:coursecategory, core_course{{/str}}
+                            </span>
+                            <span class="z-coursecard__category categoryname mt-1">
+                                {{{coursecategory}}}
+                            </span>
+                        </div>
+                    {{/showcoursecategory}}
+                    {{^visible}}
+                        <div class="d-flex flex-wrap">
+                            <span class="z-coursecard__hidden-badge badge bg-info text-white">{{#str}} hiddenfromstudents {{/str}}</span>
+                        </div>
+                    {{/visible}}
+                    {{#hasprogress}}
+                        <div class="z-coursecard__progress mt-auto pt-2">
+                            {{> block_myoverview/progress-bar}}
+                        </div>
+                    {{/hasprogress}}
+                </div>
+                <div class="col-md-1 p-0 d-flex menu">
+                    {{> block_myoverview/course-action-menu }}
+                </div>
+            </div>
+        </li>
+    {{/courses}}
+</ul>

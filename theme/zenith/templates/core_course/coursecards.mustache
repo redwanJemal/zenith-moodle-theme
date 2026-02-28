@@ -1,0 +1,14 @@
+{{!
+    @template core_course/coursecards
+
+    Zenith theme override — CSS Grid wrapper for course cards.
+    Uses .z-coursecards grid alongside existing .card-grid for compatibility.
+    Preserves {{$classes}} block slot.
+}}
+<div class="z-coursecards card-grid {{$classes}}{{/classes}}" data-region="card-deck" role="list">
+{{#courses}}
+    <div class="d-flex">
+        {{> core_course/coursecard }}
+    </div>
+{{/courses}}
+</div>

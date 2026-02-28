@@ -1,0 +1,49 @@
+{{!
+    @template core_course/coursecard
+
+    Zenith theme override — Course card with BEM structure, 16:9 image,
+    category badge, 2-line title clamp, and visual progress bar.
+    Preserves all {{$block}} slots from core for Mustache inheritance.
+}}
+<div class="z-coursecard card course-card" role="listitem"
+    data-region="course-content"
+    data-course-id="{{{id}}}">
+    <a href="{{viewurl}}" tabindex="-1" aria-hidden="true">
+        <div class="z-coursecard__image card-img-top" style='background-image: url("{{{courseimage}}}");'>
+            <span class="sr-only">{{fullname}}</span>
+        </div>
+    </a>
+    <div class="z-coursecard__body card-body pe-1 course-info-container" id="course-info-container-{{id}}-{{uniqid}}">
+        <div class="d-flex align-items-start">
+            <div class="w-100">
+                {{$coursecategory}}{{/coursecategory}}
+                {{#showshortname}}
+                    <div class="z-coursecard__shortname text-muted muted d-flex mb-1 flex-wrap">
+                        <span class="sr-only">
+                            {{#str}}aria:courseshortname, core_course{{/str}}
+                        </span>
+                        <div>
+                            {{{shortname}}}
+                        </div>
+                    </div>
+                {{/showshortname}}
+                <a href="{{viewurl}}" class="z-coursecard__title aalink coursename me-2 mb-1">
+                    {{> core_course/favouriteicon }}
+                    <span class="sr-only">
+                        {{#str}}aria:coursename, core_course{{/str}}
+                    </span>
+                    {{$coursename}}{{/coursename}}
+                </a>
+                {{^visible}}
+                    <div class="d-flex flex-wrap">
+                        <span class="z-coursecard__hidden-badge badge bg-info text-white">{{#str}} hiddenfromstudents {{/str}}</span>
+                    </div>
+                {{/visible}}
+            </div>
+        </div>
+    </div>
+    <div class="z-coursecard__footer d-flex align-items-center">
+        {{$progress}}{{/progress}}
+        {{$menu}}{{/menu}}
+    </div>
+</div>

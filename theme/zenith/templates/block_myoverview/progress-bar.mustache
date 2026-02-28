@@ -1,0 +1,14 @@
+{{!
+    @template block_myoverview/progress-bar
+
+    Zenith theme override — Replaces text-only progress with a visual bar + percentage.
+    The core template renders only "X% complete" text; this adds an actual progress element.
+}}
+<div class="z-coursecard__progress-bar" role="progressbar"
+    aria-valuenow="{{progress}}" aria-valuemin="0" aria-valuemax="100"
+    aria-label="{{#str}}aria:courseprogress, block_myoverview{{/str}}">
+    <div class="z-coursecard__progress-fill" style="width: {{progress}}%;"></div>
+</div>
+<span class="z-coursecard__progress-text">
+    {{#str}}completepercent, block_myoverview, <span>{{progress}}</span>{{/str}}
+</span>

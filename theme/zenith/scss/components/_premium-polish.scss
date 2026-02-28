@@ -1,0 +1,648 @@
+// Zenith Theme — Premium Visual Polish
+// Global upgrade layer that targets Bootstrap 4.6.2 / Moodle core selectors.
+// Loaded AFTER @import "moodle" so it wins specificity ties.
+
+// ============================================================================
+// TYPOGRAPHY
+// ============================================================================
+
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+    font-weight: var(--z-font-bold);
+    letter-spacing: var(--z-tracking-tight);
+    color: var(--z-text-primary);
+}
+
+a {
+    transition: color var(--z-transition-fast);
+}
+
+// ============================================================================
+// BUTTONS
+// ============================================================================
+
+.btn {
+    font-weight: var(--z-btn-font-weight);
+    font-size: var(--z-btn-font-size);
+    border-radius: var(--z-btn-radius);
+    padding: var(--z-btn-padding-y) var(--z-btn-padding-x);
+    transition: all var(--z-transition-fast);
+    letter-spacing: 0.01em;
+
+    &:hover {
+        transform: translateY(-1px);
+    }
+
+    &:active {
+        transform: translateY(0);
+    }
+
+    &:focus {
+        box-shadow: 0 0 0 3px var(--z-primary-light);
+    }
+}
+
+.btn-primary {
+    box-shadow: 0 1px 3px rgba(99, 102, 241, 0.3);
+
+    &:hover {
+        box-shadow: 0 4px 8px rgba(99, 102, 241, 0.35);
+    }
+}
+
+.btn-success {
+    box-shadow: 0 1px 3px rgba(16, 185, 129, 0.3);
+
+    &:hover {
+        box-shadow: 0 4px 8px rgba(16, 185, 129, 0.35);
+    }
+}
+
+.btn-danger {
+    box-shadow: 0 1px 3px rgba(239, 68, 68, 0.3);
+
+    &:hover {
+        box-shadow: 0 4px 8px rgba(239, 68, 68, 0.35);
+    }
+}
+
+.btn-warning {
+    box-shadow: 0 1px 3px rgba(245, 158, 11, 0.3);
+
+    &:hover {
+        box-shadow: 0 4px 8px rgba(245, 158, 11, 0.35);
+    }
+}
+
+.btn-info {
+    box-shadow: 0 1px 3px rgba(59, 130, 246, 0.3);
+
+    &:hover {
+        box-shadow: 0 4px 8px rgba(59, 130, 246, 0.35);
+    }
+}
+
+.btn-secondary {
+    &:hover {
+        box-shadow: var(--z-shadow-sm);
+    }
+}
+
+.btn-outline-secondary,
+.btn-outline-primary,
+.btn-outline-info,
+.btn-outline-warning,
+.btn-outline-danger,
+.btn-outline-success {
+    &:hover {
+        box-shadow: var(--z-shadow-sm);
+    }
+}
+
+.btn-sm {
+    font-size: var(--z-text-xs);
+    padding: 0.375rem 0.75rem;
+}
+
+.btn-lg {
+    font-size: var(--z-text-base);
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--z-radius-xl);
+}
+
+// ============================================================================
+// CARDS
+// ============================================================================
+
+.card {
+    border-radius: var(--z-card-radius);
+    border-color: var(--z-card-border);
+    box-shadow: var(--z-card-shadow);
+    transition: box-shadow var(--z-transition-base), transform var(--z-transition-base);
+    overflow: hidden;
+
+    .card-header {
+        background-color: transparent;
+        border-bottom-color: var(--z-border-color);
+        font-weight: var(--z-font-semibold);
+    }
+
+    .card-footer {
+        background-color: transparent;
+        border-top-color: var(--z-border-color);
+    }
+
+    .card-body {
+        padding: var(--z-card-padding);
+    }
+}
+
+// ============================================================================
+// FORMS
+// ============================================================================
+
+.form-control,
+.custom-select {
+    border-radius: var(--z-input-radius);
+    border-color: var(--z-input-border);
+    font-size: var(--z-input-font-size);
+    padding: var(--z-input-padding-y) var(--z-input-padding-x);
+    transition: border-color var(--z-transition-fast), box-shadow var(--z-transition-fast);
+
+    &:focus {
+        border-color: var(--z-input-border-focus);
+        box-shadow: 0 0 0 3px var(--z-primary-light);
+    }
+
+    &::placeholder {
+        color: var(--z-text-muted);
+        font-size: var(--z-text-sm);
+    }
+}
+
+.custom-control-input:focus ~ .custom-control-label::before {
+    box-shadow: 0 0 0 3px var(--z-primary-light);
+}
+
+.custom-control-input:checked ~ .custom-control-label::before {
+    background-color: var(--z-primary);
+    border-color: var(--z-primary);
+}
+
+label,
+.col-form-label {
+    font-weight: var(--z-font-medium);
+    font-size: var(--z-text-sm);
+    color: var(--z-text-secondary);
+}
+
+.form-group {
+    margin-bottom: var(--z-space-5);
+}
+
+// ============================================================================
+// TABLES
+// ============================================================================
+
+.table {
+    thead th {
+        background-color: var(--z-table-header-bg);
+        font-size: var(--z-text-xs);
+        font-weight: var(--z-font-semibold);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: var(--z-text-tertiary);
+        border-bottom-width: 1px;
+        padding: var(--z-space-3) var(--z-space-4);
+    }
+
+    td {
+        padding: var(--z-space-3) var(--z-space-4);
+        vertical-align: middle;
+        border-color: var(--z-border-color);
+    }
+
+    tbody tr {
+        transition: background-color var(--z-transition-fast);
+    }
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: var(--z-table-stripe-bg);
+}
+
+.table-hover tbody tr:hover {
+    background-color: var(--z-bg-surface-hover);
+}
+
+// ============================================================================
+// BREADCRUMBS
+// ============================================================================
+
+.breadcrumb {
+    background-color: transparent;
+    padding: var(--z-space-2) 0;
+    margin-bottom: var(--z-space-2);
+    font-size: var(--z-text-sm);
+
+    .breadcrumb-item {
+        color: var(--z-text-tertiary);
+
+        a {
+            color: var(--z-text-secondary);
+            text-decoration: none;
+
+            &:hover {
+                color: var(--z-primary);
+            }
+        }
+
+        &.active {
+            color: var(--z-text-muted);
+        }
+    }
+
+    .breadcrumb-item + .breadcrumb-item::before {
+        content: "\203A"; // ›
+        color: var(--z-text-muted);
+    }
+}
+
+// ============================================================================
+// PROGRESS BARS
+// ============================================================================
+
+.progress {
+    height: var(--z-progress-height);
+    border-radius: var(--z-progress-radius);
+    background-color: var(--z-bg-muted);
+    overflow: hidden;
+}
+
+.progress-bar {
+    border-radius: var(--z-progress-radius);
+    background-color: var(--z-primary);
+    transition: width 0.6s ease;
+}
+
+// ============================================================================
+// BADGES
+// ============================================================================
+
+.badge {
+    font-weight: var(--z-font-semibold);
+    font-size: var(--z-text-xs);
+    padding: 0.3em 0.65em;
+    border-radius: var(--z-radius-full);
+    letter-spacing: 0.02em;
+}
+
+// ============================================================================
+// ALERTS
+// ============================================================================
+
+.alert {
+    border-radius: var(--z-radius-xl);
+    border: none;
+    padding: var(--z-space-4) var(--z-space-5);
+    font-size: var(--z-text-sm);
+}
+
+// ============================================================================
+// DROPDOWNS
+// ============================================================================
+
+.dropdown-menu {
+    border: 1px solid var(--z-border-color);
+    border-radius: var(--z-radius-xl);
+    box-shadow: var(--z-shadow-lg);
+    padding: var(--z-space-2);
+    animation: z-fade-in 150ms ease;
+
+    .dropdown-item {
+        border-radius: var(--z-radius-lg);
+        padding: var(--z-space-2) var(--z-space-3);
+        font-size: var(--z-text-sm);
+        transition: background-color var(--z-transition-fast);
+
+        &:active {
+            background-color: var(--z-primary);
+        }
+    }
+
+    .dropdown-divider {
+        margin: var(--z-space-1) 0;
+    }
+}
+
+@keyframes z-fade-in {
+    from {
+        opacity: 0;
+        transform: translateY(-4px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+// ============================================================================
+// MODALS
+// ============================================================================
+
+.modal-content {
+    border: none;
+    border-radius: var(--z-radius-2xl);
+    box-shadow: var(--z-shadow-2xl);
+    overflow: hidden;
+}
+
+.modal-header {
+    border-bottom-color: var(--z-border-color);
+    padding: var(--z-space-5) var(--z-space-6);
+
+    .modal-title {
+        font-weight: var(--z-font-semibold);
+    }
+}
+
+.modal-body {
+    padding: var(--z-space-5) var(--z-space-6);
+}
+
+.modal-footer {
+    border-top-color: var(--z-border-color);
+    padding: var(--z-space-4) var(--z-space-6);
+}
+
+// ============================================================================
+// PAGINATION
+// ============================================================================
+
+.pagination {
+    gap: var(--z-space-1);
+
+    .page-item {
+        .page-link {
+            border: none;
+            border-radius: var(--z-radius-lg);
+            padding: var(--z-space-2) var(--z-space-3);
+            font-size: var(--z-text-sm);
+            font-weight: var(--z-font-medium);
+            color: var(--z-text-secondary);
+            background-color: transparent;
+            transition: all var(--z-transition-fast);
+            min-width: 2.25rem;
+            text-align: center;
+
+            &:hover {
+                background-color: var(--z-bg-surface-hover);
+                color: var(--z-text-primary);
+            }
+        }
+
+        &.active .page-link {
+            background-color: var(--z-primary);
+            color: var(--z-white);
+            box-shadow: 0 2px 6px rgba(99, 102, 241, 0.35);
+        }
+
+        &.disabled .page-link {
+            color: var(--z-text-muted);
+            background-color: transparent;
+        }
+    }
+}
+
+// ============================================================================
+// TABS / NAV
+// ============================================================================
+
+.nav-tabs {
+    border-bottom: 2px solid var(--z-border-color);
+
+    .nav-link {
+        border: none;
+        border-bottom: 2px solid transparent;
+        margin-bottom: -2px;
+        padding: var(--z-space-3) var(--z-space-4);
+        font-weight: var(--z-font-medium);
+        font-size: var(--z-text-sm);
+        color: var(--z-text-tertiary);
+        transition: all var(--z-transition-fast);
+
+        &:hover {
+            border-color: transparent;
+            border-bottom-color: var(--z-border-color-strong);
+            background-color: transparent;
+            color: var(--z-text-primary);
+        }
+
+        &.active {
+            background-color: transparent;
+            border-color: transparent;
+            border-bottom-color: var(--z-primary);
+            color: var(--z-primary);
+            font-weight: var(--z-font-semibold);
+        }
+    }
+}
+
+.nav-pills .nav-link {
+    border-radius: var(--z-radius-lg);
+    font-weight: var(--z-font-medium);
+    font-size: var(--z-text-sm);
+    padding: var(--z-space-2) var(--z-space-4);
+    transition: all var(--z-transition-fast);
+}
+
+// ============================================================================
+// TOOLTIPS & POPOVERS
+// ============================================================================
+
+.tooltip-inner {
+    border-radius: var(--z-radius-lg);
+    padding: var(--z-space-2) var(--z-space-3);
+    font-size: var(--z-text-xs);
+}
+
+.popover {
+    border-radius: var(--z-radius-xl);
+    box-shadow: var(--z-shadow-lg);
+    border-color: var(--z-border-color);
+
+    .popover-header {
+        border-radius: var(--z-radius-xl) var(--z-radius-xl) 0 0;
+        font-weight: var(--z-font-semibold);
+        font-size: var(--z-text-sm);
+    }
+}
+
+// ============================================================================
+// CONTENT AREA — #region-main
+// ============================================================================
+
+#region-main {
+    background-color: var(--z-bg-surface);
+    border-radius: var(--z-content-radius);
+    box-shadow: var(--z-content-shadow);
+    padding: var(--z-content-padding);
+}
+
+// ============================================================================
+// PAGE HEADER
+// ============================================================================
+
+.page-header-headings {
+    h1, h2 {
+        font-weight: var(--z-font-bold);
+        letter-spacing: var(--z-tracking-tight);
+    }
+}
+
+#page-header {
+    padding: var(--z-space-4) 0;
+}
+
+// ============================================================================
+// ACTIVITY ITEMS
+// ============================================================================
+
+.activity-item {
+    border-radius: var(--z-radius-lg);
+    transition: background-color var(--z-transition-fast);
+
+    &:hover {
+        background-color: var(--z-bg-surface-hover);
+    }
+}
+
+// ============================================================================
+// BLOCKS (sidebar blocks)
+// ============================================================================
+
+.block {
+    border-radius: var(--z-card-radius);
+    box-shadow: var(--z-card-shadow);
+    border-color: var(--z-card-border);
+    overflow: hidden;
+
+    .card-title,
+    .card-header {
+        font-size: var(--z-text-xs);
+        font-weight: var(--z-font-semibold);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: var(--z-text-tertiary);
+    }
+}
+
+// ============================================================================
+// LIST GROUPS
+// ============================================================================
+
+.list-group-item {
+    border-color: var(--z-border-color);
+    transition: background-color var(--z-transition-fast);
+
+    &:hover {
+        background-color: var(--z-bg-surface-hover);
+    }
+}
+
+// ============================================================================
+// COURSE SECTIONS
+// ============================================================================
+
+.course-section-header {
+    border-radius: var(--z-radius-lg);
+    padding: var(--z-space-3) var(--z-space-4);
+}
+
+h2.sectionname,
+.course-section .section-title {
+    font-weight: var(--z-font-bold);
+    font-size: var(--z-text-lg);
+}
+
+// ============================================================================
+// SECONDARY NAVIGATION (Course tabs)
+// ============================================================================
+
+.secondary-navigation {
+    border-radius: var(--z-radius-lg);
+
+    .nav-link {
+        font-size: var(--z-text-sm);
+        font-weight: var(--z-font-medium);
+        transition: all var(--z-transition-fast);
+    }
+}
+
+// ============================================================================
+// CUSTOM SCROLLBAR
+// ============================================================================
+
+* {
+    scrollbar-width: thin;
+    scrollbar-color: var(--z-gray-300) transparent;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--z-gray-300);
+    border-radius: var(--z-radius-full);
+    border: 2px solid transparent;
+    background-clip: content-box;
+
+    &:hover {
+        background-color: var(--z-gray-400);
+    }
+}
+
+// ============================================================================
+// MOODLE — Course listing / coursebox
+// ============================================================================
+
+.coursebox {
+    border-radius: var(--z-card-radius);
+    border-color: var(--z-border-color);
+    transition: box-shadow var(--z-transition-base);
+    margin-bottom: var(--z-space-3);
+
+    &:hover {
+        box-shadow: var(--z-shadow-md);
+    }
+}
+
+// ============================================================================
+// MOODLE — User picture
+// ============================================================================
+
+.userpicture {
+    border-radius: 50%;
+    box-shadow: var(--z-shadow-xs);
+}
+
+// ============================================================================
+// MOODLE — My overview block filter bar
+// ============================================================================
+
+.block-myoverview {
+    [data-region="filter"] {
+        gap: var(--z-space-2);
+    }
+}
+
+// ============================================================================
+// MOODLE — Calendar
+// ============================================================================
+
+.calendarwrapper {
+    .calendartable {
+        border-radius: var(--z-radius-lg);
+        overflow: hidden;
+    }
+}
+
+// ============================================================================
+// SELECTION / FOCUS
+// ============================================================================
+
+::selection {
+    background-color: var(--z-primary-light);
+    color: var(--z-primary-active);
+}
+
+:focus-visible {
+    outline: 2px solid var(--z-primary);
+    outline-offset: 2px;
+}

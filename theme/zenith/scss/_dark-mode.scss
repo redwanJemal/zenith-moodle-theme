@@ -103,6 +103,13 @@
     --z-footer-link: #94a3b8;
     --z-footer-link-hover: #f1f5f9;
     --z-footer-border: #1e293b;
+
+    // Content area
+    --z-content-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.3);
+
+    // Tables
+    --z-table-header-bg: rgba(255, 255, 255, 0.04);
+    --z-table-stripe-bg: rgba(255, 255, 255, 0.03);
 }
 
 // ============================================================================
@@ -552,6 +559,58 @@
 
     .admin_colourpicker .colourdialogue {
         border-color: var(--z-border-color);
+    }
+
+    // Scrollbar
+    * {
+        scrollbar-color: var(--z-gray-600) transparent;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background-color: var(--z-gray-600);
+
+        &:hover {
+            background-color: var(--z-gray-500);
+        }
+    }
+
+    // Button shadow adjustments (lighter shadows on dark bg)
+    .btn-primary {
+        box-shadow: 0 1px 3px rgba(129, 140, 248, 0.25);
+
+        &:hover {
+            box-shadow: 0 4px 8px rgba(129, 140, 248, 0.3);
+        }
+    }
+
+    .btn-success,
+    .btn-danger,
+    .btn-warning,
+    .btn-info {
+        &:hover {
+            box-shadow: var(--z-shadow-sm);
+        }
+    }
+
+    // Course card hover shadow
+    .z-coursecard:hover {
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -4px rgba(0, 0, 0, 0.4);
+    }
+
+    // Course card category badge
+    .z-coursecard__category {
+        background-color: var(--z-primary-subtle);
+        color: var(--z-primary);
+    }
+
+    // Course list item hover
+    .z-courselist__item:hover {
+        background-color: var(--z-bg-surface-hover);
+    }
+
+    // Pagination active shadow
+    .pagination .page-item.active .page-link {
+        box-shadow: 0 2px 6px rgba(129, 140, 248, 0.3);
     }
 
     // Images — prevent overly bright images
