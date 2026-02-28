@@ -29,6 +29,20 @@
 - Templates: ARIA attributes on all interactive elements
 - All strings via language files (never hardcoded)
 
+## Task Management
+- **Progress Dashboard**: `docs/PROGRESS.md` — central tracker with dependency graph
+- **Task Files** (one per phase):
+  - `docs/tasks/phase-0-infrastructure.md` — 6 tasks, 17h (Week 1)
+  - `docs/tasks/phase-1-core-theme.md` — 10 tasks, 74h (Weeks 2-4)
+  - `docs/tasks/phase-2-customizer.md` — 3 tasks, 38h (Weeks 5-6)
+  - `docs/tasks/phase-3-differentiators.md` — 7 tasks, 92h (Weeks 7-10)
+  - `docs/tasks/phase-4-polish.md` — 6 tasks, 48h (Weeks 11-12)
+  - `docs/tasks/phase-5-ecosystem.md` — 3 tasks, 40h (Weeks 13-16)
+  - `docs/tasks/phase-6-launch.md` — 4 tasks, 28h (Weeks 17-18)
+- **Total**: 39 tasks, 337 hours, 18 weeks
+- **Status codes**: `[ ]` pending, `[~]` in-progress, `[x]` done, `[!]` blocked
+- **Start with**: P0-1 (Docker Dev) — no dependencies
+
 ## Deployment
 - Uses Coolify with Traefik proxy on `coolify` external network
 - Moodle runs on port 8081 internally, MariaDB on 3306
