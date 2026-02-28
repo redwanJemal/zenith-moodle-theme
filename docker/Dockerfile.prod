@@ -1,0 +1,32 @@
+FROM moodlehq/moodle-php-apache:8.3
+
+ENV APACHE_DOCUMENT_ROOT=/var/www/html
+
+# Download Moodle 4.5 LTS stable
+RUN rm -rf /var/www/html/* && \
+    curl -L https://download.moodle.org/download.php/direct/stable405/moodle-latest-405.tgz | \
+    tar xz -C /var/www/html --strip-components=1
+
+# Copy the Zenith theme into the Moodle installation
+# Build context is project root, so theme/zenith is accessible
+COPY theme/zenith /var/www/html/theme/zenith
+
+# Create moodledata directory
+RUN mkdir -p /var/www/moodledata && \
+    chown -R www-data:www-data /var/www/moodledata && \
+    chmod 777 /var/www/moodledata
+
+# Set PHP production settings
+RUN echo "memory_limit = 512M" > /usr/local/etc/php/conf.d/moodle.ini && \
+    echo "upload_max_filesize = 256M" >> /usr/local/etc/php/conf.d/moodle.ini && \
+    echo "post_max_size = 256M" >> /usr/local/etc/php/conf.d/moodle.ini && \
+    echo "max_execution_time = 300" >> /usr/local/etc/php/conf.d/moodle.ini && \
+    echo "max_input_vars = 5000" >> /usr/local/etc/php/conf.d/moodle.ini
+
+# Copy production entrypoint
+COPY docker/entrypoint.prod.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
+EXPOSE 80
+
+ENTRYPOINT ["/entrypoint.sh"]

@@ -1,38 +1,34 @@
+# Zenith Moodle — Production Deployment (Coolify)
+# Traefik routes lms.endlessmaker.com → zenith-moodle:80
+# Traefik config: /data/coolify/proxy/dynamic/moodle-lucent.yaml
 services:
   moodle:
-    image: bitnamilegacy/moodle:4.5
+    build:
+      context: ../
+      dockerfile: docker/Dockerfile.prod
     container_name: zenith-moodle
     restart: always
-    ports:
-      - "8081:8080"
     environment:
-      - MOODLE_DATABASE_HOST=mariadb
-      - MOODLE_DATABASE_PORT_NUMBER=3306
-      - MOODLE_DATABASE_USER=${MOODLE_DB_USER:-moodle}
-      - MOODLE_DATABASE_PASSWORD=${MOODLE_DB_PASSWORD:-moodle_password}
-      - MOODLE_DATABASE_NAME=${MOODLE_DB_NAME:-moodle}
-      - MOODLE_USERNAME=${MOODLE_ADMIN_USER:-admin}
-      - MOODLE_PASSWORD=${MOODLE_ADMIN_PASSWORD:-Admin123!}
-      - MOODLE_EMAIL=${MOODLE_ADMIN_EMAIL:-admin@endlessmaker.com}
+      - MOODLE_DOCKER_DBHOST=zenith-mariadb
+      - MOODLE_DOCKER_DBNAME=${MOODLE_DB_NAME:-moodle}
+      - MOODLE_DOCKER_DBUSER=${MOODLE_DB_USER:-moodle}
+      - MOODLE_DOCKER_DBPASS=${MOODLE_DB_PASSWORD:-moodle_password}
+      - MOODLE_WWWROOT=https://lms.endlessmaker.com
       - MOODLE_SITE_NAME=Zenith LMS
-      - MOODLE_HOST=lms.endlessmaker.com
-      - MOODLE_REVERSEPROXY=yes
-      - MOODLE_SSLPROXY=yes
-      - MOODLE_SKIP_BOOTSTRAP=no
-      - PHP_MEMORY_LIMIT=512M
-      - PHP_MAX_UPLOAD_SIZE=256M
-      - PHP_POST_MAX_SIZE=256M
+      - MOODLE_SITE_SHORTNAME=zenith
+      - MOODLE_ADMIN_USER=${MOODLE_ADMIN_USER:-admin}
+      - MOODLE_ADMIN_PASS=${MOODLE_ADMIN_PASS:-Admin123!}
+      - MOODLE_ADMIN_EMAIL=${MOODLE_ADMIN_EMAIL:-admin@endlessmaker.com}
     volumes:
-      - zenith_moodle_data:/bitnami/moodle
-      - zenith_moodledata:/bitnami/moodledata
+      - zenith_moodledata:/var/www/moodledata
     depends_on:
       mariadb:
         condition: service_healthy
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8080/"]
+      test: ["CMD", "curl", "-f", "http://localhost:80/"]
       interval: 30s
       timeout: 10s
-      start_period: 120s
+      start_period: 180s
       retries: 5
     networks:
       - zenith-internal
@@ -65,8 +61,6 @@ services:
       - traefik.enable=false
 
 volumes:
-  zenith_moodle_data:
-    driver: local
   zenith_moodledata:
     driver: local
   zenith_mariadb_data:

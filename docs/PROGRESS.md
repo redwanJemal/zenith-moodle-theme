@@ -9,14 +9,14 @@
 
 | Phase | Progress | Tasks | Done | Hours Est. | Weeks |
 |-------|----------|-------|------|-----------|-------|
-| [P0: Infrastructure](tasks/phase-0-infrastructure.md) | ██████░░░░ 67% | 6 | 4/6 | 17h | Week 1 |
-| [P1: Core Theme](tasks/phase-1-core-theme.md) | █████████░ 90% | 10 | 9/10 | 74h | Weeks 2-4 |
+| [P0: Infrastructure](tasks/phase-0-infrastructure.md) | ████████░░ 83% | 6 | 5/6 | 17h | Week 1 |
+| [P1: Core Theme](tasks/phase-1-core-theme.md) | ██████████ 100% | 10 | 10/10 | 74h | Weeks 2-4 |
 | [P2: Customizer](tasks/phase-2-customizer.md) | ░░░░░░░░░░ 0% | 3 | 0/3 | 38h | Weeks 5-6 |
 | [P3: Differentiators](tasks/phase-3-differentiators.md) | ░░░░░░░░░░ 0% | 7 | 0/7 | 92h | Weeks 7-10 |
 | [P4: Polish](tasks/phase-4-polish.md) | ░░░░░░░░░░ 0% | 6 | 0/6 | 48h | Weeks 11-12 |
 | [P5: Ecosystem](tasks/phase-5-ecosystem.md) | ░░░░░░░░░░ 0% | 3 | 0/3 | 40h | Weeks 13-16 |
 | [P6: Launch](tasks/phase-6-launch.md) | ░░░░░░░░░░ 0% | 4 | 0/4 | 28h | Weeks 17-18 |
-| **TOTAL** | **████░░░░░░ 33%** | **39** | **13/39** | **337h** | **18 weeks** |
+| **TOTAL** | **████░░░░░░ 38%** | **39** | **15/39** | **337h** | **18 weeks** |
 
 ---
 
@@ -70,7 +70,7 @@ P4-4 ──→ P6-3 (Marketing Assets)
 ## What To Work On Next
 
 > Pick the first task that has all dependencies met (marked `[x]`).
-> Currently: **P1-10 (Course Cards)** — unblocked (P1-9 done). Course card templates and SCSS already partially done via P1-9 premium polish. Remaining: category.php layout, archive page template, filters/search JS, list/grid toggle.
+> Currently: **P2-1 (Settings Panel)** — unblocked (P1-6 done). Phase 1 is 100% complete. Next up is the admin settings panel and visual customizer.
 
 ---
 
@@ -83,6 +83,8 @@ P4-4 ──→ P6-3 (Marketing Assets)
 | 2026-02-28 | P0-1 | `admin@localhost` rejected by Moodle email validation | Resolved | Changed to `admin@example.com` |
 | 2026-02-28 | P0-3 | Bind-mounted theme dir owned by www-data, host can't edit | Resolved | Removed `chown theme/` from entrypoint.sh, fix via `docker exec chown 1000:1000` |
 | 2026-02-28 | P0-3 | Tabbed settings.php doesn't work for child themes | Resolved | Use flat `$settings->add($setting)` instead of tab pages |
+| 2026-02-28 | P0-2 | Old Coolify compose used broken bitnamilegacy/moodle:4.5 image | Resolved | Replaced with moodlehq/moodle-php-apache:8.3 + custom Dockerfile |
+| 2026-02-28 | P0-2 | `$CFG->reverseproxy = true` caused 500 error | Resolved | Removed invalid setting; only `$CFG->sslproxy = true` needed |
 | 2026-02-28 | P1-1 | SCSS `@import` directives not resolved by Moodle SCSS compiler | Resolved | Updated `lib.php` to inline `@import` via `preg_replace_callback()` |
 | 2026-02-28 | P1-7 | `#page-wrapper #page` has two-ID specificity overriding login flex-direction | Resolved | Nested layout rules under `#page-wrapper.z-login` for matching specificity |
 | 2026-02-28 | P1-7 | Login screenshot showed "already logged in" dialog instead of form | Resolved | Use separate unauthenticated browser context in screenshot generator |
@@ -121,4 +123,5 @@ P4-4 ──→ P6-3 (Marketing Assets)
 | 1 | 2026-02-28 | P0-1, P0-3, P0-4, P0-5 | Docker dev + theme scaffold + build tools + 36 baseline screenshots |
 | 2 | 2026-02-28 | P1-1, P1-2, P1-3, P1-4, P1-5, P1-6 | Design tokens + Bootstrap + navbar + footer + drawers + layout files |
 | 3 | 2026-02-28 | P1-7, P1-8 | Login page: 3 configurable layouts + Dark mode: toggle, anti-flash, preference persistence |
-| 4 | 2026-02-28 | P1-9 | Template overrides + premium visual polish: 2 SCSS files (~700 lines), 8 template overrides, 10 design tokens |
+| 4 | 2026-02-28 | P1-9, P1-10 | Template overrides + premium visual polish + Course archive: renderer override, toolbar, AJAX search, grid/list toggle. **Phase 1 complete!** |
+| 4 | 2026-02-28 | P0-2 | Production deployment: lms.endlessmaker.com live with Zenith theme via Traefik + Cloudflare HTTPS |

@@ -31,7 +31,7 @@
 ---
 
 ## P0-2: Production Deployment (Coolify)
-- **Status:** `[ ]`
+- **Status:** `[x]` ✅ Completed 2026-02-28
 - **Dependencies:** `P0-1`
 - **Effort:** 3 hours
 - **Blocks:** P6-2
@@ -39,15 +39,25 @@
 **Task:** Deploy to lms.endlessmaker.com via Coolify with Traefik proxy.
 
 **Acceptance Criteria:**
-- [ ] `docker-compose.coolify.yml` deploys successfully
-- [ ] Containers on `coolify` external network
-- [ ] `traefik.enable=false` labels set (routing via dynamic file)
-- [ ] Traefik config added: `lms.endlessmaker.com` → `zenith-moodle:8081`
-- [ ] HTTPS working (Let's Encrypt via Coolify)
-- [ ] Health checks passing
-- [ ] No port conflicts with TadHub (8080, 8090, 5432 already used)
+- [x] `docker-compose.coolify.yml` deploys successfully
+- [x] Containers on `coolify` external network
+- [x] `traefik.enable=false` labels set (routing via dynamic file)
+- [x] Traefik config added: `lms.endlessmaker.com` → `zenith-moodle:80`
+- [x] HTTPS working (Let's Encrypt via Cloudflare + Traefik)
+- [x] Health checks passing
+- [x] No port conflicts with TadHub (8080, 8090, 5432 already used)
 
-**Files:** `docker/docker-compose.coolify.yml`, `docs/DEPLOYMENT.md`
+**Files Created/Modified:**
+- [x] `docker/docker-compose.coolify.yml` — Production compose using moodlehq/moodle-php-apache:8.3 + custom Dockerfile
+- [x] `docker/Dockerfile.prod` — Production Dockerfile with Zenith theme baked in, PHP tuning
+- [x] `docker/entrypoint.prod.sh` — Production entrypoint with auto-install, upgrade check, SSL proxy config
+- [x] Traefik dynamic config at `/data/coolify/proxy/dynamic/moodle-lucent.yaml` — Routes lms.endlessmaker.com → zenith-moodle:80
+
+**Issues Encountered:**
+1. Old `docker-compose.coolify.yml` used broken `bitnamilegacy/moodle:4.5` image — replaced with working moodlehq setup from P0-1.
+2. `$CFG->reverseproxy = true` caused "Reverse proxy enabled" 500 error — this is not a valid Moodle config option (Bitnami-specific). Removed; only `$CFG->sslproxy = true` is needed.
+3. `$SITE` variable undefined during install — fixed settings.php with `isset()` guard.
+4. Dev and prod compose files in same directory caused project name collision — use `-p zenith-dev` for dev.
 
 **Reference:** TadHub Coolify pattern at `/home/redman/TadHub/docker/docker-compose.coolify.yml`
 

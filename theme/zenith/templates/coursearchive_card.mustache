@@ -1,0 +1,31 @@
+{{!
+    @template theme_zenith/coursearchive_card
+
+    Lightweight card for AJAX search results (client-side rendering).
+
+    Context variables required:
+    * id - Course ID
+    * fullname - Course full name
+    * viewurl - URL to course
+    * courseimage - Course image URL
+    * categoryname - Category name (optional)
+    * instructors - Instructor names string (optional)
+    * visible - Whether course is visible
+}}
+<div class="z-coursecard" data-courseid="{{id}}">
+    <a href="{{viewurl}}" tabindex="-1" aria-hidden="true">
+        <div class="z-coursecard__image" style='background-image: url("{{courseimage}}");'></div>
+    </a>
+    <div class="z-coursecard__body">
+        {{#categoryname}}
+        <span class="z-coursecard__category">{{categoryname}}</span>
+        {{/categoryname}}
+        <a href="{{viewurl}}" class="z-coursecard__title">{{fullname}}</a>
+        {{#instructors}}
+        <div class="z-coursecard__instructor">{{instructors}}</div>
+        {{/instructors}}
+        {{^visible}}
+        <span class="z-coursecard__hidden-badge">{{#str}}hiddenfromstudents{{/str}}</span>
+        {{/visible}}
+    </div>
+</div>

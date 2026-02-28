@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" fill="none">
+  <!-- Book/document illustration for empty course state -->
+  <rect x="20" y="30" width="80" height="65" rx="6" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="1.5"/>
+  <rect x="28" y="25" width="64" height="65" rx="4" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1.5"/>
+  <!-- Page lines -->
+  <line x1="38" y1="42" x2="82" y2="42" stroke="#cbd5e1" stroke-width="2" stroke-linecap="round"/>
+  <line x1="38" y1="52" x2="78" y2="52" stroke="#e2e8f0" stroke-width="2" stroke-linecap="round"/>
+  <line x1="38" y1="62" x2="72" y2="62" stroke="#e2e8f0" stroke-width="2" stroke-linecap="round"/>
+  <line x1="38" y1="72" x2="68" y2="72" stroke="#e2e8f0" stroke-width="2" stroke-linecap="round"/>
+  <!-- Magnifying glass -->
+  <circle cx="82" cy="78" r="14" fill="white" stroke="#94a3b8" stroke-width="2"/>
+  <circle cx="82" cy="78" r="9" fill="none" stroke="#94a3b8" stroke-width="1.5"/>
+  <line x1="92" y1="88" x2="102" y2="98" stroke="#94a3b8" stroke-width="3" stroke-linecap="round"/>
+  <!-- Question mark in magnifying glass -->
+  <text x="82" y="83" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="600" fill="#94a3b8">?</text>
+</svg>

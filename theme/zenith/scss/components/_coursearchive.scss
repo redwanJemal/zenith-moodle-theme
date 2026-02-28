@@ -1,0 +1,292 @@
+// Zenith Theme — Course Archive Component
+// BEM component: .z-archive-* (toolbar, search, filters)
+// Used on /course/index.php category pages and frontpage "Available courses"
+
+// ============================================================================
+// ARCHIVE TOOLBAR
+// ============================================================================
+
+.z-archive-toolbar {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--z-space-3);
+    padding: var(--z-space-4) 0;
+    margin-bottom: var(--z-space-4);
+    border-bottom: 1px solid var(--z-border-color);
+
+    @media (max-width: 575.98px) {
+        flex-direction: column;
+        align-items: stretch;
+    }
+}
+
+// ============================================================================
+// SEARCH INPUT
+// ============================================================================
+
+.z-archive-search {
+    position: relative;
+    flex: 1;
+    min-width: 200px;
+    max-width: 360px;
+
+    @media (max-width: 575.98px) {
+        max-width: 100%;
+    }
+
+    &__icon {
+        position: absolute;
+        left: var(--z-space-3);
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--z-text-muted);
+        font-size: var(--z-text-sm);
+        pointer-events: none;
+    }
+
+    &__input {
+        width: 100%;
+        padding: 0.5rem 0.75rem 0.5rem 2.25rem;
+        font-size: var(--z-text-sm);
+        color: var(--z-text-primary);
+        background-color: var(--z-input-bg);
+        border: 1px solid var(--z-input-border);
+        border-radius: var(--z-input-radius);
+        transition: border-color var(--z-transition-fast),
+                    box-shadow var(--z-transition-fast);
+
+        &::placeholder {
+            color: var(--z-text-muted);
+        }
+
+        &:focus {
+            outline: none;
+            border-color: var(--z-primary);
+            box-shadow: 0 0 0 3px var(--z-primary-light);
+        }
+    }
+}
+
+// ============================================================================
+// FILTER & SORT DROPDOWNS
+// ============================================================================
+
+.z-archive-filter,
+.z-archive-sort {
+    .btn {
+        font-size: var(--z-text-sm);
+        padding: 0.5rem 0.75rem;
+        border: 1px solid var(--z-border-color);
+        background-color: var(--z-bg-surface);
+        color: var(--z-text-secondary);
+        border-radius: var(--z-input-radius);
+        transition: border-color var(--z-transition-fast),
+                    background-color var(--z-transition-fast);
+
+        &:hover {
+            border-color: var(--z-border-color-hover);
+            background-color: var(--z-bg-surface-hover);
+        }
+    }
+
+    .dropdown-item.active,
+    .dropdown-item.selected {
+        background-color: var(--z-primary);
+        color: #fff;
+    }
+}
+
+// ============================================================================
+// VIEW TOGGLE (Grid / List)
+// ============================================================================
+
+.z-archive-view-toggle {
+    display: flex;
+    border: 1px solid var(--z-border-color);
+    border-radius: var(--z-input-radius);
+    overflow: hidden;
+
+    &__btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 36px;
+        height: 36px;
+        padding: 0;
+        border: none;
+        background-color: var(--z-bg-surface);
+        color: var(--z-text-muted);
+        cursor: pointer;
+        transition: background-color var(--z-transition-fast),
+                    color var(--z-transition-fast);
+
+        &:hover {
+            background-color: var(--z-bg-surface-hover);
+            color: var(--z-text-secondary);
+        }
+
+        &--active {
+            background-color: var(--z-primary);
+            color: #fff;
+
+            &:hover {
+                background-color: var(--z-primary-hover);
+                color: #fff;
+            }
+        }
+    }
+}
+
+// ============================================================================
+// COURSE COUNT BADGE
+// ============================================================================
+
+.z-archive-count {
+    font-size: var(--z-text-xs);
+    font-weight: var(--z-font-semibold);
+    color: var(--z-text-tertiary);
+    background-color: var(--z-bg-muted);
+    padding: 0.25rem 0.75rem;
+    border-radius: var(--z-radius-full);
+    white-space: nowrap;
+    margin-left: auto;
+
+    @media (max-width: 575.98px) {
+        margin-left: 0;
+    }
+}
+
+// ============================================================================
+// COURSE CARDS GRID — Archive context
+// ============================================================================
+
+.z-coursecards--archive {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--z-space-6);
+
+    @media (max-width: 991.98px) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: 575.98px) {
+        grid-template-columns: 1fr;
+    }
+}
+
+// ============================================================================
+// LIST VIEW MODIFIER
+// ============================================================================
+
+.z-coursecards--list {
+    grid-template-columns: 1fr !important;
+
+    .z-coursecard {
+        flex-direction: row;
+        align-items: stretch;
+
+        &:hover {
+            transform: translateY(-2px);
+        }
+    }
+
+    .z-coursecard__image {
+        width: 200px;
+        min-width: 200px;
+        padding-bottom: 0;
+        border-radius: var(--z-card-radius) 0 0 var(--z-card-radius);
+
+        @media (max-width: 575.98px) {
+            width: 120px;
+            min-width: 120px;
+        }
+    }
+
+    .z-coursecard__body {
+        padding: var(--z-space-3) var(--z-space-4);
+        justify-content: center;
+    }
+
+    .z-coursecard__instructor {
+        margin-bottom: 0;
+    }
+}
+
+// ============================================================================
+// INSTRUCTOR LINE
+// ============================================================================
+
+.z-coursecard__instructor {
+    font-size: var(--z-text-xs);
+    color: var(--z-text-tertiary);
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    margin-bottom: var(--z-space-2);
+}
+
+// ============================================================================
+// EMPTY STATE
+// ============================================================================
+
+.z-archive-empty {
+    text-align: center;
+    padding: var(--z-space-16) var(--z-space-6);
+
+    &__image {
+        width: 120px;
+        height: 120px;
+        margin: 0 auto var(--z-space-6);
+        opacity: 0.6;
+    }
+
+    &__heading {
+        font-size: var(--z-text-xl);
+        font-weight: var(--z-font-semibold);
+        color: var(--z-text-primary);
+        margin-bottom: var(--z-space-2);
+    }
+
+    &__text {
+        font-size: var(--z-text-sm);
+        color: var(--z-text-tertiary);
+        max-width: 400px;
+        margin: 0 auto;
+    }
+}
+
+// ============================================================================
+// LOADING STATE
+// ============================================================================
+
+.z-archive-loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--z-space-12) 0;
+
+    &__spinner {
+        width: 32px;
+        height: 32px;
+        border: 3px solid var(--z-border-color);
+        border-top-color: var(--z-primary);
+        border-radius: 50%;
+        animation: z-spin 0.7s linear infinite;
+    }
+}
+
+@keyframes z-spin {
+    to { transform: rotate(360deg); }
+}
+
+// ============================================================================
+// PAGINATION — Archive context
+// ============================================================================
+
+.z-archive-pagination {
+    margin-top: var(--z-space-6);
+    display: flex;
+    justify-content: center;
+}

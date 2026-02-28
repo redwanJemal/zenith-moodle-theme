@@ -72,7 +72,7 @@ if ($ADMIN->fulltree) {
     $name = 'theme_zenith/footercopyright';
     $title = get_string('footercopyright', 'theme_zenith');
     $description = get_string('footercopyright_desc', 'theme_zenith');
-    $default = '© {year} ' . format_string($SITE->fullname);
+    $default = '© {year} ' . (isset($SITE) ? format_string($SITE->fullname) : 'Your Site');
     $setting = new admin_setting_configtext($name, $title, $description, $default);
     $setting->set_updatedcallback('theme_reset_all_caches');
     $settings->add($setting);

@@ -1,0 +1,16 @@
+{{!
+    @template theme_zenith/coursearchive_empty
+
+    Empty state shown when no courses match search/filter criteria.
+}}
+<div class="z-archive-empty" data-region="archive-empty">
+    <img class="z-archive-empty__image"
+         src="{{#pix}}empty-courses, theme_zenith{{/pix}}"
+         alt="" aria-hidden="true">
+    <h3 class="z-archive-empty__heading">
+        {{#str}}nocoursefound, theme_zenith{{/str}}
+    </h3>
+    <p class="z-archive-empty__text">
+        {{#str}}nocoursefounddesc, theme_zenith{{/str}}
+    </p>
+</div>

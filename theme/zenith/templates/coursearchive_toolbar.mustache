@@ -1,0 +1,91 @@
+{{!
+    @template theme_zenith/coursearchive_toolbar
+
+    Archive toolbar with search, category filter, sort, view toggle, and count.
+
+    Context variables required:
+    * totalcount - Total number of courses
+    * categories - Array of {id, name} category objects
+    * hascategories - Boolean, whether categories exist
+    * counttext - Formatted course count string
+}}
+<div class="z-archive-toolbar" data-region="archive-toolbar">
+    {{! Search input }}
+    <div class="z-archive-search">
+        <i class="z-archive-search__icon fa fa-search" aria-hidden="true"></i>
+        <input type="text"
+               class="z-archive-search__input"
+               data-action="archive-search"
+               placeholder="{{#str}}searchcourses, theme_zenith{{/str}}"
+               aria-label="{{#str}}searchcourses, theme_zenith{{/str}}">
+    </div>
+
+    {{! Category filter dropdown }}
+    {{#hascategories}}
+    <div class="z-archive-filter dropdown">
+        <button class="btn dropdown-toggle" type="button"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                data-action="archive-filter-btn">
+            <i class="fa fa-filter mr-1" aria-hidden="true"></i>
+            {{#str}}allcategories, theme_zenith{{/str}}
+        </button>
+        <div class="dropdown-menu" data-region="archive-filter-menu">
+            <a class="dropdown-item active" href="#" data-categoryid="0">
+                {{#str}}allcategories, theme_zenith{{/str}}
+            </a>
+            <div class="dropdown-divider"></div>
+            {{#categories}}
+            <a class="dropdown-item" href="#" data-categoryid="{{id}}">
+                {{name}}
+            </a>
+            {{/categories}}
+        </div>
+    </div>
+    {{/hascategories}}
+
+    {{! Sort dropdown }}
+    <div class="z-archive-sort dropdown">
+        <button class="btn dropdown-toggle" type="button"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                data-action="archive-sort-btn">
+            <i class="fa fa-sort mr-1" aria-hidden="true"></i>
+            {{#str}}sortdefault, theme_zenith{{/str}}
+        </button>
+        <div class="dropdown-menu" data-region="archive-sort-menu">
+            <a class="dropdown-item active" href="#" data-sort="default">
+                {{#str}}sortdefault, theme_zenith{{/str}}
+            </a>
+            <a class="dropdown-item" href="#" data-sort="az">
+                {{#str}}sortaz, theme_zenith{{/str}}
+            </a>
+            <a class="dropdown-item" href="#" data-sort="za">
+                {{#str}}sortza, theme_zenith{{/str}}
+            </a>
+            <a class="dropdown-item" href="#" data-sort="newest">
+                {{#str}}sortnewest, theme_zenith{{/str}}
+            </a>
+        </div>
+    </div>
+
+    {{! View toggle }}
+    <div class="z-archive-view-toggle" role="group"
+         aria-label="{{#str}}viewtoggle, theme_zenith{{/str}}">
+        <button class="z-archive-view-toggle__btn z-archive-view-toggle__btn--active"
+                data-action="archive-view" data-view="grid"
+                aria-label="{{#str}}gridview, theme_zenith{{/str}}"
+                aria-pressed="true">
+            <i class="fa fa-th" aria-hidden="true"></i>
+        </button>
+        <button class="z-archive-view-toggle__btn"
+                data-action="archive-view" data-view="list"
+                aria-label="{{#str}}listview, theme_zenith{{/str}}"
+                aria-pressed="false">
+            <i class="fa fa-list" aria-hidden="true"></i>
+        </button>
+    </div>
+
+    {{! Course count }}
+    <span class="z-archive-count" data-region="archive-count">
+        {{{counttext}}}
+    </span>
+</div>

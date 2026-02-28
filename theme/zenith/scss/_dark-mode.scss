@@ -592,6 +592,68 @@
         }
     }
 
+    // Course archive toolbar
+    .z-archive-toolbar {
+        border-bottom-color: var(--z-border-color);
+    }
+
+    .z-archive-search__input {
+        background-color: var(--z-input-bg);
+        border-color: var(--z-input-border);
+        color: var(--z-text-primary);
+
+        &::placeholder {
+            color: var(--z-text-muted);
+        }
+
+        &:focus {
+            border-color: var(--z-primary);
+            box-shadow: 0 0 0 3px var(--z-primary-light);
+        }
+    }
+
+    .z-archive-filter .btn,
+    .z-archive-sort .btn {
+        background-color: var(--z-bg-surface);
+        border-color: var(--z-border-color);
+        color: var(--z-text-secondary);
+
+        &:hover {
+            background-color: var(--z-bg-surface-hover);
+        }
+    }
+
+    .z-archive-view-toggle {
+        border-color: var(--z-border-color);
+    }
+
+    .z-archive-view-toggle__btn {
+        background-color: var(--z-bg-surface);
+        color: var(--z-text-muted);
+
+        &:hover {
+            background-color: var(--z-bg-surface-hover);
+        }
+
+        &--active {
+            background-color: var(--z-primary);
+            color: #fff;
+        }
+    }
+
+    .z-archive-count {
+        background-color: var(--z-bg-surface-hover);
+        color: var(--z-text-tertiary);
+    }
+
+    .z-archive-empty__image {
+        opacity: 0.5;
+    }
+
+    .z-coursecard__instructor {
+        color: var(--z-text-muted);
+    }
+
     // Course card hover shadow
     .z-coursecard:hover {
         box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -4px rgba(0, 0, 0, 0.4);

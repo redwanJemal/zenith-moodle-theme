@@ -81,6 +81,21 @@ $string['loginheading_desc'] = 'Heading text displayed above the login form.';
 $string['logindescription'] = 'Login description';
 $string['logindescription_desc'] = 'Description text displayed below the heading on the hero panel (left/right layouts only). Supports HTML.';
 
+// Course archive.
+$string['searchcourses'] = 'Search courses...';
+$string['allcategories'] = 'All categories';
+$string['sortdefault'] = 'Default';
+$string['sortaz'] = 'A–Z';
+$string['sortza'] = 'Z–A';
+$string['sortnewest'] = 'Newest';
+$string['gridview'] = 'Grid view';
+$string['listview'] = 'List view';
+$string['viewtoggle'] = 'Toggle view';
+$string['nocoursefound'] = 'No courses found';
+$string['nocoursefounddesc'] = 'Try adjusting your search or filter to find what you are looking for.';
+$string['coursecountfmt'] = '{$a} courses';
+$string['coursearchive'] = 'Course catalogue';
+
 // Advanced - SCSS.
 $string['rawscss'] = 'Raw SCSS';
 $string['rawscss_desc'] = 'Custom SCSS code appended after the theme SCSS. Use this for minor style adjustments.';
